@@ -47,19 +47,28 @@
                 <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
               </div>
             </div>
+            @error('post_image')
+            <div class="text-danger">Заполните поле{{$message}}</div>
+            @enderror
           </div>
           <div class="form-group">
             <label>Выберите категорию</label>
-            <select class="form-control">
-              @foreach ($collection as $item)
-              <option value="{{$category->id}}">{{$category->title}}</option>
+            <select class="form-control" name="category_id">
+              @foreach ($categories as $category)
+              <option value="{{$category->id}}"
+                {{$category->id == old('category_id')? 'selected' : ''}}>{{$category->title}}</option>
               @endforeach
-
             </select>
           </div>
-              <div class="input-group-append">
-                <span class="input-group-text">Загрузить</span>
-              </div>
+          <div class="form-group">
+            <label>Теги</label>
+            <select class="select2" name="tag_ids[]" multiple="multiple" data-placeholder="Выберите теги" style="width: 100%;">
+              @foreach ($tags as $tag)
+              <option {{is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? ' selected' : ''}} value="{{$tag->id}}"
+                {{$tag->id == old('tag_id')? 'selected' : ''}}>{{$tag->title}}</option>
+              @endforeach
+            </select>
+          </div>
 
             <input type="submit" class="btn btn-primary" value="Добавить">
           </form>

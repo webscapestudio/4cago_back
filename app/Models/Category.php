@@ -12,4 +12,12 @@ class Category extends Model
     use SoftDeletes;
     protected $table = 'categories';
     protected $guarded = false;
+
+
+    public function subcategory(){
+
+        return $this->hasMany(Category::class, 'parent_id');
+
+    }
 }
+

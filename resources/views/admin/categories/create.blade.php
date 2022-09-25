@@ -32,6 +32,16 @@
             @error('title')
                 <div class="text-danger">Заполните поле{{$message}}</div>
             @enderror
+            <div class="form-group">
+              <label>Выберите категорию</label>
+              <select class="form-control" name="category_id">
+                <option value="0">Выберите категорию</option>
+                @foreach ($categoriesParent as $category)
+                <option value="{{$category->parent_id}}"
+                  {{$category->id == old('category_id')? 'selected' : ''}}>{{$category->title}}</option>
+                @endforeach
+              </select>
+            </div>
             <input type="submit" class="btn btn-primary" value="Добавить">
           </form>
         </div>

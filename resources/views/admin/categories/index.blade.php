@@ -1,5 +1,6 @@
   @extends('admin.layouts.main')
   @section('content')
+
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -41,11 +42,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($category as $category)
+                    @foreach ($categories as $category)
                     <tr>
                       <td>{{$category->id}}</td>
-                      <td>{{$category->title}}</td>
-                      <td>?</td>
+                      <td>{{$category->title}}
+                        @if(count($category->subcategory))
+                        @include('admin.categories.sub_category_list',['subcategories' => $category->subcategory])
+                        @endif</td>
+
                       <td><a href="{{ route('admin.category.show', $category->id) }}"><i class="far fa-eye"></i></a></td>
                       <td><a href="{{ route('admin.category.edit', $category->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
                       <td>
@@ -72,3 +76,5 @@
     <!-- /.content -->
   </div>
       @endsection
+
+
