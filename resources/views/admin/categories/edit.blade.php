@@ -24,16 +24,10 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row"> 
-          <form action="{{ route('admin.category.update', $category->id) }}" method="POST" class="w-25">
-            @csrf
-            @method('PATCH')
-            <div class="form-group">
-              <input type="text" class="form-control" name="title" placeholder="Название категории" value="{{$category->title}}">
-            </div>
-            @error('title')
-                <div class="text-danger">Заполните поле{{$message}}</div>
-            @enderror
-            <input type="submit" class="btn btn-primary" value="Обновить">
+          <form action="{{route('admin.category.update', $category)}}" method="POST" class="w-25">
+            <input type="hidden" name = "_method" value="PATCH">
+            {{csrf_field()}}
+          @include('admin.categories.partials.formEdit')
           </form>
         </div>
         <!-- /.row -->

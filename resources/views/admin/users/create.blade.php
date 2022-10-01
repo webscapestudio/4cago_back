@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Редактирование тега</h1>
+            <h1 class="m-0">Добавление пользователя</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -24,16 +24,15 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row"> 
-          <form action="{{ route('admin.tag.update', $tag->id) }}" method="POST" class="w-25">
+          <form action="{{route('admin.user.store')}}" method="POST" class="w-25">
             @csrf
-            @method('PATCH')
             <div class="form-group">
-              <input type="text" class="form-control" name="title" placeholder="Название тега" value="{{$tag->title}}">
+              <input type="text" class="form-control" name="name" placeholder="Имя пользователя">
             </div>
-            @error('title')
+            @error('name')
                 <div class="text-danger">{{$message}}</div>
             @enderror
-            <input type="submit" class="btn btn-primary" value="Обновить">
+            <input type="submit" class="btn btn-primary" value="Добавить">
           </form>
         </div>
         <!-- /.row -->

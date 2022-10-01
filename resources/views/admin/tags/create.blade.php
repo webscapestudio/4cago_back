@@ -30,7 +30,7 @@
               <input type="text" class="form-control" name="title" placeholder="Название тега">
             </div>
             @error('title')
-                <div class="text-danger">Заполните поле{{$message}}</div>
+                <div class="text-danger">{{$message}}</div>
             @enderror
             <input type="submit" class="btn btn-primary" value="Добавить">
           </form>

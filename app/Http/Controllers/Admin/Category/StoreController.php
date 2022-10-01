@@ -12,8 +12,7 @@ class StoreController extends Controller
 {
     public function __invoke(StoreRequest $request)
     {
-        $data=$request->validated();
-        Category::firstOrCreate($data);
+       Category::create($request->all());
         return redirect()->route('admin.category.index');
     }
 

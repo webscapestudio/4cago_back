@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Tag;
 
-class CreateController extends Controller
+class CreateController extends BaseController
 {
     public function __invoke()
     {
@@ -15,5 +15,5 @@ class CreateController extends Controller
         $tags = Tag::all();
         return view('admin.posts.create', compact('categories','tags'));
     }
-
+ 
 }

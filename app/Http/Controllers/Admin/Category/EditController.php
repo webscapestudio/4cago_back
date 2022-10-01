@@ -9,7 +9,14 @@ class EditController extends Controller
 {
     public function __invoke(Category $category)
     {
-        return view('admin.categories.edit', compact('category'));
+        {
+   
+            return view('admin.categories.edit', [
+                'category' => $category,
+                'categories'  => Category::with('childrenCategories')->where('parent_id','0')->get(),
+                'delimiter' => ''
+            ]);
+        }
     }
 
 }
