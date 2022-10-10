@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {   public function __invoke()
     {
-        $users = User::where('parent_id',0)->get();
-
+        $users = User::all();
+        
         return view('admin.users.index', compact('users'));
     }
 

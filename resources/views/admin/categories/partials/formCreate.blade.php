@@ -10,6 +10,7 @@
         @endif
     </select>
 </div>
+
 <label for="">Наименование</label>
 <input type="text" class="form-control" name="title" placeholder="Заголовок категории" value="" >
 

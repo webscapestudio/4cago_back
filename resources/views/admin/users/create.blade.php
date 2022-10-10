@@ -32,6 +32,30 @@
             @error('name')
                 <div class="text-danger">{{$message}}</div>
             @enderror
+            <div class="form-group">
+              <input type="text" class="form-control" name="email" placeholder="Email">
+            </div>
+            @error('email')
+                <div class="text-danger">{{$message}}</div>
+            @enderror
+            <div class="form-group">
+              <input type="text" class="form-control" name="password" placeholder="Введите пароль">
+            </div>
+            @error('password')
+                <div class="text-danger">{{$message}}</div>
+            @enderror
+            <div class="form-group">
+              <label>Выберите роль пользователя</label>
+              <select class="form-control" name="role">
+                @foreach ($roles as $id => $role)
+                <option value="{{$id}}"
+                  {{$id == old('role_id')? 'selected' : ''}}>{{$role}}</option>
+                @endforeach
+              </select>
+              @error('role')
+              <div class="text-danger">{{$message}}</div>
+              @enderror
+            </div>
             <input type="submit" class="btn btn-primary" value="Добавить">
           </form>
         </div>

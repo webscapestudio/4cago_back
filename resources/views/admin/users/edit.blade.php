@@ -28,12 +28,33 @@
             @csrf
             @method('PATCH')
             <div class="form-group">
-              <input type="text" class="form-control" name="name" placeholder="Имя пользователя" value="{{$user->name}}">
+              <input type="text" class="form-control" name="name" value="{{$user->name}}" placeholder="Имя пользователя">
             </div>
             @error('name')
                 <div class="text-danger">{{$message}}</div>
             @enderror
-            <input type="submit" class="btn btn-primary" value="Обновить">
+            <div class="form-group">
+              <input type="text" class="form-control" name="email" value="{{$user->email}}" placeholder="Email">
+            </div>
+            @error('email')
+                <div class="text-danger">{{$message}}</div>
+            @enderror
+            <div class="form-group">
+              <label>Выберите роль пользователя</label>
+              <select class="form-control" name="role">
+                @foreach ($roles as $id => $role)
+                <option value="{{$id}}"
+                  {{$id == $user->role ? 'selected' : ''}}>{{$role}}</option>
+                @endforeach
+              </select>
+              @error('role')
+              <div class="text-danger">{{$message}}</div>
+              @enderror
+            </div>
+            <div class="form-group w-50">
+              <input type="hidden" name="user_id" value="{{$user->id}}">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Сохранить">
           </form>
         </div>
         <!-- /.row -->

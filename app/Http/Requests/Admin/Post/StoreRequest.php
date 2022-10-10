@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
           'title'=>'required|string',
-          'content'=>'required|string',
+          'content'=>'required|string', 
           'post_image'=>'required|file',
           'category_id'=>'required|exists:categories,id',
           'tag_ids'=>'nullable|array',

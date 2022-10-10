@@ -13,7 +13,13 @@ class Category extends Model
     protected $table = 'categories';
   
     //Mass assigned
-    protected $fillable = ['title','slug','parent_id','published','created_by','modified_by'];
+    protected $fillable = [
+      'title',
+      'slug',
+      'parent_id',
+      'published',
+      'created_by',
+      'modified_by'];
     // Mutators
     public function setSlugAttribute()
     { 

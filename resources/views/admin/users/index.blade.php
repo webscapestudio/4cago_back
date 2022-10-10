@@ -47,8 +47,8 @@
                       <td>{{$user->id}}</td>
                       <td>{{$user->name}}
 
-                      <td><a href="{{ route('admin.category.show', $user->id) }}"><i class="far fa-eye"></i></a></td>
-                      <td><a href="{{ route('admin.category.edit', $user->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
+                      <td><a href="{{ route('admin.user.show', $user->id) }}"><i class="far fa-eye"></i></a></td>
+                      <td><a href="{{ route('admin.user.edit', $user->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
                       <td>
                       <form action="{{ route('admin.user.destroy', $user->id) }}" method="POST">
                         @csrf
