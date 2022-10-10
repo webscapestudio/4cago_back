@@ -1,8 +1,7 @@
 <div class="profile__card-bottom category__tabs_wrap">
     <ul class="theme__items">
         <li class="theme__item">
-
-            <button class="profile__link tabs-btn">Записи</button>
+            <a href="{{ route('personal.post.index') }}" class="nav-link">Записи</a>
         </li>
         <li class="theme__item">
             <button class="profile__link tabs-btn">Объявления</button>
@@ -33,4 +32,3 @@
         <div class="category__tabs"></div>
     </div>
 </div>
-<a href="{{ route('personal.post.index') }}" class="nav-link">aaaaaaaa</a>
