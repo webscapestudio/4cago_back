@@ -31,7 +31,7 @@
         </div>
 
         <p class="post__title">Вы еще не написали ни одной статьи.</p>
-        <a href="{{ route('personal.post.create') }}" class="btn btn__blue">Создать статью</a>
+        <a href="{{ route('personal.post.create') }}" style="text-align: center" class="btn btn__blue">Создать статью</a>
 
         @foreach ($posts as $post)
             <div class="post__card ad__card">
