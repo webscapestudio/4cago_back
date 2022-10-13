@@ -14,13 +14,13 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#9B9B9B">
     <!-- Favicons -->
-    <link rel="shortcut icon" href="{{ asset('./images/favicon.ico') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('/images/favicon.ico') }}" type="image/x-icon">
     <link rel="icon" type="image/png" sizes="16x16" href="/">
     <link rel="icon" type="image/png" sizes="32x32" href="/">
     <link rel="icon" type="image/png" sizes="96x96" href="/">
     <link rel="icon" type="image/png" sizes="120x120" href="/">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('./images/apple-touch-icon-180x180.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/apple-touch-icon-180x180.png') }}">
     <!-- <link rel="manifest" href="./images/manifest.json"> -->
-    <link rel="stylesheet" href="{{ asset('./css/main.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/main.min.css') }}" />
     <title>Chicago</title>
 </head>
