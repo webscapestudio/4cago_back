@@ -8,6 +8,27 @@
             <h2 class="delete__title">Редактировать пост</h2>
             <div class="post-create__inner">
                 <div class="post__category">
+                    <p class="post__date">Статус</p>
+
+                    <div class="custom__select">
+                        <select id="a-select" name="published">
+                            @if (@isset($post->id))
+                                <option value="0" @if ($post->published == 0) selected = "" @endif>Не
+                                    опубликовано</option>
+                                <option value="1" @if ($post->published == 1) selected = "" @endif>Опубликовано
+                                </option>
+                            @else
+                                <option value="0">Не опубликовано</option>
+                                <option value="1">Опубликовано</option>
+                            @endif
+
+                        </select>
+                        @error('category_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="post__category">
                     <p class="post__date">Категория</p>
 
                     <div class="custom__select">
@@ -25,7 +46,7 @@
 
                 <div class="create__title">
                     <p class="post__date">Заголовок</p>
-                    <input class="input input__title" type="text" name="title" value="{{ old('title') }}">
+                    <input class="input input__title" type="text" name="title" value="{{ $post->title }}">
                     @error('title')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -36,7 +57,7 @@
                     <p class="post__date">Текст</p>
                     <div class="white__area">
 
-                        <textarea id="summernote" class="white__textarea" name="content" id="white-area">{{ old('content') }}</textarea>
+                        <textarea id="summernote" class="white__textarea" name="content" id="white-area">{{ $post->content }}</textarea>
                         @error('content')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
@@ -56,10 +77,12 @@
                                         stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
                             </label>
+
                             @error('post_image')
                                 <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
                     </div>
                 </div>
 
