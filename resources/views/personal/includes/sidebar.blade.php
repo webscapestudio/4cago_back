@@ -4,7 +4,7 @@
             <a href="{{ route('personal.post.index') }}" class="nav-link">Записи</a>
         </li>
         <li class="theme__item">
-            <button class="profile__link tabs-btn">Объявления</button>
+            <a href="{{ route('personal.advertisement.index') }}" class="nav-link">Обьявления</a>
         </li>
         <li class="theme__item">
             <button class="profile__link tabs-btn">Вакансии</button>

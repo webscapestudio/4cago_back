@@ -1,10 +1,31 @@
   @extends('personal.main.index')
   @section('content')
       <div class="container">
-          <form class="post__create"action="{{ route('personal.post.index') }}" method="POST" enctype="multipart/form-data">
+          <form class="ad__post"action="{{ route('personal.post.store') }}" method="POST" enctype="multipart/form-data">
               @csrf
               <h2 class="delete__title">Создать пост</h2>
               <div class="post-create__inner">
+                  <div class="post__category">
+                      <p class="post__date">Статус</p>
+
+                      <div class="custom__select">
+                          <select id="a-select" name="published">
+                              @if (@isset($post->id))
+                                  <option value="0" @if ($post->published == 0) selected = "" @endif>Не
+                                      опубликовано</option>
+                                  <option value="1" @if ($post->published == 1) selected = "" @endif>Опубликовано
+                                  </option>
+                              @else
+                                  <option value="0">Не опубликовано</option>
+                                  <option value="1">Опубликовано</option>
+                              @endif
+
+                          </select>
+                          @error('category_id')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
+                      </div>
+                  </div>
                   <div class="post__category">
                       <p class="post__date">Категория</p>
 

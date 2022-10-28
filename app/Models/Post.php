@@ -12,9 +12,21 @@ class Post extends Model
     use HasFactory;
     protected $table = 'posts';
     protected $guarded = false;
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d',
+    ];
 
-public function tags()
-{
-    return $this->belongsToMany(Tag::class,'post_tags','post_id','tag_id');
-}
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+    }
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
 }

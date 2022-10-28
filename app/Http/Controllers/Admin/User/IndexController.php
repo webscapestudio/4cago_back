@@ -7,12 +7,11 @@ use App\Models\User;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
-{   public function __invoke()
+{
+    public function __invoke()
     {
         $users = User::all();
-        
+
         return view('admin.users.index', compact('users'));
     }
-
-
 }

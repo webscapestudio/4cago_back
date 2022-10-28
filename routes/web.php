@@ -15,20 +15,30 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::group(['namespace' => 'Main'], function () {
-    Route::get('/', 'IndexController');
+    Route::get('/', 'IndexController')->name('main.index');
 });
+
+Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], function () {
+    Route::get('/', 'IndexController')->name('advertisements.index');
+    Route::get('/{category}', 'ShowController')->name('advertisement.show');
+});
+Route::group(['namespace' => 'News', 'prefix' => 'news'], function () {
+    Route::get('/', 'IndexController')->name('news.index');
+});
+//Admin 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::group(['namespace' => 'Main'], function () {
-        Route::get('/', 'IndexController');
+        Route::get('/', 'IndexController')->name('admin.main.index');
     });
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
         Route::get('/', 'IndexController')->name('admin.post.index');
-        Route::get('/create', 'CreateController')->name('admin.post.create');
-        Route::post('/', 'StoreController')->name('admin.post.store');
         Route::get('/{post}', 'ShowController')->name('admin.post.show');
-        Route::get('/{post}/edit', 'EditController')->name('admin.post.edit');
-        Route::patch('/{post}', 'UpdateController')->name('admin.post.update');
         Route::delete('/{post}', 'DestroyController')->name('admin.post.destroy');
+    });
+    Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], function () {
+        Route::get('/', 'IndexController')->name('admin.advertisement.index');
+        Route::get('/{advertisement}', 'ShowController')->name('admin.advertisement.show');
+        Route::delete('/{advertisement}', 'DestroyController')->name('admin.advertisement.destroy');
     });
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
         Route::get('/', 'IndexController')->name('admin.category.index');
@@ -38,6 +48,15 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/{category}/edit', 'EditController')->name('admin.category.edit');
         Route::patch('/{category}', 'UpdateController')->name('admin.category.update');
         Route::delete('/{category}', 'DestroyController')->name('admin.category.destroy');
+    });
+    Route::group(['namespace' => 'CategoryAdvertisement', 'prefix' => 'categories_advertisements'], function () {
+        Route::get('/', 'IndexController')->name('admin.category_advertisement.index');
+        Route::get('/create', 'CreateController')->name('admin.category_advertisement.create');
+        Route::post('/', 'StoreController')->name('admin.category_advertisement.store');
+        Route::get('/{category_advertisement}', 'ShowController')->name('admin.category_advertisement.show');
+        Route::get('/{category_advertisement}/edit', 'EditController')->name('admin.category_advertisement.edit');
+        Route::patch('/{category_advertisement}', 'UpdateController')->name('admin.category_advertisement.update');
+        Route::delete('/{category_advertisement}', 'DestroyController')->name('admin.category_advertisement.destroy');
     });
     Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function () {
         Route::get('/', 'IndexController')->name('admin.tag.index');
@@ -57,7 +76,17 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::patch('/{user}', 'UpdateController')->name('admin.user.update');
         Route::delete('/{user}', 'DestroyController')->name('admin.user.destroy');
     });
+    Route::group(['namespace' => 'News', 'prefix' => 'news'], function () {
+        Route::get('/', 'IndexController')->name('admin.news.index');
+        Route::get('/create', 'CreateController')->name('admin.news.create');
+        Route::post('/', 'StoreController')->name('admin.news.store');
+        Route::get('/{news}', 'ShowController')->name('admin.news.show');
+        Route::get('/{news}/edit', 'EditController')->name('admin.news.edit');
+        Route::patch('/{news}', 'UpdateController')->name('admin.news.update');
+        Route::delete('/{news}', 'DestroyController')->name('admin.news.destroy');
+    });
 });
+//Personal
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('personal.main.index');
@@ -70,6 +99,15 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
         Route::get('/{post}/edit', 'EditController')->name('personal.post.edit');
         Route::patch('/{post}', 'UpdateController')->name('personal.post.update');
         Route::delete('/{post}', 'DestroyController')->name('personal.post.destroy');
+    });
+    Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], function () {
+        Route::get('/', 'IndexController')->name('personal.advertisement.index');
+        Route::get('/create', 'CreateController')->name('personal.advertisement.create');
+        Route::post('/', 'StoreController')->name('personal.advertisement.store');
+        Route::get('/{advertisement}', 'ShowController')->name('personal.advertisement.show');
+        Route::get('/{advertisement}/edit', 'EditController')->name('personal.advertisement.edit');
+        Route::patch('/{advertisement}', 'UpdateController')->name('personal.advertisement.update');
+        Route::delete('/{advertisement}', 'DestroyController')->name('personal.advertisement.destroy');
     });
 });
 Auth::routes();

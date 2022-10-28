@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -15,6 +16,7 @@ class IndexController extends Controller
         $posts = Post::all();
         $categories = Category::all();
         $tags = Tag::all();
-        return view('main.index', compact('categories', 'posts', 'tags'));
+        $user = Auth::user();
+        return view('main.index', compact('categories', 'posts', 'tags', 'user'));
     }
 }
