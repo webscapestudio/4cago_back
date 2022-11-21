@@ -11,7 +11,7 @@ class IndexController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $advertisements = Advertisement::all();
+        $advertisements = Advertisement::latest()->with('like')->paginate(6);
         return view('advertisements.index', compact('advertisements', 'user'));
     }
 }

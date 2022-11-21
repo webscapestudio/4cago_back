@@ -11,6 +11,6 @@ class ShowController extends Controller
     public function __invoke(Advertisement $advertisement)
     {
         $advertisements = Advertisement::all();
-        return view('personal.advertisements.index', compact('advertisement', 'advertisements'));
+        return view('personal.advertisements.show', compact('advertisement', 'advertisements'));
     }
 }

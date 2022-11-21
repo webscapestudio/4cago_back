@@ -18,7 +18,7 @@ class CreateController extends Controller
         $user = Auth::user();
         //dd($user);
         return view('personal.advertisements.create', [
-            'category' => [],
+            'category_advertisement' => [],
             'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
         ], compact('categories_advertisements', 'advertisements', 'tags', 'user'));

@@ -44,39 +44,15 @@
                     </div>
                 </div>
 
-                <form class="flexible @error('email') error @enderror @error('password') error @enderror" method="POST"
-                    action="{{ route('login') }}">
+                <form class="flexible error" method="POST" action="{{ route('login') }}">
                     @csrf
+                    <input class="input input__email  @error('email') error @enderror" type="email" name="email"
+                        placeholder="Почта" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
 
-                    <input id="email" type="email"
-                        class="form-control input input__email @error('email') error @enderror" name="email"
-                        value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Почта">
+                    <input class="input input__password @error('password') error @enderror" type="password"
+                        name="password" placeholder="Пароль" required autocomplete="current-password">
 
-                    @error('email')
-                        <div class="form__message">
-                            <p class="form__error">{{ $message }}</p>
-                        </div>
-                    @enderror
-
-
-                    <input id="password" type="password"
-                        class="input input__password @error('password') error @enderror" name="password" required
-                        autocomplete="current-password" placeholder="Пароль">
-
-                    @error('password')
-                        <div class="form__message">
-                            <p class="form__error">{{ $message }}</p>
-
-
-                        </div>
-                    @enderror
-
-                    @if (Route::has('password.request'))
-                        <a class="reg__link" href="{{ route('password.request') }}"
-                            data-micromodal-trigger="pass-restore" data-micromodal-close>
-                            {{ __('Забыли пароль?') }}</a>
-                    @endif
                     <div class="row mb-3">
                         <div class="col-md-6 offset-md-4">
                             <div class="form-check">
@@ -90,18 +66,33 @@
                         </div>
                     </div>
 
+                    <div class="form__message">
+                        @error('email')
+                            <div class="form__message">
+                                <p class="form__error">{{ $message }}</p>
+                            </div>
+                        @enderror
+                        @error('password')
+                            <div class="form__message">
+                                <p class="form__error">{{ $message }}</p>
+                            </div>
+                        @enderror
+                        @if (Route::has('password.request'))
+                            <a class="reg__link" href="{{ route('password.request') }}">
+                                {{ __('Забыли пароль?') }}
+                            </a>
+                        @endif
+                    </div>
 
-                    <button type="submit" class="btn btn__blue">
-                        {{ __('Войти') }}
-                    </button>
-
-
+                    <button class="btn btn__blue" type="submit">Войти</button>
                 </form>
-                <div class="have__account">
-                    <p class="profile__name">Нет аккаунта?</p>
-                    <a class="reg__link" href="#" data-micromodal-trigger="registration"
-                        data-micromodal-close>Регистрация</a>
-                </div>
+                @if (Route::has('register'))
+                    <div class="have__account">
+                        <p class="profile__name">Нет аккаунта?</p>
+                        <a class="reg__link" href="#" data-micromodal-trigger="registration"
+                            data-micromodal-close>Регистрация</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>

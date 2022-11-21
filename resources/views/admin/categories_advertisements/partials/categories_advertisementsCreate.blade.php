@@ -16,7 +16,7 @@
 
     @if (count($category_advertisement_list->childrenCategories) > 0)
         @include('admin.categories_advertisements.partials.categories_advertisementsCreate', [
-            'categories' => $category_advertisement_list->childrenCategories,
+            'categories_advertisements' => $category_advertisement_list->childrenCategories,
             'delimiter' => ' - ' . $delimiter,
         ])
     @endif

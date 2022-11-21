@@ -12,7 +12,6 @@ class ShowController extends Controller
 {
     public function __invoke(Advertisement $advertisement)
     {
-        $user = Auth::user();
-        return view('advertisements.show', compact('advertisement', 'user'));
+        return view('advertisements.show', compact('advertisement'));
     }
 }

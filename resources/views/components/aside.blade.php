@@ -25,7 +25,7 @@
                 </li>
                 <!-- item -->
                 <li class="sidebar__menu-item">
-                    <a class="menu__link" href="{{ route('main.index') }}">
+                    <a class="menu__link" href="{{ route('post.index') }}">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#7D8688">
                             <g clip-path="url(#clip0_23_166)">
                                 <path

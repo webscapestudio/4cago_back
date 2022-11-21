@@ -29,4 +29,19 @@ class Advertisement extends Model
     {
         return $this->belongsTo(CategoryAdvertisement::class, 'category_advertisement_id');
     }
+    //Favourite--------------------------------------------------------
+    public function favourite()
+    {
+        return $this->morphMany(Favourite::class, 'favouritable');
+    }
+    //Like-------------------------------------------------------------
+    public function like()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+    //Dislike----------------------------------------------------------
+    public function dislike()
+    {
+        return $this->morphMany(Dislike::class, 'dislikeable');
+    }
 }

@@ -17,8 +17,8 @@ class EditController extends Controller
         $categories_advertisements = CategoryAdvertisement::all();
         $tags = Tag::all();
         return view('personal.advertisements.edit', [
-            'category' => $category_advertisement,
-            'categories'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
+            'category_advertisement' => $category_advertisement,
+            'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
         ], compact('categories_advertisements', 'advertisements', 'advertisement', 'tags', 'user'));
     }

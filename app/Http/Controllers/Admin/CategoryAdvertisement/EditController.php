@@ -8,12 +8,12 @@ use App\Models\CategoryAdvertisement;
 
 class EditController extends Controller
 {
-    public function __invoke(CategoryAdvertisement $category)
+    public function __invoke(CategoryAdvertisement $category_advertisement)
     { {
 
             return view('admin.categories_advertisements.edit', [
-                'category' => $category,
-                'categories'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
+                'category_advertisement' => $category_advertisement,
+                'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
                 'delimiter' => ''
             ]);
         }

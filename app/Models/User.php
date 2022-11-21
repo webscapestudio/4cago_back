@@ -65,4 +65,43 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class);
     }
+    //Favourite--------------------------------------------------------
+    public function  hasFavouritedPost(Post $post)
+    {
+        return (bool) $post->favourite
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function  hasFavouritedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->favourite
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    //Like-------------------------------------------------------------
+    public function hasLikedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->like
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasLikedPost(Post $post)
+    {
+        return (bool) $post->like
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    //Dislike-------------------------------------------------------------
+    public function hasDislikedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->dislike
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasDislikedPost(Post $post)
+    {
+        return (bool) $post->dislike
+            ->where('user_id', $this->id)
+            ->count();
+    }
 }

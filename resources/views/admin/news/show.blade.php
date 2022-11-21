@@ -46,10 +46,10 @@
                         </div>
 
                         <div class="card-body">
-                            @if (file_exists('storage/' . $news->news_image))
-                                <img class="img-fluid pad" src="{{ asset('storage/' . $news->news_image) }}" alt="Photo">
-                            @else
-                            @endif
+
+                            <img class="img-fluid pad" src="{{ asset('storage/app/public/' . $news->news_image) }}"
+                                alt="Photo">
+
                             <h4>Краткое описание</h4>
                             <p>{{ $news->description }}</p>
                             <h4>Текст</h4>
