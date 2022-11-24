@@ -12,9 +12,9 @@
             <div class="wrap">
                 @include('components.aside')
 
-
-                @yield('content')
-
+                <div class="feed">
+                    @yield('content')
+                </div>
 
                 @include('components.aside_right')
             </div>

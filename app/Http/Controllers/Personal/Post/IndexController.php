@@ -3,16 +3,20 @@
 namespace App\Http\Controllers\Personal\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::all();
         $user = Auth::user();
+        $posts = User::find($user->id)->posts;
+        $categories = Category::all();
+        $tags = Tag::all();
         return view('personal.posts.index', compact('posts', 'user'));
     }
 }

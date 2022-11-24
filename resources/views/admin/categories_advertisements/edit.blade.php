@@ -30,7 +30,7 @@
                           method="POST" class="w-25" enctype="multipart/form-data">
                           <input type="hidden" name="_method" value="PATCH">
                           {{ csrf_field() }}
-                          @include('admin.categories.partials.formEdit')
+                          @include('admin.categories_advertisements.partials.formEdit')
                       </form>
                   </div>
                   <!-- /.row -->

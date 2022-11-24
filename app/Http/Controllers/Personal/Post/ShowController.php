@@ -11,6 +11,6 @@ class ShowController extends Controller
     public function __invoke(Post $post)
     {
         $posts = Post::all();
-        return view('personal.main.index', compact('post', 'posts'));
+        return view('personal.posts.show', compact('post', 'posts'));
     }
 }

@@ -43,45 +43,47 @@
                             </svg></a>
                     </div>
                 </div>
-                <form class="registration__inputs" method="POST" action="{{ route('register') }}">
+                <form class="flexible" method="POST" action="{{ route('register') }}">
                     @csrf
-                    <input class="input input__name  @error('name') error @enderror" type="text"
-                        placeholder="Имя пользователя" name="name" value="{{ old('name') }}" required
-                        autocomplete="name" autofocus />
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
 
+                    <input class="input input__name @error('name') error @enderror" type="text" placeholder="Имя"
+                        name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
-                    <input class="input input__email  @error('email') error @enderror" type="email"
-                        placeholder="Почта" name="email" value="{{ old('email') }}" required autocomplete="email" />
-                    @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <input class="input input__email @error('email') error @enderror" type="email" placeholder="Почта"
+                        name="email" value="{{ old('email') }}" required autocomplete="email">
 
-                    <input class="input input__password @error('password') error @enderror" type="password"
-                        placeholder="Пароль" name="password" required autocomplete="new-password" />
-                    @error('password')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                    <input class="input input__password @error('password') error @enderror" type="password"
-                        placeholder="Повторите пароль" name="password_confirmation" required
-                        autocomplete="new-password" />
+                    <input class="input input__password  @error('password') error @enderror" type="password"
+                        placeholder="Пароль" name="password" required autocomplete="new-password">
 
+                    <input class="input input__password" type="password" placeholder="Подтвердите пароль"
+                        name="password_confirmation" required autocomplete="new-password">
 
+                    <div class="form__message">
+                        @error('name')
+                            <div class="form__message">
+                                <p class="form__error">{{ $message }}</p>
+                            </div>
+                        @enderror
+                        @error('email')
+                            <div class="form__message">
+                                <p class="form__error">{{ $message }}</p>
+                            </div>
+                        @enderror
+                        @error('password')
+                            <div class="form__message">
+                                <p class="form__error">{{ $message }}</p>
+                            </div>
+                        @enderror
+                    </div>
 
-                    <button type="submit" class="btn btn__blue">Зарегистрироваться</button>
+                    <button class="btn btn__blue" type="submit">Зарегистрироваться</button>
                 </form>
-                <div class="have__account">
-                    <p class="profile__name">Есть аккаунт?</p>
-                    <a class="reg__link" href="#">Войти</a>
-                </div>
+                @if (Route::has('login'))
+                    <div class="have__account">
+                        <p class="profile__name">Есть аккаунт?</p>
+                        <a class="reg__link" href="#">Войти</a>
+                    </div>
+                @endif
                 <div class="reg__bottom">
                     <a class="reg__link" href="#">Условия использования</a>
                 </div>

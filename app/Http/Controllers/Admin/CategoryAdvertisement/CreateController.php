@@ -12,8 +12,8 @@ class CreateController extends Controller
     {
 
         return view('admin.categories_advertisements.create', [
-            'category' => [],
-            'categories'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
+            'category_advertisement' => [],
+            'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
         ]);
     }

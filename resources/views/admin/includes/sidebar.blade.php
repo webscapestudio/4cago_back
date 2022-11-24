@@ -67,6 +67,11 @@
                             <p>Обьявления</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('admin.category_work.index') }}" class="nav-link">
+                            <p>Вакансии</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
 

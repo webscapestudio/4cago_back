@@ -65,4 +65,81 @@ class User extends Authenticatable
     {
         return $this->hasMany(News::class);
     }
+    //Favourite--------------------------------------------------------
+    public function  hasFavouritedPost(Post $post)
+    {
+        return (bool) $post->favourite
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function  hasFavouritedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->favourite
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function  hasFavouritedNews(News $news)
+    {
+        return (bool) $news->favourite
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    //Like-------------------------------------------------------------
+    public function hasLikedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->like
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasLikedPost(Post $post)
+    {
+        return (bool) $post->like
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasLikedNews(News $news)
+    {
+        return (bool) $news->like
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    //Dislike-------------------------------------------------------------
+    public function hasDislikedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->dislike
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasDislikedPost(Post $post)
+    {
+        return (bool) $post->dislike
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasDislikedNews(News $news)
+    {
+        return (bool) $news->dislike
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    //Comment-------------------------------------------------------------
+    public function hasCommentedPost(Post $post)
+    {
+        return (bool) $post->comments
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasCommentedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->comments
+            ->where('user_id', $this->id)
+            ->count();
+    }
+
+    public function hasCommentedNews(News $news)
+    {
+        return (bool) $news->comments
+            ->where('user_id', $this->id)
+            ->count();
+    }
 }

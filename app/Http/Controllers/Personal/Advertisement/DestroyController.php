@@ -11,6 +11,6 @@ class DestroyController extends Controller
     public function __invoke(Advertisement $advertisement)
     {
         $advertisement->delete();
-        return redirect()->route('personal.main.index');
+        return redirect()->route('personal.advertisement.index');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Personal\Advertisement;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Personal\Advertisement\StoreRequest;
 use App\Models\Advertisement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke(StoreRequest $request)
     {
 
         $author = Auth::user();

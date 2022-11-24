@@ -11,6 +11,6 @@ class DestroyController extends Controller
     public function __invoke(Post $post)
     {
         $post->delete();
-        return redirect()->route('personal.main.index');
+        return redirect()->route('personal.post.index');
     }
 }

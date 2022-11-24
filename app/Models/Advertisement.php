@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Advertisement extends Model
 {
@@ -28,5 +29,25 @@ class Advertisement extends Model
     public function category_advertisement()
     {
         return $this->belongsTo(CategoryAdvertisement::class, 'category_advertisement_id');
+    }
+    //Favourite--------------------------------------------------------
+    public function favourite()
+    {
+        return $this->morphMany(Favourite::class, 'favouritable');
+    }
+    //Like-------------------------------------------------------------
+    public function like()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+    //Dislike----------------------------------------------------------
+    public function dislike()
+    {
+        return $this->morphMany(Dislike::class, 'dislikeable');
+    }
+    //Comment
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }
