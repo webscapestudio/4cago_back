@@ -22,4 +22,24 @@ class News extends Model
     {
         return $this->belongsTo(User::class);
     }
+    //Favourite--------------------------------------------------------
+    public function favourite()
+    {
+        return $this->morphMany(Favourite::class, 'favouritable');
+    }
+    //Like-------------------------------------------------------------
+    public function like()
+    {
+        return $this->morphMany(Like::class, 'likeable');
+    }
+    //Dislike----------------------------------------------------------
+    public function dislike()
+    {
+        return $this->morphMany(Dislike::class, 'dislikeable');
+    }
+    //Comment
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

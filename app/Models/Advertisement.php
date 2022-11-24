@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Advertisement extends Model
 {
@@ -43,5 +44,10 @@ class Advertisement extends Model
     public function dislike()
     {
         return $this->morphMany(Dislike::class, 'dislikeable');
+    }
+    //Comment
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
     }
 }

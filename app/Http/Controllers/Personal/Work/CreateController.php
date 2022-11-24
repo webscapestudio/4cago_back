@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Personal\Work;
 
 use App\Http\Controllers\Controller;
 use App\Models\CategoryWork;
+use App\Models\Post;
 use App\Models\Work;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,6 +12,7 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
+        $posts = Post::latest()->with('like')->paginate(6);
         $works = Work::all();
         $categories_works = CategoryWork::all();
         $user = Auth::user();
@@ -18,6 +20,6 @@ class CreateController extends Controller
             'category_work' => [],
             'categories_works'  => CategoryWork::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories_works', 'works', 'user'));
+        ], compact('categories_works', 'works', 'user', 'posts'));
     }
 }

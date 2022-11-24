@@ -78,6 +78,12 @@ class User extends Authenticatable
             ->where('user_id', $this->id)
             ->count();
     }
+    public function  hasFavouritedNews(News $news)
+    {
+        return (bool) $news->favourite
+            ->where('user_id', $this->id)
+            ->count();
+    }
     //Like-------------------------------------------------------------
     public function hasLikedAdvertisement(Advertisement $advertisement)
     {
@@ -91,6 +97,12 @@ class User extends Authenticatable
             ->where('user_id', $this->id)
             ->count();
     }
+    public function hasLikedNews(News $news)
+    {
+        return (bool) $news->like
+            ->where('user_id', $this->id)
+            ->count();
+    }
     //Dislike-------------------------------------------------------------
     public function hasDislikedAdvertisement(Advertisement $advertisement)
     {
@@ -101,6 +113,32 @@ class User extends Authenticatable
     public function hasDislikedPost(Post $post)
     {
         return (bool) $post->dislike
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasDislikedNews(News $news)
+    {
+        return (bool) $news->dislike
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    //Comment-------------------------------------------------------------
+    public function hasCommentedPost(Post $post)
+    {
+        return (bool) $post->comments
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function hasCommentedAdvertisement(Advertisement $advertisement)
+    {
+        return (bool) $advertisement->comments
+            ->where('user_id', $this->id)
+            ->count();
+    }
+
+    public function hasCommentedNews(News $news)
+    {
+        return (bool) $news->comments
             ->where('user_id', $this->id)
             ->count();
     }

@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->with('like')->paginate(6);
         $categories = Category::all();
         $tags = Tag::all();
         $user = Auth::user();

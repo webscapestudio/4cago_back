@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Models\CategoryAdvertisement;
 use App\Models\Tag;
 use App\Models\Advertisement;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class CreateController extends Controller
 {
     public function __invoke()
     {
+        $posts = Post::latest()->with('like')->paginate(6);
         $advertisements = Advertisement::all();
         $categories_advertisements = CategoryAdvertisement::all();
         $tags = Tag::all();
@@ -21,6 +23,6 @@ class CreateController extends Controller
             'category_advertisement' => [],
             'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories_advertisements', 'advertisements', 'tags', 'user'));
+        ], compact('categories_advertisements', 'advertisements', 'tags', 'user', 'posts'));
     }
 }

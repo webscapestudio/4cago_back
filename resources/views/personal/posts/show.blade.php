@@ -11,9 +11,9 @@
                         </picture>
                     </div>
                     <p class="user__name">
-                        {{ $post->author->name ?? null }}{{ $post->created_at }}
+                        {{ $post->author->name ?? 'Пользователь не найден' }}
                     </p>
-                    <div class="post__date">{{ $post->created_at }}</div>
+                    <div class="post__date">{{ $post->created_at->diffForHumans() }}</div>
                 </div>
                 <div class="post__header-right">
                     <div class="post__drop">
@@ -76,40 +76,26 @@
                                 </svg>
                                 <p class="post__views_num">6.9K</p>
                             </a>
-                            <a class="post__comments post__actions-left-item" href="#">
+                            <a class="post__comments post__actions-left-item" href="{{ route('post.show', $post->id) }}">
                                 <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                     <path
                                         d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                     </path>
                                 </svg>
-                                <p class="post__coments_num">42</p>
+                                <p class="post__coments_num">{{ $post->comments->count() }}</p>
                             </a>
 
-                            <form class="post__pins post__actions-left-item active"
+                            <form class="{{ auth()->user()->favourite ?? 'active' }}"
                                 action="{{ route('post.favourite.store', $post->id) }}" method="POST">
                                 @csrf
-
-                                <button type="submit">
-                                    @if (auth()->user()->favourite)
-                                        <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F16">
-                                            <path
-                                                d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
-                                            </path>
-                                        </svg>
-                                    @else
-                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z"
-                                                fill="#000F13"></path>
-                                        </svg>
-                                    @endif
+                                <button type="submit" class="post__pins post__actions-left-item">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path
+                                            d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
+                                        </path>
+                                    </svg>
+                                    <p class="post__pins_num"> {{ $post->favourite->count() }}</p>
                                 </button>
-                                <p class="post__pins_num">
-
-                                    {{ $post->favourite->count() }}
-
-                                </p>
                             </form>
 
 
@@ -193,13 +179,13 @@
                                 </svg>
                                 <p class="post__views_num">6.9K</p>
                             </a>
-                            <a class="post__comments post__actions-left-item" href="#">
+                            <a class="post__comments post__actions-left-item" href="{{ route('post.show', $post->id) }}">
                                 <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                     <path
                                         d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                     </path>
                                 </svg>
-                                <p class="post__coments_num">42</p>
+                                <p class="post__coments_num">{{ $post->comments->count() }}</p>
                             </a>
                             <div class="post__pins post__actions-left-item active">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -250,69 +236,102 @@
             </div>
         </div>
 
-        <div class="comment">
-            <p class="title__comment">Комментарии</p>
-            <textarea name="text__comment" id="area__comment" placeholder="Написать комментарий..."></textarea>
-            <div class="comment__bottom">
-                <input type="file" name="file__comment" id="input__comment">
-                <label for="input__comment"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#292D32">
-                        <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path
-                            d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                        <path
-                            d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </label>
-                <button class="btn btn__blue">Отправить</button>
-            </div>
-        </div>
 
-        <div class="ad__comment">
-            <div class="ad__comment-top">
-                <picture>
-                    <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                        src="./images/avatars/user-ava.jpg" alt="">
-                </picture>
-                <p class="user__name">Oleg Kirillov</p>
-                <div class="post__date">сегодня в 16:21</div>
-                <div class="post__drop">
-                    <div class="meatballs">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#000F13">
-                            <path d="M5 10C3.9 10 3 10.9 3 12C3 13.1 3.9 14 5 14C6.1 14 7 13.1 7 12C7 10.9 6.1 10 5 10Z"
-                                stroke-width="1.5"></path>
+        @auth()
+            <form class="comment" action="{{ route('post.comment.store', $post->id) }}" method="POST"
+                enctype="multipart/form-data">
+                @csrf
+                <p class="title__comment">Комментарии</p>
+                <textarea id="summernote" class="white__textarea" name="content" id="area__comment"
+                    placeholder="Написать комментарий...">{{ old('content') }}</textarea>
+
+                <div class="comment__bottom">
+                    <input type="file" name="comment_image" id="input__comment">
+                    <label for="input__comment"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#292D32">
+                            <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path
-                                d="M19 10C17.9 10 17 10.9 17 12C17 13.1 17.9 14 19 14C20.1 14 21 13.1 21 12C21 10.9 20.1 10 19 10Z"
-                                stroke-width="1.5"></path>
+                                d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             <path
-                                d="M12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
-                                stroke-width="1.5"></path>
+                                d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
+                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                         </svg>
-                    </div>
+                    </label>
+                    @error('content')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    @error('post_image')
+                        <div class="text-danger">{{ $message }}</div>
+                    @enderror
+                    <button class="btn btn__blue">Отправить</button>
+                </div>
+            </form>
+        @endauth
+        @guest
+            <p class="post__title">Войдите или зарегистрируйтесь для ответа.</p>
+        @endguest
+        @foreach ($post->comments as $comment)
+            <div class="ad__comment">
+                <div class="ad__comment-top">
+                    <picture>
+                        <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
+                            src="./images/avatars/user-ava.jpg" alt="">
+                    </picture>
+                    <p class="user__name">{{ $comment->author->name ?? 'Пользователь не найден' }}</p>
+                    <div class="post__date">{{ $comment->created_at->diffForHumans() }}</div>
+                    <div class="post__drop">
+                        @auth
+                            <div class="meatballs">
+                                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#000F13">
+                                    <path
+                                        d="M5 10C3.9 10 3 10.9 3 12C3 13.1 3.9 14 5 14C6.1 14 7 13.1 7 12C7 10.9 6.1 10 5 10Z"
+                                        stroke-width="1.5"></path>
+                                    <path
+                                        d="M19 10C17.9 10 17 10.9 17 12C17 13.1 17.9 14 19 14C20.1 14 21 13.1 21 12C21 10.9 20.1 10 19 10Z"
+                                        stroke-width="1.5"></path>
+                                    <path
+                                        d="M12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                                        stroke-width="1.5"></path>
+                                </svg>
+                            </div>
 
-                    <div class="dropdown report">
-                        <button class="title__count report" data-micromodal-trigger="report">
-                            Пожаловаться
-                        </button>
-                        <button class="title__count unlock">Разблокировать</button>
+
+                            <div class="dropdown report">
+                                <form action="{{ route('post.comment.destroy', [$post->id, $comment->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                                        Удалить
+                                    </button>
+                                </form>
+
+                                {{-- <a href="{{ route('advertisement.comment.edit', [$advertisement->id, $comment->id]) }}"
+                                class="text-success">Изменить</a>
+                            <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                                Пожаловаться
+                            </button>
+                            <button class="title__count unlock">Разблокировать</button> --}}
+                            </div>
+                        @endauth
                     </div>
 
                 </div>
-
+                <p class="post__text">{{ $comment->content }}</p>
+                @if (file_exists('storage/' . $comment->comment_image))
+                    <div class="post__img">
+                        <picture>
+                            <source srcset="{{ asset('storage/' . $comment->comment_image) }}" type="image/webp"><img
+                                src="{{ asset('storage/' . $comment->comment_image) }}" alt="">
+                        </picture>
+                    </div>
+                @else
+                @endif
+                <div class="ad__comment-bottom">
+                    <a class="comment__link" href="#">Ответить</a>
+                </div>
             </div>
-            <p class="post__text">Продам диван, 200$.</p>
-            <div class="post__img">
-                <picture>
-                    <source srcset="./images/content/chair.webp" type="image/webp"><img src="./images/content/chair.jpg"
-                        alt="">
-                </picture>
-            </div>
-            <div class="ad__comment-bottom">
-                <a class="comment__link" href="#">Ответить</a>
-            </div>
-        </div>
+        @endforeach
 
     </div>
 @endsection

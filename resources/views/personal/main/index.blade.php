@@ -46,7 +46,7 @@
                                     src="./images/avatars/user-ava.jpg" alt="user" />
                             </picture>
                         </div>
-                        <p class="user__name">{{ $post->author->name }}</p>
+                        <p class="user__name">{{ $post->author->name ?? 'Пользователь не найден' }}</p>
                         <div class="post__date">{{ $post->created_at->diffForHumans() }}</div>
                     </div>
                     <div class="post__header-right">

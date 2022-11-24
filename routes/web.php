@@ -32,6 +32,12 @@ Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], fun
     Route::group(['namespace' => 'Dislike', 'prefix' => '{advertisement}/dislikes'], function () {
         Route::post('/', 'StoreController')->name('advertisement.dislike.store');
     });
+    Route::group(['namespace' => 'Comment', 'prefix' => '{advertisement}/comments'], function () {
+        Route::post('/', 'StoreController')->name('advertisement.comment.store');
+        Route::post('/{comment}/edit', 'EditController')->name('advertisement.comment.edit');
+        Route::patch('/{comment}', 'UpdateController')->name('advertisement.comment.update');
+        Route::delete('/{comment}', 'DestroyController')->name('advertisement.comment.destroy');
+    });
 });
 
 //Post
@@ -47,12 +53,30 @@ Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
     Route::group(['namespace' => 'Dislike', 'prefix' => '{post}/dislikes'], function () {
         Route::post('/', 'StoreController')->name('post.dislike.store');
     });
+    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
+        Route::post('/', 'StoreController')->name('post.comment.store');
+        Route::patch('/{comment}', 'UpdateController')->name('post.comment.update');
+        Route::delete('/{comment}', 'DestroyController')->name('post.comment.destroy');
+    });
 });
-
-
-
+//News
 Route::group(['namespace' => 'News', 'prefix' => 'news'], function () {
     Route::get('/', 'IndexController')->name('news.index');
+    Route::get('/{news}', 'ShowController')->name('news.show');
+    Route::group(['namespace' => 'Favourite', 'prefix' => '{news}/favourites'], function () {
+        Route::post('/', 'StoreController')->name('news.favourite.store');
+    });
+    Route::group(['namespace' => 'Like', 'prefix' => '{news}/likes'], function () {
+        Route::post('/', 'StoreController')->name('news.like.store');
+    });
+    Route::group(['namespace' => 'Dislike', 'prefix' => '{news}/dislikes'], function () {
+        Route::post('/', 'StoreController')->name('news.dislike.store');
+    });
+    Route::group(['namespace' => 'Comment', 'prefix' => '{news}/comments'], function () {
+        Route::post('/', 'StoreController')->name('news.comment.store');
+        Route::patch('/{comment}', 'UpdateController')->name('news.comment.update');
+        Route::delete('/{comment}', 'DestroyController')->name('news.comment.destroy');
+    });
 });
 //Admin 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {

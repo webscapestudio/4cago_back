@@ -46,4 +46,9 @@ class Post extends Model
     {
         return $this->morphMany(Dislike::class, 'dislikeable');
     }
+    //Comment
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
