@@ -17,6 +17,14 @@
 @error('title')
     <div class="text-danger">{{ $message }}</div>
 @enderror
+
+<label>Краткое описание</label>
+<textarea type="text" class="form-control" name="description" placeholder="Краткое описание категории" cols="30"
+    rows="10">{{ $category_advertisement->description }}</textarea>
+@error('description')
+    <div class="text-danger">{{ $message }}</div>
+@enderror
+
 <div class="form-group">
     <label for="">Slug</label>
     <input type="text" class="form-control" name="slug" placeholder="Авто генерация" value=""

@@ -20,33 +20,61 @@
           </div>
           <!-- /.content-header -->
 
-          <!-- Main content -->
           <section class="content">
-              <div class="container-fluid">
-                  <!-- Small boxes (Stat box) -->
-                  <div class="row">
-                      <form action="{{ route('admin.news.update', $news->id) }}" method="POST"
+              <div class="row">
+                  <div class="col-md-6">
+                      < <form class="card card-primary" action="{{ route('admin.news.update', $news->id) }}" method="POST"
                           enctype="multipart/form-data">
                           @csrf
                           @method('PATCH')
-                          <div class="form-group w-25">
-                              <input type="text" class="form-control" name="title" placeholder="Название поста"
-                                  value="{{ $news->title }}">
-                              @error('title')
-                                  <div class="text-danger">{{ $message }}</div>
-                              @enderror
-                          </div>
-                          <div class="form-group">
-                              <textarea id="summernote" name="content">{{ $news->content }}</textarea>
-                              @error('content')
-                                  <div class="text-danger">{{ $message }}</div>
-                              @enderror
-                          </div>
-                          <div class="form-group">
-                              <label for="exampleInputFile">Загрузка файла</label>
-                              <div class="w-50 mb-2">
-                                  <img src="{{ asset('storage/' . $news->news_image) }}" alt="news_image" class="w-50">
+                          <div class="card-header">
+                              <h3 class="card-title">Главное</h3>
+                              <div class="card-tools">
+                                  <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                      <i class="fas fa-minus"></i>
+                                  </button>
                               </div>
+                          </div>
+                          <div class="card-body" style="display: block;">
+                              <div class="form-group">
+                                  <label for="inputName">Название новости</label>
+                                  <input type="text" id="inputName" class="form-control" name="title"
+                                      placeholder="Название новости" value="{{ $news->title }}">
+                                  @error('title')
+                                      <div class="text-danger">{{ $message }}</div>
+                                  @enderror
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputDescription">Краткое описание</label>
+                                  <textarea id="inputDescription" class="form-control" name="description" placeholder="Текст ..." rows="4"
+                                      style="height: 170px;">{{ $news->description }}</textarea>
+                                  @error('description')
+                                      <div class="text-danger">{{ $message }}</div>
+                                  @enderror
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputDescription">Текст новости</label>
+                                  <textarea id="inputDescription" class="form-control" rows="4" style="height: 170px;" name="content"
+                                      placeholder="Текст ...">{{ $news->content }}</textarea>
+
+                                  @error('content')
+                                      <div class="text-danger">{{ $message }}</div>
+                                  @enderror
+                              </div>
+                              <label for="exampleInputFile">Загрузка файла</label>
+                              @if (file_exists('storage/' . $news->news_image))
+                                  <div class="row mb-3">
+                                      <div class="col-sm-6">
+                                          <div class="row">
+                                              <div class="col-sm-6">
+                                                  <img class="img-fluid pad"
+                                                      src="{{ asset('storage/' . $news->news_image) }}" alt="Photo">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              @else
+                              @endif
                               <div class="input-group">
                                   <div class="custom-file">
                                       <input type="file" class="custom-file-input" id="exampleInputFile"
@@ -58,14 +86,14 @@
                                   <div class="text-danger">{{ $message }}</div>
                               @enderror
                           </div>
-
-                          <input type="submit" class="btn btn-primary" value="Обновить">
-                      </form>
+                          <input type="submit" class="btn btn-primary" value="Добавить">
+                          </form>
                   </div>
-                  <!-- /.row -->
-
-              </div><!-- /.container-fluid -->
+              </div>
           </section>
-          <!-- /.content -->
+
+
+
+
       </div>
   @endsection

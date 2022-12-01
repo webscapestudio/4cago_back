@@ -27,7 +27,7 @@
                   <div class="row">
                       <form action="{{ route('admin.category.store') }}" method="POST" class="w-25"
                           enctype="multipart/form-data">
-                          {{ csrf_field() }}
+                          @csrf
                           @include('admin.categories.partials.formCreate')
                       </form>
                   </div>

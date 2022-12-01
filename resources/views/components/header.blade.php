@@ -194,6 +194,7 @@
                                         </svg>
                                     </a>
                                     <li class="profile__subitem">
+
                                         <a class="comment__link" href="{{ route('personal.post.index') }}"><svg
                                                 class="icon fill" viewBox="0 0 22 22" fill="none" fill="#7D8688">
                                                 <path

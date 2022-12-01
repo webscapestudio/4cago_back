@@ -28,7 +28,7 @@
                       <form action="{{ route('admin.category.update', $category) }}" method="POST" class="w-25"
                           enctype="multipart/form-data">
                           <input type="hidden" name="_method" value="PATCH">
-                          {{ csrf_field() }}
+                          @csrf
                           @include('admin.categories.partials.formEdit')
                       </form>
                   </div>

@@ -29,77 +29,79 @@
                     <div class="card card-widget">
                         <div class="card-header">
                             <div class="user-block">
+                                <h3 class="card-title">Admin</h3>
 
-                                <span class="description">Опубликовано {{ $news->created_at }}</span>
                             </div>
 
                             <div class="card-tools">
-                                <a href="{{ route('admin.news.edit', $news->id) }}" class="text-success">Редактировать</a>
-                                <form action="{{ route('admin.news.destroy', $news->id) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn text-danger">
-                                        Удалить
-                                    </button>
-                                </form>
+                                <span class="description">Опубликовано {{ $news->created_at->diffForHumans() }}</span>
                             </div>
                         </div>
 
                         <div class="card-body">
-
-                            <img class="img-fluid pad" src="{{ asset('storage/app/public/' . $news->news_image) }}"
-                                alt="Photo">
+                            @if (file_exists('storage/' . $news->news_image))
+                                <img class="img-fluid pad" src="{{ asset('storage/' . $news->news_image) }}" alt="Photo">
+                            @else
+                            @endif
 
                             <h4>Краткое описание</h4>
                             <p>{{ $news->description }}</p>
                             <h4>Текст</h4>
                             <p>{{ $news->content }}</p>
 
-                            <span class="float-right text-muted">127 likes - 3 comments</span>
+                            <span class="float-right text-muted">Лайки - {{ $news->like->count() }} / Дизлайки -
+                                {{ $news->dislike->count() }} / Коментарии -
+                                {{ $news->comments->count() }} / Добавленно в избранное -
+                                {{ $news->favourite->count() }}</span>
                         </div>
 
                         <div class="card-footer card-comments">
+
+
                             <div class="card-comment">
                                 <h5 class="m-0">Коментарии поста</h5>
-                                <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="User Image">
-                                <div class="comment-text">
-                                    <span class="username">
-                                        Maria Gonzales
-                                        <span class="text-muted float-right">8:03 PM Today</span>
-                                    </span>
-                                    It is a long established fact that a reader will be distracted
-                                    by the readable content of a page when looking at its layout.
-                                </div>
+                                @foreach ($news->comments as $comment)
+                                    @if ($comment->user_avatar)
+                                        <img class="img-circle img-sm"
+                                            src="{{ asset('storage/' . $comment->user_avatar) }}" alt="User Image">
+                                    @else
+                                        <img class="img-circle img-sm" src="{{ asset('./images/avatars/user-ava.jpg') }}"
+                                            alt="User Image">
+                                    @endif
+                                    <div class="comment-text">
+                                        <span class="username">
+                                            {{ $comment->author->name ?? 'Пользователь не найден' }}
+                                            <span
+                                                class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
+                                        </span>
 
+
+                                        <form action="{{ route('news.comment.destroy', [$news->id, $comment->id]) }}"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-muted float-right"
+                                                data-micromodal-trigger="report">
+                                                Удалить
+                                            </button>
+                                        </form>
+                                        {{ $comment->content }}
+                                    </div>
+                                @endforeach
                             </div>
-
-                            <div class="card-comment">
-
-                                <img class="img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="User Image">
-                                <div class="comment-text">
-                                    <span class="username">
-                                        Luna Stark
-                                        <span class="text-muted float-right">8:03 PM Today</span>
-                                    </span>
-                                    It is a long established fact that a reader will be distracted
-                                    by the readable content of a page when looking at its layout.
-                                </div>
-
-                            </div>
-
                         </div>
-
                         <div class="card-footer">
-                            <form action="#" method="post">
-                                <img class="img-fluid img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="Alt Text">
-
-                                <div class="img-push">
-                                    <input type="text" class="form-control form-control-sm"
-                                        placeholder="Press enter to post comment">
-                                </div>
+                            <div class="float-right">
+                                <a href="{{ route('admin.news.edit', $news->id) }}" type="button"
+                                    class="btn btn-default"><i class="fas fa-pencil-alt"></i>
+                                    Редактировать</a>
+                            </div>
+                            <form action="{{ route('admin.news.destroy', $news->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-default"><i class="fas fa-times"></i>Удалить</button>
                             </form>
                         </div>
-
                     </div>
 
                 </div>

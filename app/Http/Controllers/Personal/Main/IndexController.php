@@ -13,6 +13,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
+
         $user = Auth::user();
         $posts = User::find($user->id)->posts;
         $categories = Category::all();

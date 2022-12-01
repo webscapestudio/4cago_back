@@ -36,6 +36,10 @@
                                           <tr>
                                               <th>ID</th>
                                               <th>Название</th>
+                                              <th>Добавлено в избранное</th>
+                                              <th>Коментариев</th>
+                                              <th>Лайков</th>
+                                              <th>Дизайков</th>
                                               <th colspan="3">Действия</th>
                                           </tr>
                                       </thead>
@@ -44,6 +48,10 @@
                                               <tr>
                                                   <td>{{ $news->id }}</td>
                                                   <td>{{ $news->title }}</td>
+                                                  <td>{{ $news->favourite->count() }}</td>
+                                                  <td>{{ $news->comments->count() }}</td>
+                                                  <td>{{ $news->like->count() }}</td>
+                                                  <td>{{ $news->dislike->count() }}</td>
                                                   <td><a href="{{ route('admin.news.show', $news->id) }}"><i
                                                               class="far fa-eye"></i></a></td>
                                                   <td><a href="{{ route('admin.news.edit', $news->id) }}"

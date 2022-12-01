@@ -11,9 +11,9 @@
                         </picture>
                     </div>
                     <p class="user__name">
-                        {{ $advertisement->author->name ?? null }}{{ $advertisement->created_at->diffForHumans() }}
+                        {{ $post->author->name ?? 'Пользователь не найден' }}
                     </p>
-                    <div class="post__date">{{ $advertisement->created_at->diffForHumans() }}</div>
+                    <div class="post__date">{{ $post->created_at->diffForHumans() }}</div>
                 </div>
                 <div class="post__header-right">
                     <div class="post__drop">
@@ -30,11 +30,14 @@
                             </svg>
                         </div>
 
-                        <div class="dropdown report">
-                            <button class="title__count report" data-micromodal-trigger="report">
-                                Пожаловаться
-                            </button>
-                            <button class="title__count unlock">Разблокировать</button>
+                        <div class="dropdown">
+                            <a href="{{ route('personal.post.edit', $post->id) }}" class="text-success">Изменить</a>
+
+                            <form action="{{ route('personal.post.destroy', $post->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit">Удалить</button>
+                            </form>
                         </div>
 
                     </div>
@@ -42,15 +45,14 @@
                 </div>
             </div>
             <div class="post__main">
-                <a class="post__title" href="ad-post.html">{{ $advertisement->title }}</a>
-                <p class="post__text">{{ $advertisement->content }}</p>
+                <a class="post__title" href="ad-post.html">{{ $post->title }}</a>
+                <p class="post__text">{{ $post->content }}</p>
 
-                @if (file_exists('storage/' . $advertisement->advertisement_image))
+                @if (file_exists('storage/' . $post->post_image))
                     <div class="post__img">
                         <picture>
-                            <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}"
-                                type="image/webp"><img src="{{ asset('storage/' . $advertisement->advertisement_image) }}"
-                                alt="">
+                            <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp"><img
+                                src="{{ asset('storage/' . $post->post_image) }}" alt="">
                         </picture>
                     </div>
                 @else
@@ -59,7 +61,7 @@
             </div>
             <div class="post__bottom">
                 <div class="post__tags">
-                    @foreach ($advertisement->tags as $tag)
+                    @foreach ($post->tags as $tag)
                         <div class="tag">{{ $tag->title }}</div>
                     @endforeach
                 </div>
@@ -74,17 +76,17 @@
                                 </svg>
                                 <p class="post__views_num">6.9K</p>
                             </a>
-                            <a class="post__comments post__actions-left-item" href="#">
+                            <a class="post__comments post__actions-left-item" href="{{ route('post.show', $post->id) }}">
                                 <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                     <path
                                         d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                     </path>
                                 </svg>
-                                <p class="post__coments_num">{{ $advertisement->comments->count() }}</p>
+                                <p class="post__coments_num">{{ $post->comments->count() }}</p>
                             </a>
 
                             <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                                action="{{ route('post.favourite.store', $advertisement->id) }}" method="POST">
+                                action="{{ route('post.favourite.store', $post->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="post__pins post__actions-left-item">
                                     <svg class="icon" viewBox="0 0 24 24">
@@ -92,7 +94,7 @@
                                             d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
                                         </path>
                                     </svg>
-                                    <p class="post__pins_num"> {{ $advertisement->favourite->count() }}</p>
+                                    <p class="post__pins_num"> {{ $post->favourite->count() }}</p>
                                 </button>
                             </form>
 
@@ -101,7 +103,7 @@
                         <div class="post__actions-right">
 
                             <form class="post__smile post__actions-right-item"
-                                action="{{ route('advertisement.like.store', $advertisement->id) }}" method="POST">
+                                action="{{ route('post.like.store', $post->id) }}" method="POST">
                                 @csrf
                                 <button type="submit">
                                     @if (auth()->user()->like)
@@ -130,11 +132,11 @@
                                         </svg>
                                     @endif
                                 </button>
-                                <p class="post__smile-num">{{ $advertisement->like->count() }}</p>
+                                <p class="post__smile-num">{{ $post->like->count() }}</p>
                             </form>
 
                             <form class="post__smile-sad post__actions-right-item active"
-                                action="{{ route('advertisement.dislike.store', $advertisement->id) }}" method="POST">
+                                action="{{ route('post.dislike.store', $post->id) }}" method="POST">
                                 @csrf
                                 <button type="submit">
                                     @if (auth()->user()->dislike)
@@ -163,7 +165,7 @@
                                         </svg>
                                     @endif
                                 </button>
-                                <p class="post__smile-sad-num">{{ $advertisement->dislike->count() }}</p>
+                                <p class="post__smile-sad-num">{{ $post->dislike->count() }}</p>
                             </form>
                         </div>
                     @endauth
@@ -177,13 +179,13 @@
                                 </svg>
                                 <p class="post__views_num">6.9K</p>
                             </a>
-                            <a class="post__comments post__actions-left-item" href="#">
+                            <a class="post__comments post__actions-left-item" href="{{ route('post.show', $post->id) }}">
                                 <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                     <path
                                         d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                     </path>
                                 </svg>
-                                <p class="post__coments_num">{{ $advertisement->comments->count() }}</p>
+                                <p class="post__coments_num">{{ $post->comments->count() }}</p>
                             </a>
                             <div class="post__pins post__actions-left-item active">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -192,7 +194,7 @@
                                         d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z"
                                         fill="#000F13"></path>
                                 </svg>
-                                <p class="post__pins_num"> {{ $advertisement->favourite->count() }}</p>
+                                <p class="post__pins_num">{{ $post->favorite_users_count }}</p>
                             </div>
                         </div>
                         <div class="post__actions-right">
@@ -210,7 +212,7 @@
                                     </path>
                                 </svg>
 
-                                <p class="post__smile-num">{{ $advertisement->like->count() }}</p>
+                                <p class="post__smile-num">{{ $post->like->count() }}</p>
                             </div>
                             <div class="post__smile-sad post__actions-right-item active">
 
@@ -226,7 +228,7 @@
                                     </path>
                                 </svg>
 
-                                <p class="post__smile-sad-num">{{ $advertisement->dislike->count() }}</p>
+                                <p class="post__smile-sad-num">{{ $post->dislike->count() }}</p>
                             </div>
                         </div>
                     @endguest
@@ -234,8 +236,9 @@
             </div>
         </div>
 
+
         @auth()
-            <form class="comment" action="{{ route('advertisement.comment.store', $advertisement->id) }}" method="POST"
+            <form class="comment" action="{{ route('post.comment.store', $post->id) }}" method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 <p class="title__comment">Комментарии</p>
@@ -268,7 +271,7 @@
         @guest
             <p class="post__title">Войдите или зарегистрируйтесь для ответа.</p>
         @endguest
-        @foreach ($advertisement->comments as $comment)
+        @foreach ($post->comments as $comment)
             <div class="ad__comment">
                 <div class="ad__comment-top">
                     <picture>
@@ -295,9 +298,7 @@
 
 
                             <div class="dropdown report">
-                                <form
-                                    action="{{ route('advertisement.comment.destroy', [$advertisement->id, $comment->id]) }}"
-                                    method="POST">
+                                <form action="{{ route('post.comment.destroy', [$post->id, $comment->id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="title__count report" data-micromodal-trigger="report">
@@ -313,7 +314,6 @@
                             <button class="title__count unlock">Разблокировать</button> --}}
                             </div>
                         @endauth
-
                     </div>
 
                 </div>
@@ -322,8 +322,7 @@
                     <div class="post__img">
                         <picture>
                             <source srcset="{{ asset('storage/' . $comment->comment_image) }}" type="image/webp"><img
-                                src="{{ asset('storage/' . $comment->comment_image) }}"
-                                alt="{{ asset('storage/' . $comment->comment_image) }}">
+                                src="{{ asset('storage/' . $comment->comment_image) }}" alt="">
                         </picture>
                     </div>
                 @else
@@ -333,5 +332,6 @@
                 </div>
             </div>
         @endforeach
+
     </div>
 @endsection

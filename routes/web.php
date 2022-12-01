@@ -160,6 +160,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('personal.main.index');
+        Route::get('/{post}', 'ShowController')->name('personal.main.show');
     });
     // Post personal CRUD
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {

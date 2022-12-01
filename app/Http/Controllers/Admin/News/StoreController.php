@@ -27,8 +27,6 @@ class StoreController extends Controller
             'user_id' => $author->id,
             'is_published' =>  $request->published,
             'is_banned' =>  0,
-            'likes' =>  0,
-            'dislikes' =>  0,
 
         ]);
         $post->save();

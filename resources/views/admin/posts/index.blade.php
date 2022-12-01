@@ -36,6 +36,10 @@
                                               <th>Название</th>
                                               <th>Категория</th>
                                               <th>Пользователь</th>
+                                              <th>Добавлено в избранное</th>
+                                              <th>Коментариев</th>
+                                              <th>Лайков</th>
+                                              <th>Дизайков</th>
                                               <th colspan="3">Действия</th>
                                           </tr>
                                       </thead>
@@ -46,6 +50,10 @@
                                                   <td>{{ $post->title }}</td>
                                                   <td>{{ $post->category->title ?? null }}</td>
                                                   <td>{{ $post->author->name ?? null }}</td>
+                                                  <td>{{ $post->favourite->count() }}</td>
+                                                  <td>{{ $post->comments->count() }}</td>
+                                                  <td>{{ $post->like->count() }}</td>
+                                                  <td>{{ $post->dislike->count() }}</td>
                                                   <td><a href="{{ route('admin.post.show', $post->id) }}"><i
                                                               class="far fa-eye"></i></a></td>
                                                   <td>

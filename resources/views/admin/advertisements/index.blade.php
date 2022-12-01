@@ -36,6 +36,10 @@
                                               <th>Название</th>
                                               <th>Категория</th>
                                               <th>Пользователь</th>
+                                              <th>Добавлено в избранное</th>
+                                              <th>Коментариев</th>
+                                              <th>Лайков</th>
+                                              <th>Дизайков</th>
                                               <th colspan="3">Действия</th>
                                           </tr>
                                       </thead>
@@ -46,6 +50,10 @@
                                                   <td>{{ $advertisement->title }}</td>
                                                   <td>{{ $advertisement->category_advertisement->title ?? null }}</td>
                                                   <td>{{ $advertisement->author->name ?? null }}</td>
+                                                  <td>{{ $advertisement->favourite->count() }}</td>
+                                                  <td>{{ $advertisement->comments->count() }}</td>
+                                                  <td>{{ $advertisement->like->count() }}</td>
+                                                  <td>{{ $advertisement->dislike->count() }}</td>
                                                   <td><a href="{{ route('admin.advertisement.show', $advertisement->id) }}"><i
                                                               class="far fa-eye"></i></a></td>
                                                   <td>

@@ -20,7 +20,8 @@ class Category extends Model
     'parent_id',
     'published',
     'created_by',
-    'modified_by'
+    'modified_by',
+    'description'
   ];
   // Mutators
   public function setSlugAttribute()
