@@ -1,0 +1,17 @@
+.rule__card {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .post__title {
+    margin-bottom: 10px;
+  }
+  .rule__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

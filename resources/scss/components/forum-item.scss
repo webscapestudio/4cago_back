@@ -1,0 +1,19 @@
+.forum__item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .forum__themes {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 640px) {
+  .forum__item {
+    gap: 15px;
+    .forum__themes {
+      gap: 10px;
+    }
+  }
+}

@@ -1,0 +1,117 @@
+.registration {
+  background: $accent;
+  padding: 40px;
+  position: relative;
+  .close__btn {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    &:hover {
+      .icon {
+        fill: $darkBlue;
+      }
+    }
+    .icon {
+      fill: #7d8688;
+    }
+  }
+  .profile__name {
+    color: $grayText;
+  }
+  .delete__title {
+    margin-bottom: 30px;
+  }
+  .post__text {
+    margin-bottom: 10px;
+  }
+  .socials-block {
+    margin-bottom: 20px;
+  }
+  .socials-inner {
+    display: flex;
+    gap: 15px;
+    .icon {
+      width: 40px;
+      height: 40px;
+      fill: #000f13;
+      transition: all ease 0.3s;
+      &:hover {
+        fill: $darkBlue;
+        rect {
+          fill-opacity: 1;
+        }
+      }
+    }
+  }
+  .registration__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .have__account {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .registration {
+    .delete__title {
+      margin-bottom: 20px;
+    }
+    .have__account {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .registration {
+    .delete__title {
+      font-size: 20px;
+      line-height: 23px;
+    }
+    .socials-inner {
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .have__account {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .registration {
+    padding: 30px 20px;
+    .delete__title {
+      font-size: 18px;
+      line-height: 21px;
+    }
+    .socials-inner {
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .have__account {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .registration {
+    padding: 30px 15px;
+    .post__text {
+      margin-bottom: 6px;
+    }
+  }
+}

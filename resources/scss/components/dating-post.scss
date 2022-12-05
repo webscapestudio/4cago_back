@@ -1,0 +1,153 @@
+.dating__post {
+  padding: 19px;
+  background: $accent;
+  position: relative;
+  border: 1px solid $border;
+  .delete__title {
+    margin-bottom: 15px;
+  }
+  .post-create__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .post__date {
+    margin-bottom: 6px;
+  }
+  .create__tags {
+    margin-bottom: 15px;
+  }
+  .categories {
+    display: flex;
+    gap: 15px;
+  }
+  .post__category {
+    width: 100%;
+  }
+  .post__subcategory {
+    width: 100%;
+  }
+  .create__bottom {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .btn {
+      max-width: 300px;
+    }
+    .post__date {
+      margin-bottom: 0;
+    }
+  }
+  .custom__select {
+    position: relative;
+    select {
+      padding: 20px;
+      width: 100%;
+      border: 1px solid $border;
+      display: flex;
+      gap: 10px;
+    }
+  }
+  .dating__error {
+    position: absolute;
+    right: -2px;
+    top: -10px;
+    padding: 20px 25px;
+    align-items: center;
+    gap: 6px;
+    background-color: $accent;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1;
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+  .error__text {
+    font-size: 13px;
+    line-height: 100%;
+  }
+  .ss-search {
+    display: none;
+  }
+}
+
+.dating__post.error {
+  .dating__error {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 1200px) {
+  .dating__post {
+    padding: 19px 14px;
+    .create__bottom {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      .btn {
+        max-width: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .dating__post {
+    .delete__title {
+      font-size: 18px;
+      line-height: 21px;
+    }
+    .create__bottom {
+      flex-direction: row;
+      gap: 20px;
+      align-items: center;
+      .btn {
+        max-width: 300px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .dating__post {
+    .create__bottom {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start;
+      .btn {
+        max-width: none;
+      }
+    }
+  }
+  .dating__post.error {
+    .dating__error {
+      display: inline-flex;
+      top: 190px;
+      width: 100%;
+      right: 0;
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .dating__post {
+    padding: 19px 9px;
+    .categories {
+      flex-direction: column;
+    }
+    .delete__title {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+  .dating__post.error {
+    .dating__error {
+      display: inline-flex;
+      justify-content: flex-start;
+      padding: 15px 10px;
+    }
+  }
+}

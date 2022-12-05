@@ -1,0 +1,43 @@
+.adv__post {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .post__title {
+    margin-bottom: 10px;
+  }
+  .post__date {
+    margin-bottom: 10px;
+  }
+  .feed__text {
+    margin-bottom: 20px;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+  .adv__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    .adv__item {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+      padding-left: 20px;
+      .feed__text {
+        margin-bottom: 0;
+      }
+      &:before {
+        position: absolute;
+        content: '';
+        width: 10px;
+        height: 10px;
+        background-color: $darkBlue;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        border-radius: 50%;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.popular__tag-item {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 0 0 10px 0;
+}
+
+.popular__tag-item:first-of-type {
+  padding: 14px 0 10px 0;
+}
+
+.popular__tag-item:last-of-type {
+  padding: 0;
+}

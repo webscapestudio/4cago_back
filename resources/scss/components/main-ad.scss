@@ -1,0 +1,21 @@
+.main-ad {
+  display: flex !important;
+  width: 100%;
+  height: 140px;
+  position: relative;
+  .main-ad__link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    .ad-text {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}

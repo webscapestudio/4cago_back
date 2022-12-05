@@ -1,0 +1,11 @@
+.sidebar__work-item {
+  padding: 15px 0 0 0;
+  .title__link {
+    margin-bottom: 4px;
+  }
+}
+
+.sidebar__work-item:last-of-type {
+  padding: 15px 0;
+  border-bottom: 1px solid $border;
+}

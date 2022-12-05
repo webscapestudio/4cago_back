@@ -1,0 +1,173 @@
+.bill {
+  background: $accent;
+  padding: 40px;
+  position: relative;
+  .close__btn {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    &:hover {
+      .icon {
+        fill: $darkBlue;
+      }
+    }
+    .icon {
+      fill: #7d8688;
+    }
+  }
+  .delete__title {
+    margin-bottom: 20px;
+  }
+  .bill__wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .inn__cpp {
+    display: flex;
+    gap: 15px;
+  }
+  .inn {
+    width: 100%;
+  }
+  .cpp {
+    width: 100%;
+  }
+  .btn {
+    margin-bottom: 20px;
+  }
+  .bill__link {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 120%;
+    color: $darkBlue;
+    &:hover {
+      color: $deepBlue;
+    }
+  }
+  .bill__gray {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    color: $grayText;
+  }
+  .post__date {
+    margin-bottom: 6px;
+  }
+  .post__text {
+    margin-bottom: 10px;
+  }
+  .profile__name {
+    color: $grayText;
+  }
+  .socials-block {
+    margin-bottom: 20px;
+  }
+  .socials-inner {
+    display: flex;
+    gap: 15px;
+    .icon {
+      width: 40px;
+      height: 40px;
+      fill: #000f13;
+      transition: all ease 0.3s;
+      &:hover {
+        fill: $darkBlue;
+        rect {
+          fill-opacity: 1;
+        }
+      }
+    }
+  }
+  .registration__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .have__account {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.form__error {
+  margin-bottom: 10px;
+}
+
+form {
+  &.flexible {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .form__message {
+    display: none;
+  }
+  &.error {
+    .form__message {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .bill {
+    .delete__title {
+      margin-bottom: 20px;
+    }
+    .inn__cpp {
+      flex-direction: column;
+    }
+    .have__account {
+      margin-bottom: 30px;
+    }
+    .btn {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .bill {
+    .delete__title {
+      font-size: 20px;
+      line-height: 23px;
+    }
+    .socials-inner {
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .bill {
+    padding: 30px 20px;
+    .delete__title {
+      font-size: 18px;
+      line-height: 21px;
+    }
+    .socials-inner {
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .bill {
+    padding: 30px 15px;
+    .post__text {
+      margin-bottom: 6px;
+    }
+  }
+}

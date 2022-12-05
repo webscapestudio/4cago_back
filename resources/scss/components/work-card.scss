@@ -1,0 +1,39 @@
+.work__card {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .work__card-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    img {
+      margin-right: 8px;
+    }
+    .user__name {
+      margin-right: 12px;
+    }
+  }
+  .post__title {
+    display: inline-flex;
+    margin-bottom: 10px;
+    &:hover {
+      color: $darkBlue;
+    }
+  }
+  .card__tags {
+    display: flex;
+    gap: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid $border;
+  }
+  .work__card-bottom {
+    padding-top: 14px;
+    display: flex;
+    gap: 20px;
+    .icon {
+      width: 20px;
+      height: 20px;
+      fill: $grayText;
+    }
+  }
+}

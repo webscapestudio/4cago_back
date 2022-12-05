@@ -1,0 +1,130 @@
+.authorization {
+  background: $accent;
+  padding: 40px;
+  position: relative;
+  .close__btn {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    &:hover {
+      .icon {
+        fill: $darkBlue;
+      }
+    }
+    .icon {
+      fill: #7d8688;
+    }
+  }
+  .delete__title {
+    margin-bottom: 30px;
+  }
+  .post__text {
+    margin-bottom: 10px;
+  }
+  .profile__name {
+    color: $grayText;
+  }
+  .socials-block {
+    margin-bottom: 20px;
+  }
+  .socials-inner {
+    display: flex;
+    gap: 15px;
+    .icon {
+      width: 40px;
+      height: 40px;
+      fill: #000f13;
+      transition: all ease 0.3s;
+      &:hover {
+        fill: $darkBlue;
+        rect {
+          fill-opacity: 1;
+        }
+      }
+    }
+  }
+  .registration__inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .have__account {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.form__error {
+  margin-bottom: 10px;
+}
+
+form {
+  &.flexible {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .form__message {
+    display: none;
+  }
+  &.error {
+    .form__message {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .authorization {
+    .delete__title {
+      margin-bottom: 20px;
+    }
+    .have__account {
+      margin-bottom: 30px;
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .authorization {
+    .delete__title {
+      font-size: 20px;
+      line-height: 23px;
+    }
+    .socials-inner {
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .authorization {
+    padding: 30px 20px;
+    .delete__title {
+      font-size: 18px;
+      line-height: 21px;
+    }
+    .socials-inner {
+      .icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .authorization {
+    padding: 30px 15px;
+    .post__text {
+      margin-bottom: 6px;
+    }
+  }
+}

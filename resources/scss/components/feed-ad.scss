@@ -1,0 +1,42 @@
+.feed__ad {
+  background-color: $white;
+  border: 1px solid $border;
+  padding: 20px;
+  a {
+    color: $darkBlue;
+  }
+  .post__title {
+    margin-bottom: 15px;
+  }
+  .feed__header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    img {
+      margin-right: 8px;
+    }
+    .user__name {
+      margin-right: 12px;
+    }
+  }
+  .feed__img {
+    width: 100%;
+    height: 470px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .feed__text {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .feed__ad {
+    .feed__img {
+      height: 340px;
+    }
+  }
+}

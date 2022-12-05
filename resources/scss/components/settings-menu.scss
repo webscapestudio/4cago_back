@@ -1,0 +1,26 @@
+.settings__menu {
+  border: 1px solid #d9d9d9;
+  .title__settings {
+    padding: 17px 19px;
+    border-bottom: 1px solid #d9d9d9;
+  }
+  .settings__items {
+    padding: 0 20px 20px 20px;
+    background-color: $accent;
+    .settings__item {
+      padding: 15px 0;
+      border-bottom: 1px solid $border;
+      .menu__link {
+        .icon.fill__none {
+          fill: none;
+          stroke: $grayText;
+        }
+        &:hover {
+          .icon.fill__none {
+            stroke: $darkBlue;
+          }
+        }
+      }
+    }
+  }
+}

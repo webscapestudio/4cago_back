@@ -1,0 +1,44 @@
+.dropdown__report {
+  padding: 40px;
+  background-color: $accent;
+  position: relative;
+  .delete__title {
+    margin-bottom: 20px;
+  }
+  .dropdown__span {
+    font-size: 13px;
+    line-height: 15px;
+    color: $grayText;
+    margin-bottom: 6px;
+  }
+  .close__btn {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    &:hover {
+      .icon {
+        fill: $darkBlue;
+      }
+    }
+    .icon {
+      fill: #7d8688;
+    }
+  }
+  .custom__select {
+    position: relative;
+    select {
+      padding: 20px;
+      color: $grayText;
+      width: 100%;
+      border: 1px solid $border;
+      display: flex;
+      gap: 10px;
+    }
+  }
+  form {
+    margin-bottom: 20px;
+  }
+}

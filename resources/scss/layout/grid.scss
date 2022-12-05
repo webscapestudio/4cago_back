@@ -1,0 +1,135 @@
+.container {
+  position: relative;
+  max-width: calc($containerWidth + 40px);
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.wrap {
+  padding-top: 30px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 180px 700px 300px;
+  gap: 20px;
+  margin-bottom: 90px;
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.meet-page {
+  .feed {
+    gap: 15px;
+  }
+}
+
+.feed__themes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-right {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contacts-page {
+  .sidebar {
+    display: none;
+  }
+}
+
+.rules-page {
+  .sidebar {
+    display: none;
+  }
+}
+
+.help-page {
+  .sidebar {
+    display: none;
+  }
+}
+
+.ad-page {
+  .sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  $containerWidth: 940px;
+  .container {
+    max-width: calc($containerWidth + 40px);
+    padding: 0 20px;
+  }
+  .wrap {
+    grid-template-columns: 153px 527px 220px;
+  }
+}
+
+@media (max-width: 960px) {
+  $containerWidth: 620px;
+  .container {
+    max-width: calc($containerWidth + 40px);
+    padding: 0 20px;
+  }
+  .wrap {
+    padding-top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .feed {
+    max-width: 620px;
+    width: 100%;
+  }
+  .sidebar-right {
+    display: none;
+  }
+  .contacts-page {
+    .sidebar {
+      display: block;
+    }
+  }
+
+  .rules-page {
+    .sidebar {
+      display: block;
+    }
+  }
+
+  .help-page {
+    .sidebar {
+      display: block;
+    }
+  }
+
+  .ad-page {
+    .sidebar {
+      display: block;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  $containerWidth: 460px;
+  .container {
+    max-width: calc($containerWidth + 40px);
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  $containerWidth: 300px;
+  .container {
+    max-width: calc($containerWidth + 20px);
+    padding: 0 10px;
+  }
+}

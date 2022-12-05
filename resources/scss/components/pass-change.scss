@@ -1,0 +1,22 @@
+.pass__change {
+  padding: 19px;
+  border: 1px solid $border;
+  background-color: $accent;
+  .delete__title {
+    margin-bottom: 15px;
+  }
+  form {
+    margin-bottom: 15px;
+  }
+  button {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pass__change {
+    button {
+      max-width: none;
+    }
+  }
+}

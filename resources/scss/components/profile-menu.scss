@@ -1,0 +1,150 @@
+.profile__menu {
+  max-width: 170px;
+  padding: 14px 19px 19px 14px;
+  background-color: $accent;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+  .user__name {
+    margin-bottom: 15px;
+  }
+  .profile__data {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $border;
+  }
+  .comment__link {
+    cursor: pointer;
+  }
+  label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .logout {
+    &.input.logout {
+      width: 0;
+      height: 0;
+      padding: 0;
+      position: absolute;
+      z-index: -1;
+    }
+  }
+  .profile__items {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    gap: 20px;
+    .profile__item {
+      display: flex;
+    }
+    .profile__item.create {
+      transition: all 0.5s ease;
+      overflow: hidden;
+      max-height: 18px;
+      .profile__subitem {
+        display: flex;
+        opacity: 0;
+        align-items: center;
+        overflow: hidden;
+        max-height: 0;
+        margin-left: 20px;
+        transform: translateY(-100%);
+        transition: all 0.5s ease-in;
+      }
+    }
+    .comment__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      .icon {
+        width: 18px;
+        height: 18px;
+      }
+      .icon.fill {
+        width: 18px;
+        height: 18px;
+      }
+      .icon.fill {
+        fill: $text;
+      }
+      &:hover {
+        .icon {
+          stroke: $darkBlue;
+        }
+        .icon.fill {
+          stroke: none;
+          fill: $darkBlue;
+        }
+      }
+    }
+    a {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      .icon.create-icon {
+        width: 18px;
+        height: 18px;
+      }
+      .chev {
+        transition: all 0.3s ease;
+        margin-left: auto;
+        transform: rotate(270deg);
+      }
+      &:hover {
+        .icon {
+          stroke: $darkBlue;
+        }
+      }
+    }
+    .create {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      .icon {
+        width: 14px;
+        height: 14px;
+      }
+    }
+    .create.active {
+      max-height: 150px;
+      margin-bottom: 5px;
+      transition: all 0.5 ease;
+      .chev {
+        transition: all 0.3s ease;
+        transform: rotate(360deg);
+      }
+      .profile__subitem {
+        overflow: visible;
+        opacity: 1;
+        max-height: 117px;
+        transition: all 0.5s ease-out;
+        transform: translateY(0%);
+      }
+    }
+  }
+  .comment__link {
+    color: $text;
+    &:hover {
+      color: $darkBlue;
+    }
+  }
+}
+
+.login__block.active.open {
+  .login__active {
+    .icon {
+      transform: rotate(180deg);
+    }
+  }
+  .profile__menu {
+    position: absolute;
+    display: block;
+    width: 170px;
+    top: 39px;
+    right: 0;
+    z-index: 1;
+  }
+}

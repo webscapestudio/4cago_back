@@ -1,0 +1,43 @@
+.dropdown {
+  padding: 14px 9px;
+  border: 1px solid $border;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  display: none;
+  background-color: $accent;
+  cursor: pointer;
+  .title__count {
+    color: $text;
+    &:hover {
+      color: $darkBlue;
+    }
+  }
+  button {
+    padding: 0;
+  }
+}
+
+.dropdown.active {
+  display: block;
+  position: absolute;
+  top: 34px;
+  right: 0;
+  z-index: 1;
+}
+
+.dropdown.report {
+  .report {
+    display: block;
+  }
+  .unlock {
+    display: none;
+  }
+}
+
+.dropdown.unlock {
+  .unlock {
+    display: block;
+  }
+  .report {
+    display: none;
+  }
+}

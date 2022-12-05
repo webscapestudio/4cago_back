@@ -1,0 +1,61 @@
+.order {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .delete__title {
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 20px;
+  }
+  .summ__pay {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 100%;
+  }
+  .order__summ {
+    display: flex;
+    margin-bottom: 15px;
+    &:last-of-type {
+      margin-bottom: 20px;
+    }
+  }
+  .dash {
+    margin-right: 15px;
+    margin-left: 15px;
+    flex-grow: 1;
+    border-bottom: 1px dashed $border;
+  }
+  .summ__number {
+    margin-left: auto;
+  }
+  .order__btns {
+    display: flex;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 960px) {
+  .order {
+    .delete__title {
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .order {
+    .order__btns {
+      flex-direction: column;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .order {
+    .delete__title {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}

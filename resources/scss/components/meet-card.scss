@@ -1,0 +1,36 @@
+.meet__card {
+  padding: 20px;
+  background-color: $accent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid $border;
+  .title__comment {
+    &:hover {
+      color: $darkBlue;
+    }
+  }
+  .meet__tags {
+    display: flex;
+    margin-left: auto;
+    gap: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .meet__card {
+    .title__comment {
+      font-size: 18px;
+      line-height: 21px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .meet__card {
+    .title__comment {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}

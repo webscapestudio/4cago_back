@@ -21,6 +21,6 @@
     <link rel="icon" type="image/png" sizes="120x120" href="/">
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/apple-touch-icon-180x180.png') }}">
     <!-- <link rel="manifest" href="./images/manifest.json"> -->
-    <link rel="stylesheet" href="{{ asset('/css/main.min.css') }}" />
+    <link rel="stylesheet" href="{{ mix('/css/main.css') }}" />
     <title>Chicago</title>
 </head>

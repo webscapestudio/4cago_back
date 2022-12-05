@@ -1,0 +1,33 @@
+.advertising__card {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .post__title {
+    margin-bottom: 10px;
+  }
+  .feed__text {
+    margin-bottom: 20px;
+  }
+  .advertising__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .advertising__item {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+      padding-left: 20px;
+      &:before {
+        position: absolute;
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+        background-color: $darkBlue;
+      }
+    }
+  }
+}
