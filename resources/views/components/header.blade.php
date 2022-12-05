@@ -258,8 +258,9 @@
                                 </ul>
                                 <!-- profile item -->
                                 <ul class="profile__item">
-                                    <a class="comment__link" href="#"><svg class="icon" viewBox="0 0 24 24"
-                                            fill="none" stroke="#000F13">
+                                    <a class="comment__link"
+                                        href="{{ route('personal.user.profile_settings', Auth::user()->id) }}"><svg
+                                            class="icon" viewBox="0 0 24 24" fill="none" stroke="#000F13">
                                             <path
                                                 d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
                                                 stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"

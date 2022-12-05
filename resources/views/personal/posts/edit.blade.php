@@ -82,6 +82,15 @@
                     </div>
 
                 </div>
+                @if (file_exists('storage/' . $post->post_image))
+                    <div class="post__img">
+                        <picture>
+                            <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp">
+                            <img src="{{ asset('storage/' . $post->post_image) }}" alt="">
+                        </picture>
+                    </div>
+                @else
+                @endif
             </div>
 
 

@@ -1,9 +1,6 @@
 @extends('layouts.main')
 
 @section('content')
-
-
-
     <div class="profile__card">
         <div class="profile__card-top">
             <div class="profile__card-left">

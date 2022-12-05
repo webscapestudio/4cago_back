@@ -13,7 +13,8 @@ class UpdateController extends Controller
     public function __invoke(UpdateRequest $request, Advertisement $advertisement)
     {
         $author = Auth::user();
-        $data = $request->validated();
+        $data = $request;
+        dd($data);
         if (isset($data['tag_ids'])) :
             $tagIds = $data['tag_ids'];
             unset($data['tag_ids']);
@@ -22,10 +23,11 @@ class UpdateController extends Controller
             $data['advertisement_image'] = Storage::disk('public')->put('/images',  $data['advertisement_image']);
         endif;
 
-        $advertisement->update($data);
+
         if (isset($tagIds)) :
             $advertisement->tags()->sync($tagIds);
         endif;
+        $advertisement->update($data);
         return redirect()->route('personal.advertisement.index');
     }
 }

@@ -15,7 +15,7 @@ class StoreController extends Controller
     {
 
         $author = Auth::user();
-        $data = $request;
+        $data = $request->validated();
         if (isset($data['tag_ids'])) :
             $tagIds = $data['tag_ids'];
             unset($data['tag_ids']);
@@ -33,8 +33,8 @@ class StoreController extends Controller
             'is_banned' =>  0,
             'likes' =>  0,
             'dislikes' =>  0,
-            'term' =>  0,
-            'type' => 0,
+            'term' =>  $request->term,
+            'type' => $request->type,
         ]);
         if (isset($tagIds)) :
             $advertisement->tags()->attach($tagIds);

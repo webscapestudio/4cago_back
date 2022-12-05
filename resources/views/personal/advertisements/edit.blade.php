@@ -1,31 +1,27 @@
 @extends('personal.main.index')
 @section('content')
-    <form class="post__create"action="{{ route('personal.advertisement.update', $advertisement->id) }}" method="POST"
+    <form class="ad__post" action="{{ route('personal.advertisement.update', $advertisement->id) }}" method="POST"
         enctype="multipart/form-data">
         <input type="hidden" name="_method" value="PATCH">
         {{ csrf_field() }}
-        <h2 class="delete__title">Редактировать пост</h2>
+        <h2 class="delete__title">Редактировать объявление</h2>
         <div class="post-create__inner">
-            <div class="post__category">
-                <p class="post__date">Статус</p>
+            <div class="custom__select">
+                <select id="a-select" name="is_published">
+                    @if (@isset($advertisement->id))
+                        <option value="0" @if ($advertisement->is_published == 0) selected = "" @endif>Не
+                            опубликовано</option>
+                        <option value="1" @if ($advertisement->is_published == 1) selected = "" @endif>Опубликовано
+                        </option>
+                    @else
+                        <option value="0">Не опубликовано</option>
+                        <option value="1">Опубликовано</option>
+                    @endif
 
-                <div class="custom__select">
-                    <select id="a-select" name="published">
-                        @if (@isset($advertisement->id))
-                            <option value="0" @if ($advertisement->published == 0) selected = "" @endif>Не
-                                опубликовано</option>
-                            <option value="1" @if ($advertisement->published == 1) selected = "" @endif>Опубликовано
-                            </option>
-                        @else
-                            <option value="0">Не опубликовано</option>
-                            <option value="1">Опубликовано</option>
-                        @endif
-
-                    </select>
-                    @error('category_id')
-                        <div class="text-danger">{{ $message }}</div>
-                    @enderror
-                </div>
+                </select>
+                @error('category_advertisement_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="post__category">
                 <p class="post__date">Категория</p>
@@ -35,10 +31,39 @@
                         @include('personal.advertisements.partials.categories_advertisementsCreate', [
                             'categories_advertisements' => $categories_advertisements,
                         ])
+
                     </select>
-                    @error('category_id')
+                    @error('category_advertisement_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
+                </div>
+            </div>
+            <div class="categories">
+                <div class="post__category">
+                    <p class="post__date">Вид объявления</p>
+                    <div class="custom__select" action="">
+                        <select id="slim-select" name="type">
+                            <option value="0">Куплю</option>
+                            <option value="1">Продам</option>
+                            <option value="2">Потеряшки</option>
+                        </select>
+                        @error('type')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="post__subcategory">
+                    <p class="post__date">Срок объявления</p>
+                    <div class="custom__select" action="">
+                        <select id="slim-select-job" name="term">
+                            <option value="0">1 день</option>
+                            <option value="1">3 дня</option>
+                            <option value="2">7 дней</option>
+                        </select>
+                        @error('term')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
 
@@ -50,7 +75,6 @@
                 @enderror
             </div>
 
-
             <div class="create__text">
                 <p class="post__date">Текст</p>
                 <div class="white__area">
@@ -60,9 +84,8 @@
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
 
-
                     <div class="file__create">
-                        <input type="file" name="advertisement_image" id="input__comment">
+                        <input type="file" name="advertisement_image" id="input__comment" />
                         <label for="input__comment"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#292D32">
                                 <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z"
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -74,18 +97,23 @@
                                     stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                             </svg>
                         </label>
-
                         @error('advertisement_image')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
 
                 </div>
+                @if (file_exists('storage/' . $advertisement->advertisement_image))
+                    <div class="post__img">
+                        <picture>
+                            <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}"
+                                type="image/webp">
+                            <img src="{{ asset('storage/' . $advertisement->advertisement_image) }}" alt="">
+                        </picture>
+                    </div>
+                @else
+                @endif
             </div>
-
-
-
-
             <div class="create__tags">
                 <select class="select2" name="tag_ids[]" multiple="multiple" data-placeholder="Выберите теги"
                     style="width: 100%;">

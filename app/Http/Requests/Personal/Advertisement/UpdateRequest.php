@@ -26,6 +26,10 @@ class UpdateRequest extends FormRequest
         return [
             'title' => 'required|string',
             'content' => 'required|string',
+            'advertisement_image' => 'nullable|file',
+            'term' => 'required|string',
+            'type' => 'required|string',
+            'category_advertisement_id' => 'required|exists:categories,id',
 
         ];
     }

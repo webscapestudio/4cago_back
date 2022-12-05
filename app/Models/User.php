@@ -32,7 +32,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'user_avatar'
     ];
 
     /**
@@ -84,6 +85,10 @@ class User extends Authenticatable
             ->where('user_id', $this->id)
             ->count();
     }
+    function favourites()
+    {
+        return $this->hasMany(Favourite::class);
+    }
     //Like-------------------------------------------------------------
     public function hasLikedAdvertisement(Advertisement $advertisement)
     {
@@ -102,6 +107,10 @@ class User extends Authenticatable
         return (bool) $news->like
             ->where('user_id', $this->id)
             ->count();
+    }
+    function liks()
+    {
+        return $this->hasMany(Like::class);
     }
     //Dislike-------------------------------------------------------------
     public function hasDislikedAdvertisement(Advertisement $advertisement)
@@ -122,6 +131,10 @@ class User extends Authenticatable
             ->where('user_id', $this->id)
             ->count();
     }
+    function disliks()
+    {
+        return $this->hasMany(Dislike::class);
+    }
     //Comment-------------------------------------------------------------
     public function hasCommentedPost(Post $post)
     {
@@ -141,5 +154,9 @@ class User extends Authenticatable
         return (bool) $news->comments
             ->where('user_id', $this->id)
             ->count();
+    }
+    function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

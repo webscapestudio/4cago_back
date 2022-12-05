@@ -1,4 +1,12 @@
 <div class="sidebar-right">
+    @auth
+        @if (request()->route()->getName() === 'personal.user.profile_settings')
+            @include('personal.includes.profile_menu')
+        @endif
+    @endauth
+
+
+
     <div class="aside__ad">
         <a class="side-ad" href="#">
             <p class="side-ad__text">Реклама</p>

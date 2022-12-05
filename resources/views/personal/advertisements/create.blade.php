@@ -1,6 +1,6 @@
   @extends('personal.main.index')
   @section('content')
-      <form class="ad__post" action="{{ route('personal.advertisement.index') }}" method="POST" enctype="multipart/form-data">
+      <form class="ad__post" action="{{ route('personal.advertisement.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <h2 class="delete__title">Добавить объявление</h2>
           <div class="post-create__inner">

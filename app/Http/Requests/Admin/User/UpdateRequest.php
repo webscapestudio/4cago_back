@@ -24,22 +24,24 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required|string|unique:users',
-            'email'=>'required|string|email|unique:users,email,' . $this->user_id,
+            'name' => 'required|string|unique:users',
+            'email' => 'required|string|email|unique:users,email,' . $this->user_id,
             'user_id' => 'required|integer|exists:users,id',
-            'role' => 'required|integer'
+            'role' => 'required|integer',
+            'user_avatar' => 'nullable|file'
         ];
     }
     public function messages()
     {
         return [
-            'name.required'=>'Поле обязательно для заполнения',
-            'name.string'=>'Имя должно быть строкой',
-            'name.unique'=>'Пользователь с таким именем уже существует',
-            'email.required'=>'Поле "E-mail" обязательно для заполнения',
-            'email.string'=>'Имя должно быть строкой',
-            'email.email'=>'Поле "E-mail" должно соответствовать формату name@domain.com',
-            'email.unique'=>'Пользователь с таким "E-mail" уже существует',
-          ];
+            'name.required' => 'Поле обязательно для заполнения',
+            'name.string' => 'Имя должно быть строкой',
+            'name.unique' => 'Пользователь с таким именем уже существует',
+            'email.required' => 'Поле "E-mail" обязательно для заполнения',
+            'email.string' => 'Имя должно быть строкой',
+            'email.email' => 'Поле "E-mail" должно соответствовать формату name@domain.com',
+            'email.unique' => 'Пользователь с таким "E-mail" уже существует',
+            'user_avatar.file' => 'Необходимо выбрать файл'
+        ];
     }
 }

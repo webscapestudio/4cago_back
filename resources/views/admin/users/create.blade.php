@@ -25,8 +25,10 @@
               <div class="container-fluid">
                   <!-- Small boxes (Stat box) -->
                   <div class="row">
-                      <form action="{{ route('admin.user.store') }}" method="POST" class="w-25">
+                      <form action="{{ route('admin.user.store') }}" method="POST" class="w-25"
+                          enctype="multipart/form-data">
                           @csrf
+
                           <div class="form-group">
                               <input type="text" class="form-control" name="name" placeholder="Имя пользователя">
                           </div>
@@ -57,6 +59,16 @@
                                   <div class="text-danger">{{ $message }}</div>
                               @enderror
                           </div>
+                          <label for="exampleInputFile">Изображение профиля</label>
+                          <div class="input-group">
+                              <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="exampleInputFile" name="user_avatar">
+                                  <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                              </div>
+                          </div>
+                          @error('user_avatar')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
                           <input type="submit" class="btn btn-primary" value="Добавить">
                       </form>
                   </div>

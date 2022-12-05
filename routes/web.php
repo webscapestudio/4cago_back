@@ -164,7 +164,7 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
     });
     // Post personal CRUD
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
-        Route::get('/', 'IndexController')->name('personal.post.index');
+        Route::get('/all', 'IndexController')->name('personal.post.index');
         Route::get('/create', 'CreateController')->name('personal.post.create');
         Route::post('/', 'StoreController')->name('personal.post.store');
         Route::get('/{post}', 'ShowController')->name('personal.post.show');
@@ -174,7 +174,7 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
     });
     // Post advertisement CRUD
     Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], function () {
-        Route::get('/', 'IndexController')->name('personal.advertisement.index');
+        Route::get('/all', 'IndexController')->name('personal.advertisement.index');
         Route::get('/create', 'CreateController')->name('personal.advertisement.create');
         Route::post('/', 'StoreController')->name('personal.advertisement.store');
         Route::get('/{advertisement}', 'ShowController')->name('personal.advertisement.show');
@@ -184,7 +184,7 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
     });
     //Post work CRUD
     Route::group(['namespace' => 'Work', 'prefix' => 'works'], function () {
-        Route::get('/', 'IndexController')->name('personal.work.index');
+        Route::get('/all', 'IndexController')->name('personal.work.index');
         Route::get('/create', 'CreateController')->name('personal.work.create');
         Route::post('/', 'StoreController')->name('personal.work.store');
         Route::get('/{work}', 'ShowController')->name('personal.work.show');
@@ -193,7 +193,12 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
         Route::delete('/{work}', 'DestroyController')->name('personal.work.destroy');
     });
     Route::group(['namespace' => 'Favourite', 'prefix' => 'favourites'], function () {
-        Route::get('/', 'IndexController')->name('personal.favourite.index');
+        Route::get('/all', 'IndexController')->name('personal.favourite.index');
+    });
+    Route::group(['namespace' => 'User', 'prefix' => 'user_settings'], function () {
+        Route::get('/{user}', 'ShowController')->name('personal.user.profile_settings');
+        // Route::get('/{user}/edit', 'EditController')->name('admin.user.edit');
+        // Route::patch('/{user}', 'UpdateController')->name('admin.user.update');
     });
 });
 Auth::routes();

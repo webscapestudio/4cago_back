@@ -54,6 +54,29 @@
                                   <div class="text-danger">{{ $message }}</div>
                               @enderror
                           </div>
+                          <label for="exampleInputFile">Изображение профиля</label>
+                          @if (file_exists('storage/' . $user->user_avatar))
+                              <div class="row mb-3">
+                                  <div class="col-sm-6">
+                                      <div class="row">
+                                          <div class="col-sm-6">
+                                              <img class="img-fluid pad" src="{{ asset('storage/' . $user->user_avatar) }}"
+                                                  alt="Photo">
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          @else
+                          @endif
+                          <div class="input-group">
+                              <div class="custom-file">
+                                  <input type="file" class="custom-file-input" id="exampleInputFile" name="user_avatar">
+                                  <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                              </div>
+                          </div>
+                          @error('user_avatar')
+                              <div class="text-danger">{{ $message }}</div>
+                          @enderror
                           <div class="form-group w-50">
                               <input type="hidden" name="user_id" value="{{ $user->id }}">
                           </div>
