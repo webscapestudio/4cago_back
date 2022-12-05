@@ -1,0 +1,75 @@
+.buy__post {
+  background-color: $accent;
+  .post__top {
+    padding: 17px 19px;
+    border: 1px solid $border;
+    background-color: $adBg;
+    display: flex;
+    .vacancy__link {
+      margin-left: auto;
+    }
+  }
+  .posts {
+    padding: 15px 18px 18px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    border-right: 1px solid $border;
+    border-left: 1px solid $border;
+    border-bottom: 1px solid $border;
+    gap: 15px;
+    .post__item {
+      max-width: 210px;
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      gap: 10px;
+      img {
+        height: 140px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .buy__post {
+    .posts {
+      padding: 15px 14px 14px 14px;
+      .post__item {
+        max-width: 155px;
+      }
+    }
+  }
+}
+
+@media (max-width: 960px) {
+  .buy__post {
+    .posts {
+      .post__item {
+        max-width: 186px;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .buy__post {
+    .posts {
+      .post__item {
+        max-width: 133px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .buy__post {
+    .posts {
+      flex-direction: column;
+      .post__item {
+        flex-direction: row;
+        width: 100%;
+        gap: 15px;
+      }
+    }
+  }
+}

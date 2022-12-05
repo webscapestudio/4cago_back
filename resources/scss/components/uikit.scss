@@ -1,0 +1,92 @@
+.ui-kit {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 144px;
+  line-height: 100%;
+  color: $black;
+}
+
+.colors {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 900px;
+  height: 500px;
+  flex-wrap: wrap;
+}
+
+.color {
+  width: 100px;
+  height: 100px;
+  box-shadow: 0 20px 51px 0 rgb(59 59 60 / 20%);
+}
+
+.red {
+  background-color: $red;
+}
+
+.black {
+  background-color: $black;
+}
+
+.light_gray {
+  background-color: $grayLight;
+}
+
+.blue {
+  background-color: $blue;
+}
+
+.gray {
+  background-color: $gray;
+}
+
+.yellow {
+  background-color: $yellow;
+}
+
+.green {
+  background-color: $green;
+}
+
+.icons__items {
+  display: flex;
+  width: 700px;
+  align-items: center;
+  justify-content: space-between;
+  width: 1000px;
+}
+
+.smile.active {
+  path {
+    fill: $green;
+  }
+}
+
+.smile__sad.active {
+  path {
+    fill: $red;
+  }
+}
+
+.icon__item {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+
+  svg {
+    width: 100%;
+  }
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.live-posts {
+  max-width: 300px;
+  width: 100%;
+  border: 1px solid $border;
+}

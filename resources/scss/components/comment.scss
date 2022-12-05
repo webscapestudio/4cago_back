@@ -1,0 +1,68 @@
+.comment {
+  padding: 20px;
+  max-width: 700px;
+  width: 100%;
+  background-color: $accent;
+  .title__comment {
+    margin-bottom: 15px;
+  }
+  input {
+    width: 0;
+    height: 0;
+  }
+  textarea {
+    margin-bottom: 10px;
+    border: none;
+    max-width: 660px;
+    width: 100%;
+    min-height: 120px;
+    resize: none;
+    background-color: $bg;
+    padding: 20px;
+    &::placeholder {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      color: $grayText;
+    }
+  }
+  .comment__bottom {
+    display: flex;
+  }
+  input {
+    visibility: hidden;
+    position: absolute;
+  }
+  label {
+    display: block;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    .icon {
+      width: 24px;
+      height: 24px;
+      stroke: $grayText;
+    }
+  }
+  label:hover {
+    .icon {
+      stroke: $darkBlue;
+    }
+  }
+  .btn__blue {
+    margin-left: auto;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comment {
+    .comment__bottom {
+      flex-direction: column;
+      label {
+        margin-left: auto;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}

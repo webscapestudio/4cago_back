@@ -1,0 +1,32 @@
+.help__card {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .post__title {
+    margin-bottom: 10px;
+  }
+  .help__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .help__item {
+      display: flex;
+      align-items: flex-start;
+      padding-left: 20px;
+      position: relative;
+      &:before {
+        position: absolute;
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $darkBlue;
+        left: 0;
+        top: 7px;
+      }
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.sidebar__help {
+  max-width: 133px;
+}
+
+@media (max-width: 960px) {
+  .sidebar__help {
+    padding: 19px;
+    background-color: $accent;
+    border: 1px solid $border;
+    max-width: 100%;
+    margin-top: 20px;
+    .menu__link {
+      font-size: 14px;
+      line-height: 16px;
+      color: $text;
+      &:hover {
+        color: $darkBlue;
+      }
+    }
+    .sidebar__menu-items {
+      flex-direction: row;
+      padding-bottom: 15px;
+      border-bottom: 1px solid $border;
+    }
+    .sidebar__menu {
+      margin-bottom: 0;
+    }
+    .hide {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar__help {
+    .sidebar__menu-items {
+      gap: 14px;
+    }
+  }
+}

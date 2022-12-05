@@ -1,0 +1,45 @@
+.delete__card {
+  position: relative;
+  padding: 40px;
+  max-width: 480px;
+  background-color: $accent;
+  .close__btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    .icon {
+      fill: $grayText;
+    }
+  }
+  .close__btn:hover {
+    .icon {
+      fill: $darkBlue;
+    }
+  }
+  .delete__title {
+    margin-bottom: 15px;
+  }
+  .delete__text {
+    margin-bottom: 20px;
+  }
+  .delete__btns {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+
+.delete__post {
+  .del__account {
+    display: none;
+  }
+}
+
+.delete__account {
+  .del__post {
+    display: none;
+  }
+}

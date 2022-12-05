@@ -1,0 +1,36 @@
+.notifications__setting {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .post__title {
+    margin-bottom: 15px;
+  }
+  .notifications__items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  .btn__blue {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .notifications__setting {
+    padding: 19px 14px;
+    .btn__blue {
+      max-width: none;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .notifications__setting {
+    padding: 19px 9px;
+    .post__title {
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+}

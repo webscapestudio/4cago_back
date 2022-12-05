@@ -1,0 +1,98 @@
+.header {
+    width: 100%;
+    padding: 20px 0;
+    background-color: $accent;
+}
+
+.header__wrap {
+    display: flex;
+    align-items: center;
+}
+
+.header__nav {
+    display: flex;
+    margin-left: auto;
+    gap: 30px;
+    .notification__count {
+        display: none;
+    }
+}
+
+.logo {
+    display: inline-flex;
+}
+
+.header__link {
+    display: inline-flex;
+    position: relative;
+    .icon {
+        width: 24px;
+        height: 24px;
+        fill: $text;
+        &:hover {
+            fill: $darkBlue;
+        }
+    }
+    .login__link {
+        display: none;
+    }
+}
+
+.notifications__block {
+    display: flex;
+    position: relative;
+}
+
+.login__block {
+    display: flex;
+    position: relative;
+    .login__active {
+        display: none;
+        position: relative;
+    }
+}
+
+.notifications__block.active {
+    .notification__count {
+        position: absolute;
+        right: -7px;
+        top: -4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: $darkBlue;
+        .title__count {
+            color: $accent;
+            font-size: 11px;
+            line-height: 100%;
+        }
+    }
+}
+
+.login__block.active {
+    .login__icon {
+        display: none;
+    }
+    .login__active {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        img {
+            width: 24px;
+            height: 24px;
+        }
+        .icon {
+            width: 14px;
+            height: 14px;
+            fill: $accent;
+        }
+        &:hover {
+            .icon {
+                stroke: $darkBlue;
+            }
+        }
+    }
+}

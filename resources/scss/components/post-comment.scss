@@ -1,0 +1,23 @@
+.post__comment {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .post__comment-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    img {
+      margin-right: 8px;
+    }
+    .user__name {
+      margin-right: 12px;
+    }
+  }
+  .post__content {
+    padding-bottom: 15px;
+    border-bottom: 1px solid $border;
+  }
+  .post__comment-bottom {
+    padding-top: 15px;
+  }
+}

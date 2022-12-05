@@ -1,0 +1,131 @@
+.notifications {
+  display: none;
+  .notifications__top {
+    padding: 20px;
+    background-color: $adBg;
+    border: 1px solid $border;
+    position: relative;
+  }
+  .notifications__content {
+    padding: 15px 20px 20px 20px;
+    background-color: $bgRead;
+    border-right: 1px solid $border;
+    border-left: 1px solid $border;
+    border-bottom: 1px solid $border;
+  }
+  .notifications__null {
+    display: none;
+    gap: 10px;
+    flex-direction: column;
+  }
+  .notifications__items {
+    flex-direction: column;
+    gap: 20px;
+    display: none;
+  }
+  .notifications__item {
+    padding-bottom: 14px;
+    border-bottom: 1px solid $border;
+    .title__count {
+      margin-bottom: 10px;
+    }
+    .post__link {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .icon {
+        width: 18px;
+        height: 18px;
+        fill: $grayText;
+      }
+      .notifications__left {
+        p {
+          color: $grayText;
+        }
+      }
+      .post__right {
+        p {
+          color: $grayText;
+        }
+      }
+    }
+    .notifications__bottom {
+      display: flex;
+      .post__item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .notifications__left {
+        display: flex;
+        gap: 20px;
+        p {
+          font-size: 13px;
+        }
+      }
+      .post__right {
+        display: flex;
+        gap: 10px;
+        margin-left: auto;
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+.notifications::after,
+.notifications::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  right: 30px;
+  border: 7px solid transparent;
+  border-bottom: 7px solid $border;
+}
+
+.notifications::after {
+  border-bottom: 7px solid $accent;
+  top: -13px;
+}
+
+.notifications.notifications__in {
+  .notifications__items {
+    display: flex;
+  }
+}
+
+.notifications.notifications__none {
+  .notifications__null {
+    display: flex;
+  }
+}
+
+.notifications__block.open {
+  .notifications {
+    display: block;
+    position: absolute;
+    width: 300px;
+    top: 48px;
+    right: -26px;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .notifications__block.open {
+    .notifications {
+      display: block;
+      position: absolute;
+      width: 300px;
+      top: 48px;
+      right: -74px;
+      z-index: 1;
+    }
+    .notifications::after,
+    .notifications::before {
+      right: 79px;
+    }
+  }
+}

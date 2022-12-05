@@ -1,0 +1,38 @@
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  cursor: pointer;
+  width: 100%;
+  padding: 21px;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s;
+  &.btn__blue {
+    color: $white;
+    background-color: $darkBlue;
+  }
+
+  &.btn__blue:hover {
+    background: $deepBlue;
+  }
+
+  &.btn__bordered {
+    border: 1px solid $black;
+    color: $black;
+    background: transparent;
+    padding: 20px;
+  }
+
+  &.btn__bordered:hover {
+    border: 1px solid $darkBlue;
+  }
+
+  &.btn__red {
+    background: $red;
+    color: $white;
+  }
+
+  &.btn__red:hover {
+    background: $darkRed;
+  }
+}

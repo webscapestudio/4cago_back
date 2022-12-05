@@ -1,0 +1,35 @@
+.error__message {
+  padding: 20px 25px;
+  background-color: $accent;
+  .error__wrap {
+    display: flex;
+    gap: 6px;
+  }
+  img {
+    width: 24px;
+    height: 24px;
+    display: none;
+  }
+  .message__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .message__item {
+    display: flex;
+    font-size: 13px;
+    line-height: 100%;
+  }
+}
+
+.error__message.check {
+  .check__img {
+    display: block;
+  }
+}
+
+.error__message.error {
+  .error__img {
+    display: block;
+  }
+}

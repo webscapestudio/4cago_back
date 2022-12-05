@@ -1,0 +1,30 @@
+@mixin media-breakpoint-up($key) {
+    $min: map-get($grid-breakpoints, $key);
+
+    @media (min-width: $min) {
+        @content;
+    }
+}
+
+@mixin focus-visible {
+    @if (&) {
+        .js-focus-visible &:focus:not(.focus-visible) {
+            @content;
+        }
+    } @else {
+        .js-focus-visible :focus:not(.focus-visible) {
+            outline: none;
+        }
+    }
+}
+
+@mixin font($font_name, $file_name, $weight, $style) {
+    @font-face {
+        font-weight: #{$weight};
+        font-family: $font_name;
+        font-display: swap;
+        font-style: #{$style};
+        src: url("../../fonts/#{$file_name}.woff2") format("woff2"),
+            url("../../fonts/#{$file_name}.woff") format("woff");
+    }
+}

@@ -1,0 +1,22 @@
+.aside__ad {
+  max-width: 300px;
+}
+
+.side-ad {
+  position: relative;
+}
+
+.side-ad__text {
+  position: absolute;
+  top: -18px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: $grayText;
+}
+
+.aside__ad:not(:first-child) {
+  padding-top: 19px;
+}

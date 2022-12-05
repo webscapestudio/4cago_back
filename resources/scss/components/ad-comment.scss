@@ -1,0 +1,40 @@
+.ad__comment {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  .ad__comment-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    img {
+      margin-right: 8px;
+    }
+    .user__name {
+      margin-right: 12px;
+    }
+  }
+  .post__img {
+    width: 100%;
+    height: 470px;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .post__text {
+    line-height: 170%;
+    margin-bottom: 10px;
+  }
+  .ad__comment-bottom {
+    padding-top: 15px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .ad__comment {
+    .post__img {
+      height: 340px;
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.input {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $grayText;
+  color: $text;
+  font-size: 14px;
+  line-height: 100%;
+  width: 100%;
+  &::placeholder {
+    font-size: 14px;
+    line-height: 100%;
+    color: $grayText;
+  }
+  &:hover {
+    border: 1px solid $darkBlue;
+  }
+  &:focus {
+    border: 1px solid $border;
+  }
+}
+
+.input__card {
+  padding: 9px 14px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 100%;
+  &::placeholder {
+    color: $grayText;
+  }
+  &.center {
+    width: 50px;
+    text-align: center;
+  }
+  &.code__card {
+    width: 259px;
+  }
+}
+
+.input.error {
+  border: 1px solid $red;
+}
+
+@media (max-width: 1200px) {
+  .input__card {
+    &.center {
+      width: 80px;
+    }
+    &.code__card {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .input__card {
+    &.center {
+      width: 50px;
+    }
+  }
+}

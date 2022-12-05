@@ -1,0 +1,154 @@
+.ad-text {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.form__error {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 100%;
+  color: $red;
+}
+
+.post__title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.label__gray {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: $grayText;
+}
+
+.post__date {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15px;
+  color: $grayText;
+}
+
+.post__actions-left-item {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 100%;
+  color: $grayText;
+}
+
+.post__actions-right-item {
+  color: $grayText;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 100%;
+  cursor: pointer;
+}
+
+.post__content {
+  font-weight: 400;
+  font-size: 14px;
+  max-height: 394px;
+  line-height: 170%;
+}
+
+.input__text {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 100%;
+  color: $grayLight;
+}
+
+.user__name {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+}
+
+.feed__text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+}
+
+.title__mini {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+  color: $readText;
+  display: flex;
+  align-items: center;
+}
+
+.title__count {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 140%;
+  color: $grayText;
+}
+
+.title__tags {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 140%;
+  color: $grayText;
+}
+
+.title__comment {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.title__settings {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-transform: uppercase;
+}
+
+.forum__tags {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 100%;
+  color: $grayText;
+}
+
+.delete__title {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.delete__text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+.profile__title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+.profile__name {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 100%;
+}
+
+.post__text {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 140%;
+}
+
+@media (max-width: 1200px) {
+  .post__title {
+    font-size: 18px;
+    line-height: 21px;
+  }
+}

@@ -1,0 +1,723 @@
+.help__cards {
+  padding: 19px;
+  background-color: $accent;
+  border: 1px solid $border;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .cards__block {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cards__top {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cards__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .cards__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .cards__item {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+      padding-left: 20px;
+      &:before {
+        position: absolute;
+        content: '';
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: $darkBlue;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+      }
+      .feed__text {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+.how__reg {
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.how__recover {
+  .reg {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.how__delete {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.how__nick {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.how__ava {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.how__comm {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.how__post {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.how__lim {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.why__ban {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.why__hide {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.why__edit {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.why__comm {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.why__block {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.i__see {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .contacts {
+    display: none;
+  }
+}
+
+.our__contacts {
+  .reg {
+    display: none;
+  }
+  .recover {
+    display: none;
+  }
+  .delete {
+    display: none;
+  }
+  .nick {
+    display: none;
+  }
+  .ava {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .post {
+    display: none;
+  }
+  .lim {
+    display: none;
+  }
+  .ban {
+    display: none;
+  }
+  .hide {
+    display: none;
+  }
+  .edit {
+    display: none;
+  }
+  .comm {
+    display: none;
+  }
+  .block {
+    display: none;
+  }
+  .see {
+    display: none;
+  }
+}
