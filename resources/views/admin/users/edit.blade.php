@@ -25,7 +25,8 @@
               <div class="container-fluid">
                   <!-- Small boxes (Stat box) -->
                   <div class="row">
-                      <form action="{{ route('admin.user.update', $user->id) }}" method="POST" class="w-25">
+                      <form action="{{ route('admin.user.update', $user->id) }}" method="POST" class="w-25"
+                          enctype="multipart/form-data">
                           @csrf
                           @method('PATCH')
                           <div class="form-group">

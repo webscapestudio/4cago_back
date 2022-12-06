@@ -4,10 +4,17 @@
           <div class="profile__card-top">
               <div class="profile__card-left">
                   <div class="user__img">
-                      <picture>
-                          <source srcset="./images/avatars/user-car-ava.webp" type="image/webp"><img
-                              src="./images/avatars/user-car-ava.jpg" alt="">
-                      </picture>
+                      @if (file_exists('storage/' . $user->user_avatar))
+                          <picture>
+                              <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
+                              <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                          </picture>
+                      @else
+                          <picture>
+                              <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                              <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                          </picture>
+                      @endif
                   </div>
                   <div class="user__info">
                       <p class="profile__title">{{ $user->name }}</p>
@@ -37,10 +44,17 @@
                   <div class="post__header">
                       <div class="post__header-left">
                           <div class="user__avatar">
-                              <picture>
-                                  <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                                      src="./images/avatars/user-ava.jpg" alt="user" />
-                              </picture>
+                              @if (file_exists('storage/' . $user->user_avatar))
+                                  <picture>
+                                      <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
+                                      <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                                  </picture>
+                              @else
+                                  <picture>
+                                      <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                                      <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                                  </picture>
+                              @endif
                           </div>
                           <p class="user__name">{{ $new->author->name ?? null }}</p>
                           <div class="post__date">{{ $new->created_at->diffForHumans() }}</div>
@@ -89,7 +103,6 @@
                                       src="{{ asset('storage/' . $new->news_image) }}" alt="" />
                               </picture>
                           </div>
-                      @else
                       @endif
                   </div>
 
@@ -219,10 +232,17 @@
                   <div class="post__header">
                       <div class="post__header-left">
                           <div class="user__avatar">
-                              <picture>
-                                  <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                                      src="./images/avatars/user-ava.jpg" alt="user" />
-                              </picture>
+                              @if (file_exists('storage/' . $user->user_avatar))
+                                  <picture>
+                                      <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
+                                      <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                                  </picture>
+                              @else
+                                  <picture>
+                                      <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                                      <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                                  </picture>
+                              @endif
                           </div>
                           <p class="user__name">{{ $advertisement->author->name ?? null }}</p>
                           <div class="post__date">{{ $advertisement->created_at->diffForHumans() }}</div>
@@ -273,7 +293,6 @@
                                       alt="" />
                               </picture>
                           </div>
-                      @else
                       @endif
                   </div>
 
@@ -403,10 +422,17 @@
                   <div class="post__header">
                       <div class="post__header-left">
                           <div class="user__avatar">
-                              <picture>
-                                  <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                                      src="./images/avatars/user-ava.jpg" alt="user" />
-                              </picture>
+                              @if (file_exists('storage/' . $user->user_avatar))
+                                  <picture>
+                                      <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
+                                      <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                                  </picture>
+                              @else
+                                  <picture>
+                                      <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                                      <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                                  </picture>
+                              @endif
                           </div>
                           <p class="user__name">{{ $post->author->name ?? 'Пользователь не найден' }}</p>
                           <div class="post__date">{{ $post->created_at->diffForHumans() }}</div>
@@ -455,7 +481,6 @@
                                   <img src="{{ asset('storage/' . $post->post_image) }}" alt="" />
                               </picture>
                           </div>
-                      @else
                       @endif
                   </div>
 

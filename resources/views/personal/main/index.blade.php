@@ -5,10 +5,17 @@
         <div class="profile__card-top">
             <div class="profile__card-left">
                 <div class="user__img">
-                    <picture>
-                        <source srcset="./images/avatars/user-car-ava.webp" type="image/webp"><img
-                            src="./images/avatars/user-car-ava.jpg" alt="">
-                    </picture>
+                    @if (file_exists('storage/' . $user->user_avatar))
+                        <picture>
+                            <source srcset="{{ asset('storage/' . Auth::user()->user_avatar) }}" type="image/webp" />
+                            <img src=" {{ asset('storage/' . Auth::user()->user_avatar) }}" alt="" />
+                        </picture>
+                    @else
+                        <picture>
+                            <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                            <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                        </picture>
+                    @endif
                 </div>
                 <div class="user__info">
                     <p class="profile__title">Oleg Kirillov</p>

@@ -196,9 +196,8 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
         Route::get('/all', 'IndexController')->name('personal.favourite.index');
     });
     Route::group(['namespace' => 'User', 'prefix' => 'user_settings'], function () {
-        Route::get('/{user}', 'ShowController')->name('personal.user.profile_settings');
-        // Route::get('/{user}/edit', 'EditController')->name('admin.user.edit');
-        // Route::patch('/{user}', 'UpdateController')->name('admin.user.update');
+        Route::get('/{user}', 'EditController')->name('personal.user.profile_settings');
+        Route::patch('/{user}', 'UpdateController')->name('personal.user.update');
     });
 });
 Auth::routes();

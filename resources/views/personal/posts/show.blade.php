@@ -4,10 +4,17 @@
         <div class="post__header">
             <div class="post__header-left">
                 <div class="user__avatar">
-                    <picture>
-                        <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                            src="./images/avatars/user-ava.jpg" alt="user">
-                    </picture>
+                    @if (file_exists('storage/' . $user->user_avatar))
+                        <picture>
+                            <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
+                            <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                        </picture>
+                    @else
+                        <picture>
+                            <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                            <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                        </picture>
+                    @endif
                 </div>
                 <p class="user__name">
                     {{ $post->author->name ?? 'Пользователь не найден' }}
@@ -54,7 +61,6 @@
                             src="{{ asset('storage/' . $post->post_image) }}" alt="">
                     </picture>
                 </div>
-            @else
             @endif
 
         </div>
@@ -260,10 +266,10 @@
                 @error('content')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                @error('post_image')
+                @error('comment_image')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                <button class="btn btn__blue">Отправить</button>
+                <button type="submit" class="btn btn__blue">Отправить</button>
             </div>
         </form>
     @endauth
@@ -273,10 +279,19 @@
     @foreach ($post->comments as $comment)
         <div class="ad__comment">
             <div class="ad__comment-top">
-                <picture>
-                    <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                        src="./images/avatars/user-ava.jpg" alt="">
-                </picture>
+                <div class="user__avatar">
+                    @if (file_exists('storage/' . $comment->author->user_avatar))
+                        <picture>
+                            <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
+                            <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
+                        </picture>
+                    @else
+                        <picture>
+                            <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                            <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                        </picture>
+                    @endif
+                </div>
                 <p class="user__name">{{ $comment->author->name ?? 'Пользователь не найден' }}</p>
                 <div class="post__date">{{ $comment->created_at->diffForHumans() }}</div>
                 <div class="post__drop">
@@ -323,7 +338,6 @@
                             src="{{ asset('storage/' . $comment->comment_image) }}" alt="">
                     </picture>
                 </div>
-            @else
             @endif
             <div class="ad__comment-bottom">
                 <a class="comment__link" href="#">Ответить</a>

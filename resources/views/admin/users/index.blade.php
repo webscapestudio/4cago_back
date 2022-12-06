@@ -32,11 +32,13 @@
                               <!-- /.card-header -->
                               <div class="card-body table-responsive p-0">
                                   <table class="table table-hover text-nowrap">
+
                                       <thead>
                                           <tr>
                                               <th>ID</th>
                                               <th>Имя</th>
-                                              <th>Количество постов</th>
+                                              <th>Статей</th>
+                                              <th>Обьявлений</th>
                                               <th colspan="3">Действия</th>
                                           </tr>
                                       </thead>
@@ -44,8 +46,9 @@
                                           @foreach ($users as $user)
                                               <tr>
                                                   <td>{{ $user->id }}</td>
-                                                  <td>{{ $user->name }}
-
+                                                  <td>{{ $user->name }}</td>
+                                                  <td>{{ $user->posts()->get()->count() }}</td>
+                                                  <td>{{ $user->advertisements()->get()->count() }}</td>
                                                   <td><a href="{{ route('admin.user.show', $user->id) }}"><i
                                                               class="far fa-eye"></i></a></td>
                                                   <td><a href="{{ route('admin.user.edit', $user->id) }}"

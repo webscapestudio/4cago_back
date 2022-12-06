@@ -7,13 +7,20 @@
             <div class="post__header">
                 <div class="post__header-left">
                     <div class="user__avatar">
-                        <picture>
-                            <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                                src="./images/avatars/user-ava.jpg" alt="user" />
-                        </picture>
+                        @if (file_exists('storage/' . $post->author->user_avatar))
+                            <picture>
+                                <source srcset="{{ asset('storage/' . $post->author->user_avatar) }}" type="image/webp" />
+                                <img src=" {{ asset('storage/' . $post->author->user_avatar) }}" alt="" />
+                            </picture>
+                        @else
+                            <picture>
+                                <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                                <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                            </picture>
+                        @endif
                     </div>
                     <p class="user__name">{{ $post->author->name ?? 'Пользователь не найден' }}</p>
-                    <div class="post__date">{{ $post->created_at }}</div>
+                    <div class="post__date">{{ $post->created_at->diffForHumans() }}</div>
                 </div>
                 <div class="post__header-right">
                     <div class="post__drop">
@@ -54,7 +61,6 @@
                                 src="{{ asset('storage/' . $post->post_image) }}" alt="" />
                         </picture>
                     </div>
-                @else
                 @endif
             </div>
 
@@ -78,13 +84,13 @@
                                 </svg>
                                 <p class="post__views_num">6.9K</p>
                             </a>
-                            <a class="post__comments post__actions-left-item" href="#">
+                            <a class="post__comments post__actions-left-item" href="{{ route('post.show', $post->id) }}">
                                 <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                     <path
                                         d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                     </path>
                                 </svg>
-                                <p class="post__coments_num">42</p>
+                                <p class="post__coments_num">{{ $post->comments->count() }}</p>
                             </a>
 
                             <form class="{{ auth()->user()->favourite ?? 'active' }}"
@@ -180,13 +186,13 @@
                                 </svg>
                                 <p class="post__views_num">6.9K</p>
                             </a>
-                            <a class="post__comments post__actions-left-item" href="#">
+                            <a class="post__comments post__actions-left-item" href="{{ route('post.show', $post->id) }}">
                                 <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                     <path
                                         d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                     </path>
                                 </svg>
-                                <p class="post__coments_num">42</p>
+                                <p class="post__coments_num">{{ $post->comments->count() }}</p>
                             </a>
                             <div class="post__pins post__actions-left-item active">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -235,6 +241,8 @@
                     @endguest
                 </div>
             </div>
+
+
         </div>
     @endforeach
 

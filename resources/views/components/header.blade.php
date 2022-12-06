@@ -149,10 +149,18 @@
                                     d="M9 6C9 4.34315 10.3431 3 12 3C13.6569 3 15 4.34315 15 6C15 7.65685 13.6569 9 12 9C10.3431 9 9 7.65685 9 6ZM12 1C9.23858 1 7 3.23858 7 6C7 8.76142 9.23858 11 12 11C14.7614 11 17 8.76142 17 6C17 3.23858 14.7614 1 12 1ZM9 13C6.23858 13 4 15.2386 4 18V21C4 21.5523 4.44772 22 5 22C5.55228 22 6 21.5523 6 21V18C6 16.3431 7.34315 15 9 15H15C16.6569 15 18 16.3431 18 18V21C18 21.5523 18.4477 22 19 22C19.5523 22 20 21.5523 20 21V18C20 15.2386 17.7614 13 15 13H9Z" />
                             </svg>
                             <div class="login__active">
-                                <picture>
-                                    <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
-                                    <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
-                                </picture>
+                                @if (file_exists('storage/' . $user->user_avatar))
+                                    <picture>
+                                        <source srcset="{{ asset('storage/' . Auth::user()->user_avatar) }}"
+                                            type="image/webp" />
+                                        <img src=" {{ asset('storage/' . Auth::user()->user_avatar) }}" alt="" />
+                                    </picture>
+                                @else
+                                    <picture>
+                                        <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                                        <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                                    </picture>
+                                @endif
                                 <svg class="icon" viewBox="0 0 14 14" fill="none" stroke="#1B1B1B">
                                     <path
                                         d="M11.62 5.2207L7.81667 9.02404C7.36751 9.4732 6.63251 9.4732 6.18334 9.02404L2.38 5.2207"
@@ -164,12 +172,20 @@
                         <div class="profile__menu">
                             <p class="user__name">Мой профиль</p>
                             <div class="profile__data">
-                                <picture>
-                                    <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
-                                    <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
-                                </picture>
-                                <a class="profile__name" href="profile.html"> {{ Auth::user()->name }}</a>
-
+                                @if (file_exists('storage/' . $user->user_avatar))
+                                    <picture>
+                                        <source srcset="{{ asset('storage/' . Auth::user()->user_avatar) }}"
+                                            type="image/webp" />
+                                        <img src=" {{ asset('storage/' . Auth::user()->user_avatar) }}" alt="" />
+                                    </picture>
+                                @else
+                                    <picture>
+                                        <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                                        <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                                    </picture>
+                                @endif
+                                <a class="profile__name"
+                                    href="{{ route('personal.user.profile_settings', Auth::user()->id) }}">{{ Auth::user()->name }}</a>
                             </div>
                             <div class="profile__items">
                                 <ul class="profile__item create">

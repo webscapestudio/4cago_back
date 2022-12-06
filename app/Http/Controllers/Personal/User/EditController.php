@@ -1,16 +1,17 @@
 <?php
 
-// namespace App\Http\Controllers\Personal\User;
+namespace App\Http\Controllers\Personal\User;
 
-// use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
-// use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\User;
+use Illuminate\Http\Request;
 
-// class EditController extends Controller
-// {
-//     public function __invoke(User $user)
-//     {
-//         $roles = User::getRoles();
-//         return view('personal.users.edit', compact('user', 'roles'));
-//     }
-// }
+class EditController extends Controller
+{
+    public function __invoke(User $user)
+    {
+        $posts = Post::latest()->with('like')->paginate(6);
+        return view('personal.users.profile_settings', compact('user', 'posts'));
+    }
+}

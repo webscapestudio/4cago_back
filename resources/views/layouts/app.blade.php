@@ -23,7 +23,7 @@
     <script src="https://jsuites.net/v4/jsuites.js"></script>
     <script src="https://jsuites.net/v4/jsuites.webcomponents.js"></script>
     <!-- <link rel="manifest" href="./images/manifest.json"> -->
-    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="stylesheet" href="./css/main.css">
 
 
 </head>
