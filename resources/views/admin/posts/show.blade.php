@@ -74,7 +74,8 @@
                                         </span>
 
 
-                                        <form action="{{ route('post.comment.destroy', [$post->id, $comment->id]) }}"
+                                        <form
+                                            action="{{ route('post.comment.destroy', [$post->category_id, $post->id, $comment->id]) }}"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
