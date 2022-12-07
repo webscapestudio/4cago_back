@@ -17,6 +17,7 @@
                 </div>
 
                 @include('components.aside_right')
+
             </div>
         </div>
     </main>

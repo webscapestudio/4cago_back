@@ -41,22 +41,25 @@ Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], fun
 });
 
 //Post
-Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
-    Route::get('/', 'IndexController')->name('post.index');
-    Route::get('/{post}', 'ShowController')->name('post.show');
-    Route::group(['namespace' => 'Favourite', 'prefix' => '{post}/favourites'], function () {
-        Route::post('/', 'StoreController')->name('post.favourite.store');
-    });
-    Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function () {
-        Route::post('/', 'StoreController')->name('post.like.store');
-    });
-    Route::group(['namespace' => 'Dislike', 'prefix' => '{post}/dislikes'], function () {
-        Route::post('/', 'StoreController')->name('post.dislike.store');
-    });
-    Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
-        Route::post('/', 'StoreController')->name('post.comment.store');
-        Route::patch('/{comment}', 'UpdateController')->name('post.comment.update');
-        Route::delete('/{comment}', 'DestroyController')->name('post.comment.destroy');
+Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
+    Route::get('/', 'IndexController')->name('categories_posts.index');
+    Route::group(['namespace' => 'Post', 'prefix' => '/{category}/posts'], function () {
+        Route::get('/', 'IndexController')->name('post.index');
+        Route::get('/{post}', 'ShowController')->name('post.show');
+        Route::group(['namespace' => 'Favourite', 'prefix' => '{post}/favourites'], function () {
+            Route::post('/', 'StoreController')->name('post.favourite.store');
+        });
+        Route::group(['namespace' => 'Like', 'prefix' => '{post}/likes'], function () {
+            Route::post('/', 'StoreController')->name('post.like.store');
+        });
+        Route::group(['namespace' => 'Dislike', 'prefix' => '{post}/dislikes'], function () {
+            Route::post('/', 'StoreController')->name('post.dislike.store');
+        });
+        Route::group(['namespace' => 'Comment', 'prefix' => '{post}/comments'], function () {
+            Route::post('/', 'StoreController')->name('post.comment.store');
+            Route::patch('/{comment}', 'UpdateController')->name('post.comment.update');
+            Route::delete('/{comment}', 'DestroyController')->name('post.comment.destroy');
+        });
     });
 });
 //News
@@ -160,7 +163,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('personal.main.index');
-        Route::get('/{post}', 'ShowController')->name('personal.main.show');
     });
     // Post personal CRUD
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
@@ -198,6 +200,9 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
     Route::group(['namespace' => 'User', 'prefix' => 'user_settings'], function () {
         Route::get('/{user}', 'EditController')->name('personal.user.profile_settings');
         Route::patch('/{user}', 'UpdateController')->name('personal.user.update');
+    });
+    Route::group(['namespace' => 'Publish', 'prefix' => 'published'], function () {
+        Route::get('/all', 'IndexController')->name('personal.published.index');
     });
 });
 Auth::routes();

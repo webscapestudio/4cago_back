@@ -35,6 +35,20 @@
                                   </button>
                               </div>
                           </div>
+                          <div class="card-body">
+                              <label>Статус</label>
+                              <select class="form_control" name="published">
+                                  @if (@isset($news->id))
+                                      <option value="0" @if ($news->published == 0) selected = "" @endif>Не
+                                          опубликовано</option>
+                                      <option value="1" @if ($news->published == 1) selected = "" @endif>
+                                          Опубликовано</option>
+                                  @else
+                                      <option value="0">Не опубликовано</option>
+                                      <option value="1">Опубликовано</option>
+                                  @endif
+                              </select>
+                          </div>
                           <div class="card-body" style="display: block;">
                               <div class="form-group">
                                   <label for="inputName">Название новости</label>

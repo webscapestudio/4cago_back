@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Post\Comment;
+namespace App\Http\Controllers\Category\Post\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
@@ -9,9 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class DestroyController extends Controller
 {
-    public function __invoke(Post $post, Comment $comment)
+    public function __invoke($category_id, $post_id, Comment $comment)
     {
-
+        $post = Post::find($post_id);
         $post->comments()->where('id', $comment->id)->delete();
 
         return redirect()->back();

@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="post__main">
-            <a class="post__title" href="ad-post.html">{{ $post->title }}</a>
+            <a class="post__title">{{ $post->title }}</a>
             <p class="post__text">{{ $post->content }}</p>
 
             @if (file_exists('storage/' . $post->post_image))
@@ -88,7 +88,7 @@
                         </a>
 
                         <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                            action="{{ route('post.favourite.store', $post->id) }}" method="POST">
+                            action="{{ route('post.favourite.store', [$post->category_id, $post->id]) }}" method="POST">
                             @csrf
                             <button type="submit" class="post__pins post__actions-left-item">
                                 <svg class="icon" viewBox="0 0 24 24">
@@ -104,8 +104,8 @@
                     </div>
                     <div class="post__actions-right">
 
-                        <form class="post__smile post__actions-right-item" action="{{ route('post.like.store', $post->id) }}"
-                            method="POST">
+                        <form class="post__smile post__actions-right-item"
+                            action="{{ route('post.like.store', [$post->category_id, $post->id]) }}" method="POST">
                             @csrf
                             <button type="submit">
                                 @if (auth()->user()->like)
@@ -138,7 +138,7 @@
                         </form>
 
                         <form class="post__smile-sad post__actions-right-item active"
-                            action="{{ route('post.dislike.store', $post->id) }}" method="POST">
+                            action="{{ route('post.dislike.store', [$post->category_id, $post->id]) }}" method="POST">
                             @csrf
                             <button type="submit">
                                 @if (auth()->user()->dislike)
@@ -240,7 +240,7 @@
 
 
     @auth()
-        <form class="comment" action="{{ route('post.comment.store', $post->id) }}" method="POST"
+        <form class="comment" action="{{ route('post.comment.store', [$post->category_id, $post->id]) }}" method="POST"
             enctype="multipart/form-data">
             @csrf
             <p class="title__comment">Комментарии</p>
@@ -308,7 +308,8 @@
 
 
                         <div class="dropdown report">
-                            <form action="{{ route('post.comment.destroy', [$post->id, $comment->id]) }}" method="POST">
+                            <form action="{{ route('post.comment.destroy', [$post->category_id, $post->id, $comment->id]) }}"
+                                method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="title__count report" data-micromodal-trigger="report">

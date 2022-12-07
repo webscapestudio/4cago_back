@@ -36,6 +36,7 @@
                                           <tr>
                                               <th>ID</th>
                                               <th>Название</th>
+                                              <th>Количество подкатегорий</th>
                                               <th>Количество постов</th>
                                               <th colspan="4">Действия</th>
                                           </tr>
@@ -45,6 +46,7 @@
                                               <tr>
                                                   <td>{{ $category->id }}</td>
                                                   <td>{{ $category->title }} </td>
+                                                  <td>{{ $category->childrenCategories->count() }}</td>
                                                   <td>{{ $category->postCount->count() }}</td>
                                                   <td><a href="{{ route('admin.category.show', $category->id) }}"><i
                                                               class="far fa-eye"></i></a></td>

@@ -25,7 +25,7 @@ class StoreController extends Controller
             'content' =>  $request->content,
             'news_image' => $data['news_image'],
             'user_id' => $author->id,
-            'is_published' =>  $request->published,
+            'published' =>  $request->published,
             'is_banned' =>  0,
 
         ]);

@@ -13,7 +13,7 @@ class IndexController extends Controller
     {
         $posts = Post::latest()->with('like')->paginate(6);
         $user = Auth::user();
-        $advertisements = Advertisement::latest()->with('like')->paginate(6);
+        $advertisements = Advertisement::latest()->where('published', '1')->paginate(6);
         return view('advertisements.index', compact('advertisements', 'user', 'posts'));
     }
 }

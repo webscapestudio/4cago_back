@@ -88,7 +88,7 @@
                   </div>
 
                   <div class="post__main">
-                      <a class="post__title" href="meet-post.html">{{ $new->title }}</a>
+                      <a class="post__title" href="{{ route('news.show', $new->id) }}">{{ $new->title }}</a>
                       <div class="post__content">
                           {{ $new->content }}
                           <div class="read__full">
@@ -277,7 +277,8 @@
                   </div>
 
                   <div class="post__main">
-                      <a class="post__title" href="meet-post.html">{{ $advertisement->title }}</a>
+                      <a class="post__title"
+                          href="{{ route('advertisement.show', $advertisement->id) }}">{{ $advertisement->title }}</a>
                       <div class="post__content">
                           {{ $advertisement->content }}
                           <div class="read__full">
@@ -285,11 +286,12 @@
                           </div>
                       </div>
 
-                      @if (file_exists('storage/' . $advertisement->post_image))
+                      @if (file_exists('storage/' . $advertisement->advertisement_image))
                           <div class="post__img">
                               <picture>
-                                  <source srcset="{{ asset('storage/' . $advertisement->post_image) }}"
-                                      type="image/webp"><img src="{{ asset('storage/' . $advertisement->post_image) }}"
+                                  <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}"
+                                      type="image/webp"><img
+                                      src="{{ asset('storage/' . $advertisement->advertisement_image) }}"
                                       alt="" />
                               </picture>
                           </div>
@@ -326,7 +328,8 @@
 
 
                               <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                                  action="{{ route('post.favourite.store', $advertisement->id) }}" method="POST">
+                                  action="{{ route('advertisement.favourite.store', $advertisement->id) }}"
+                                  method="POST">
                                   @csrf
                                   <button type="submit" class="post__pins post__actions-left-item">
                                       <svg class="icon" viewBox="0 0 24 24">
@@ -343,7 +346,7 @@
                           <div class="post__actions-right">
 
                               <form class="post__smile post__actions-right-item"
-                                  action="{{ route('post.like.store', $advertisement->id) }}" method="POST">
+                                  action="{{ route('advertisement.like.store', $advertisement->id) }}" method="POST">
                                   @csrf
                                   <button type="submit">
                                       @if (auth()->user()->like)
@@ -376,7 +379,7 @@
                               </form>
 
                               <form class="post__smile-sad post__actions-right-item active"
-                                  action="{{ route('post.dislike.store', $advertisement->id) }}" method="POST">
+                                  action="{{ route('advertisement.dislike.store', $advertisement->id) }}" method="POST">
                                   @csrf
                                   <button type="submit">
                                       @if (auth()->user()->dislike)
@@ -454,7 +457,8 @@
                               </div>
 
                               <div class="dropdown">
-                                  <form action="{{ route('post.favourite.store', $post->id) }}" method="POST">
+                                  <form action="{{ route('post.favourite.store', [$post->category_id, $post->id]) }}"
+                                      method="POST">
                                       @csrf
                                       <button type="submit">Удалить</button>
                                   </form>
@@ -466,7 +470,8 @@
                   </div>
 
                   <div class="post__main">
-                      <a class="post__title" href="meet-post.html">{{ $post->title }}</a>
+                      <a class="post__title"
+                          href="{{ route('post.show', [$post->category_id, $post->id]) }}">{{ $post->title }}</a>
                       <div class="post__content">
                           {{ $post->content }}
                           <div class="read__full">
@@ -512,22 +517,21 @@
                                   <p class="post__coments_num">42</p>
                               </a>
 
-                              <form class="post__pins post__actions-left-item active"
-                                  action="{{ route('post.favourite.store', $post->id) }}" method="POST">
-                                  @csrf
 
-                                  <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                                      action="{{ route('post.favourite.store', $post->id) }}" method="POST">
-                                      @csrf
-                                      <button type="submit" class="post__pins post__actions-left-item">
-                                          <svg class="icon" viewBox="0 0 24 24">
-                                              <path
-                                                  d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
-                                              </path>
-                                          </svg>
-                                          <p class="post__pins_num"> {{ $post->favourite->count() }}</p>
-                                      </button>
-                                  </form>
+
+                              <form class="{{ auth()->user()->favourite ?? 'active' }}"
+                                  action="{{ route('post.favourite.store', [$post->category_id, $post->id]) }}"
+                                  method="POST">
+                                  @csrf
+                                  <button type="submit" class="post__pins post__actions-left-item">
+                                      <svg class="icon" viewBox="0 0 24 24">
+                                          <path
+                                              d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
+                                          </path>
+                                      </svg>
+                                      <p class="post__pins_num"> {{ $post->favourite->count() }}</p>
+                                  </button>
+                              </form>
 
 
 
@@ -535,7 +539,8 @@
                           <div class="post__actions-right">
 
                               <form class="post__smile post__actions-right-item"
-                                  action="{{ route('post.like.store', $post->id) }}" method="POST">
+                                  action="{{ route('post.like.store', [$post->category_id, $post->id]) }}"
+                                  method="POST">
                                   @csrf
                                   <button type="submit">
                                       @if (auth()->user()->like)
@@ -568,7 +573,8 @@
                               </form>
 
                               <form class="post__smile-sad post__actions-right-item active"
-                                  action="{{ route('post.dislike.store', $post->id) }}" method="POST">
+                                  action="{{ route('post.dislike.store', [$post->category_id, $post->id]) }}"
+                                  method="POST">
                                   @csrf
                                   <button type="submit">
                                       @if (auth()->user()->dislike)

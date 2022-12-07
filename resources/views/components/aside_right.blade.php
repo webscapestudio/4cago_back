@@ -1,8 +1,9 @@
 <div class="sidebar-right">
     @auth
-        @if (request()->route()->getName() === 'personal.user.profile_settings')
+        @if (Str::of(request()->route()->getName())->test('/personal/'))
             @include('personal.includes.profile_menu')
         @endif
+
     @endauth
 
 
@@ -12,8 +13,8 @@
             <p class="side-ad__text">Реклама</p>
             <div class="side-ad__banner">
                 <picture>
-                    <source srcset="./images/content/side-ad.webp" type="image/webp"><img
-                        src="./images/content/side-ad.jpg" alt="" />
+                    <source srcset="{{ asset('/images/content/side-ad.webp') }}" type="image/webp"><img
+                        src="{{ asset('/images/content/side-ad.jpg') }}" alt="" />
                 </picture>
             </div>
         </a>
@@ -25,7 +26,9 @@
             @foreach ($posts as $post)
                 <!-- item -->
                 <div class="read__now-item">
-                    <a class="title__link" href="{{ route('post.show', $post->id) }}">{{ $post->title }}</a>
+
+                    <a class="title__link"
+                        href="{{ route('post.show', [$post->category_id, $post->id]) }}">{{ $post->title }}</a>
                     <div class="read__now-bottom">
                         <div class="read__now-left">
                             <div class="rn__left-item">
@@ -73,42 +76,7 @@
         </div>
     </div>
 
-    <div class="aside__tags sidebar__work">
-        <p class="title__mini">Работа</p>
-        <div class="aside__tags-items">
-            <!-- item -->
-            <div class="sidebar__work-item">
-                <a class="title__link" href="#">Грузчик</a>
-                <p class="title__count">164 вакансии</p>
-            </div>
 
-            <!-- item -->
-            <div class="sidebar__work-item">
-                <a class="title__link" href="#">Грузчик</a>
-                <p class="title__count">164 вакансии</p>
-            </div>
-
-            <!-- item -->
-            <div class="sidebar__work-item">
-                <a class="title__link" href="#">Грузчик</a>
-                <p class="title__count">164 вакансии</p>
-            </div>
-
-            <!-- item -->
-            <div class="sidebar__work-item">
-                <a class="title__link" href="#">Грузчик</a>
-                <p class="title__count">164 вакансии</p>
-            </div>
-
-            <!-- item -->
-            <div class="sidebar__work-item">
-                <a class="title__link" href="#">Грузчик</a>
-                <p class="title__count">164 вакансии</p>
-            </div>
-
-            <a class="underline__link" href="#">Все вакансии</a>
-        </div>
-    </div>
 
     <div class="aside__ad">
         <a class="side-ad" href="#">
@@ -116,58 +84,12 @@
             <div class="side-ad__banner">
                 <picture>
                     <source srcset="./images/content/side-ad.webp" type="image/webp"><img
-                        src="./images/content/side-ad.jpg" alt="" />
+                        src="{{ asset('./images/content/side-ad.jpg') }}" alt="" />
                 </picture>
             </div>
         </a>
     </div>
 
-    <div class="aside__tags sidebar__work">
-        <p class="title__mini">популярные теги</p>
-        <div class="aside__tags-items">
-            <!-- item -->
-            <div class="popular__tag-item">
-                <a class="title__link" href="#">Одиночество</a>
-                <p class="title__tags">43</p>
-            </div>
 
-            <!-- item -->
-            <div class="popular__tag-item">
-                <a class="title__link" href="#">Одиночество</a>
-                <p class="title__tags">43</p>
-            </div>
-
-            <!-- item -->
-            <div class="popular__tag-item">
-                <a class="title__link" href="#">Одиночество</a>
-                <p class="title__tags">43</p>
-            </div>
-
-            <!-- item -->
-            <div class="popular__tag-item">
-                <a class="title__link" href="#">Одиночество</a>
-                <p class="title__tags">43</p>
-            </div>
-
-            <!-- item -->
-            <div class="popular__tag-item">
-                <a class="title__link" href="#">Одиночество</a>
-                <p class="title__tags">43</p>
-            </div>
-
-            <!-- item -->
-            <div class="popular__tag-item">
-                <a class="title__link" href="#">Одиночество</a>
-                <p class="title__tags">43</p>
-            </div>
-
-            <!-- item -->
-            <div class="popular__tag-item">
-                <a class="title__link" href="#">Одиночество</a>
-                <p class="title__tags">43</p>
-            </div>
-
-        </div>
-    </div>
 
 </div>

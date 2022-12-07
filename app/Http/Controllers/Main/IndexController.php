@@ -13,10 +13,12 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::latest()->with('like')->paginate(6);
-        $categories = Category::all();
+        $posts = Post::withCount('comments')
+            ->orderBy('comments_count', 'desc')
+            ->where('published', '1')
+            ->paginate(12);
         $tags = Tag::all();
         $user = Auth::user();
-        return view('main.index', compact('categories', 'posts', 'tags', 'user'));
+        return view('main.index', compact('posts', 'tags', 'user'));
     }
 }

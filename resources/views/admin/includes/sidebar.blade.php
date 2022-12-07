@@ -35,7 +35,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('admin.post.index') }}" class="nav-link">
-                            <p>Статьи</p>
+                            <p>Основной раздел</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -59,7 +59,7 @@
                 <ul class="nav nav-treeview" style="display: none;">
                     <li class="nav-item">
                         <a href="{{ route('admin.category.index') }}" class="nav-link">
-                            <p>Статьи</p>
+                            <p>Основной раздел</p>
                         </a>
                     </li>
                     <li class="nav-item">

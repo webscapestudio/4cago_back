@@ -13,7 +13,7 @@ class IndexController extends Controller
     {
         $posts = Post::latest()->with('like')->paginate(6);
         $user = Auth::user();
-        $news = News::latest()->with('like')->paginate(6);
+        $news = News::latest()->where('published', '1')->paginate(6);
         return view('news.index', compact('news', 'user', 'posts'));
     }
 }

@@ -126,7 +126,8 @@
                                       </svg>
                                       <p class="post__views_num">6.9K</p>
                                   </a>
-                                  <a class="post__comments post__actions-left-item" href="{{ route('post.show', $post->id) }}">
+                                  <a class="post__comments post__actions-left-item"
+                                      href="{{ route('personal.post.show', $post->id) }}">
                                       <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                           <path
                                               d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
@@ -136,7 +137,8 @@
                                   </a>
 
                                   <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                                      action="{{ route('post.favourite.store', $post->id) }}" method="POST">
+                                      action="{{ route('post.favourite.store', [$post->category_id, $post->id]) }}"
+                                      method="POST">
                                       @csrf
                                       <button type="submit" class="post__pins post__actions-left-item">
                                           <svg class="icon" viewBox="0 0 24 24">
@@ -153,7 +155,8 @@
                               <div class="post__actions-right">
 
                                   <form class="post__smile post__actions-right-item"
-                                      action="{{ route('post.like.store', $post->id) }}" method="POST">
+                                      action="{{ route('post.like.store', [$post->category_id, $post->id]) }}"
+                                      method="POST">
                                       @csrf
                                       <button type="submit">
                                           @if (auth()->user()->like)
@@ -186,7 +189,8 @@
                                   </form>
 
                                   <form class="post__smile-sad post__actions-right-item active"
-                                      action="{{ route('post.dislike.store', $post->id) }}" method="POST">
+                                      action="{{ route('post.dislike.store', [$post->category_id, $post->id]) }}"
+                                      method="POST">
                                       @csrf
                                       <button type="submit">
                                           @if (auth()->user()->dislike)
@@ -230,7 +234,7 @@
                                       <p class="post__views_num">6.9K</p>
                                   </a>
                                   <a class="post__comments post__actions-left-item"
-                                      href="{{ route('post.show', $post->id) }}">
+                                      href="{{ route('personal.post.show', $post->id) }}">
                                       <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                           <path
                                               d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">

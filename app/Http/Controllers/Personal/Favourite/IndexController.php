@@ -16,16 +16,16 @@ class IndexController extends Controller
         $user = Auth::user();
         $posts = Post::whereHas('favourite', function ($query) {
             $query->where('user_id', Auth::id())
-                ->where('favouritable_type', Post::class);
+                ->where('favouritable_type', Post::class)->where('published', '1');
         })->get();
         $advertisements = Advertisement::whereHas('favourite', function ($query) {
             $query->where('user_id', Auth::id())
-                ->where('favouritable_type', Advertisement::class);
+                ->where('favouritable_type', Advertisement::class)->where('published', '1');
         })->get();
 
         $news = News::whereHas('favourite', function ($query) {
             $query->where('user_id', Auth::id())
-                ->where('favouritable_type', News::class);
+                ->where('favouritable_type', News::class)->where('published', '1');
         })->get();
         return view('personal.favourites.index',  compact('user', 'posts', 'advertisements', 'news'));
     }

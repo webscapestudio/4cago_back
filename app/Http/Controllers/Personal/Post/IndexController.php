@@ -14,7 +14,7 @@ class IndexController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $posts = User::find($user->id)->posts;
+        $posts = User::find($user->id)->posts->where('published', '1');
         $categories = Category::all();
         $tags = Tag::all();
         return view('personal.posts.index', compact('posts', 'user'));

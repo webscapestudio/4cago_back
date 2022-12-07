@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Category\Post;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -11,10 +11,11 @@ use App\Models\Comment;
 
 class ShowController extends Controller
 {
-    public function __invoke(Post $post)
+    public function __invoke($category_id, $post_id)
     {
+        $post = Post::find($post_id);
         $user = Auth::user();
-        $posts = Post::latest()->with('like')->paginate(6);
+        $posts = Post::latest();
         $comments = Comment::all();
         return view('posts.show', compact('post', 'user', 'comments', 'posts'));
     }

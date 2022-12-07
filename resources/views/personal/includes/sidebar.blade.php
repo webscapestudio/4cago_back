@@ -7,16 +7,13 @@
             <a href="{{ route('personal.advertisement.index') }}" class="profile__link tabs-btn">Обьявления</a>
         </li>
         <li class="theme__item">
-            <a href="{{ route('personal.work.index') }}" class="profile__link tabs-btn">Вакансии</a>
+            <a href="{{ route('personal.work.index') }}" class="profile__link tabs-btn">Вакансии(в разработке)</a>
         </li>
         <li class="theme__item">
-            <button class="profile__link tabs-btn">Знакомства</button>
+            <button class="profile__link tabs-btn">Знакомства(в разработке)</button>
         </li>
         <li class="theme__item">
-            <button class="profile__link tabs-btn">Комментарии</button>
-        </li>
-        <li class="theme__item">
-            <button class="profile__link tabs-btn">Черновики</button>
+            <a href="{{ route('personal.published.index') }}" class="profile__link tabs-btn">Черновики</a>
         </li>
         <li class="theme__item">
             <a href="{{ route('personal.favourite.index') }}" class="profile__link tabs-btn">Избранное</a>

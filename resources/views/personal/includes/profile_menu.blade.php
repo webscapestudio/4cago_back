@@ -1,9 +1,18 @@
 <div class="settings__menu">
     <p class="title__settings">Настройки</p>
     <div class="settings__items">
+        <div class="settings__item">
+            <a class="menu__link active" href="{{ route('personal.user.profile_settings', $user->id) }}">
+                <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M9 6C9 4.34315 10.3431 3 12 3C13.6569 3 15 4.34315 15 6C15 7.65685 13.6569 9 12 9C10.3431 9 9 7.65685 9 6ZM12 1C9.23858 1 7 3.23858 7 6C7 8.76142 9.23858 11 12 11C14.7614 11 17 8.76142 17 6C17 3.23858 14.7614 1 12 1ZM9 13C6.23858 13 4 15.2386 4 18V21C4 21.5523 4.44772 22 5 22C5.55228 22 6 21.5523 6 21V18C6 16.3431 7.34315 15 9 15H15C16.6569 15 18 16.3431 18 18V21C18 21.5523 18.4477 22 19 22C19.5523 22 20 21.5523 20 21V18C20 15.2386 17.7614 13 15 13H9Z">
+                    </path>
+                </svg>Профиль
+            </a>
+        </div>
         <!-- item -->
         <div class="settings__item">
-            <a class="menu__link" href="{{ route('personal.user.profile_settings', $user->id) }}">
+            <a class="menu__link" href="{{ route('personal.main.index', $user->id) }}">
                 <svg class="icon fill__none" viewBox="0 0 24 24" fill="none" stroke="#000F13">
                     <path
                         d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
@@ -15,5 +24,6 @@
                 Основные
             </a>
         </div>
+
     </div>
 </div>

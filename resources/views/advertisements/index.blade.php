@@ -98,7 +98,7 @@
                             </a>
 
                             <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                                action="{{ route('post.favourite.store', $advertisement->id) }}" method="POST">
+                                action="{{ route('advertisement.favourite.store', $advertisement->id) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="post__pins post__actions-left-item">
                                     <svg class="icon" viewBox="0 0 24 24">

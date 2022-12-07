@@ -14,7 +14,7 @@ class AddDescriptionToCategoriesAdvertisementsTable extends Migration
     public function up()
     {
         Schema::table('categories_advertisements', function (Blueprint $table) {
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
         });
     }
 
