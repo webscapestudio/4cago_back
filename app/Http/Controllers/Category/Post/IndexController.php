@@ -13,7 +13,7 @@ class IndexController extends Controller
 {
     public function __invoke($categoryId = 0)
     {
-
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $posts = Post::latest();
         $categories = Category::get();
         if ($categoryId) {
@@ -24,6 +24,6 @@ class IndexController extends Controller
         return view('posts.index', [
             'posts' => $posts->where('published', '1')->get(),
             'categories' => $categories->where('published', '1')
-        ], compact('tags', 'user'));
+        ], compact('tags', 'user', 'posts_read'));
     }
 }

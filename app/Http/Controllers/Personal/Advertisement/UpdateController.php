@@ -13,8 +13,8 @@ class UpdateController extends Controller
     public function __invoke(UpdateRequest $request, Advertisement $advertisement)
     {
         $author = Auth::user();
-        $data = $request;
-        dd($data);
+        $data = $request->validated();
+
         if (isset($data['tag_ids'])) :
             $tagIds = $data['tag_ids'];
             unset($data['tag_ids']);

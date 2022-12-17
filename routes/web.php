@@ -20,26 +20,28 @@ Route::group(['namespace' => 'Main'], function () {
 
 
 //Advertisement
-Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], function () {
-    Route::get('/', 'IndexController')->name('advertisements.index');
-    Route::get('/{advertisement}', 'ShowController')->name('advertisement.show');
-    Route::group(['namespace' => 'Favourite', 'prefix' => '{advertisement}/favourites'], function () {
-        Route::post('/', 'StoreController')->name('advertisement.favourite.store');
-    });
-    Route::group(['namespace' => 'Like', 'prefix' => '{advertisement}/likes'], function () {
-        Route::post('/', 'StoreController')->name('advertisement.like.store');
-    });
-    Route::group(['namespace' => 'Dislike', 'prefix' => '{advertisement}/dislikes'], function () {
-        Route::post('/', 'StoreController')->name('advertisement.dislike.store');
-    });
-    Route::group(['namespace' => 'Comment', 'prefix' => '{advertisement}/comments'], function () {
-        Route::post('/', 'StoreController')->name('advertisement.comment.store');
-        Route::post('/{comment}/edit', 'EditController')->name('advertisement.comment.edit');
-        Route::patch('/{comment}', 'UpdateController')->name('advertisement.comment.update');
-        Route::delete('/{comment}', 'DestroyController')->name('advertisement.comment.destroy');
+Route::group(['namespace' => 'CategoryAdvertisement', 'prefix' => 'categories_advertisements'], function () {
+    Route::get('/', 'IndexController')->name('categories_advertisements.index');
+    Route::group(['namespace' => 'Advertisement', 'prefix' => '/{categories_advertisements}/advertisements'], function () {
+        Route::get('/', 'IndexController')->name('advertisement.index');
+        Route::get('/{advertisement}', 'ShowController')->name('advertisement.show');
+        Route::group(['namespace' => 'Favourite', 'prefix' => '{advertisement}/favourites'], function () {
+            Route::post('/', 'StoreController')->name('advertisement.favourite.store');
+        });
+        Route::group(['namespace' => 'Like', 'prefix' => '{advertisement}/likes'], function () {
+            Route::post('/', 'StoreController')->name('advertisement.like.store');
+        });
+        Route::group(['namespace' => 'Dislike', 'prefix' => '{advertisement}/dislikes'], function () {
+            Route::post('/', 'StoreController')->name('advertisement.dislike.store');
+        });
+        Route::group(['namespace' => 'Comment', 'prefix' => '{advertisement}/comments'], function () {
+            Route::post('/', 'StoreController')->name('advertisement.comment.store');
+            Route::post('/{comment}/edit', 'EditController')->name('advertisement.comment.edit');
+            Route::patch('/{comment}', 'UpdateController')->name('advertisement.comment.update');
+            Route::delete('/{comment}', 'DestroyController')->name('advertisement.comment.destroy');
+        });
     });
 });
-
 //Post
 Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
     Route::get('/', 'IndexController')->name('categories_posts.index');

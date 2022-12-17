@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Advertisement\Comment;
+namespace App\Http\Controllers\CategoryAdvertisement\Advertisement\Comment;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Auth;
 
 class DestroyController extends Controller
 {
-    public function __invoke(Advertisement $advertisement, Comment $comment)
+    public function __invoke($category_advertisement_id, $advertisement_id, Comment $comment)
     {
 
+        $advertisement = Advertisement::find($advertisement_id);
         $advertisement->comments()->where('id', $comment->id)->delete();
 
         return redirect()->back();

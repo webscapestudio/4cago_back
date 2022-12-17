@@ -6,7 +6,7 @@
           <div class="profile__card-top">
               <div class="profile__card-left">
                   <div class="user__img">
-                      @if (file_exists('storage/' . $user->user_avatar))
+                      @if ($user->user_avatar)
                           <picture>
                               <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                               <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
@@ -40,18 +40,26 @@
       </div>
       @if (isset($posts) and !$posts->isEmpty())
           <a href="{{ route('personal.post.create') }}" style="text-align: center" class="btn btn__blue">Создать
-              статью</a>
-          <p class="post__title">Ваши статьи.</p>
+              запись</a>
+          <p class="post__title">Ваши записи.</p>
           @foreach ($posts as $post)
               <div class="post__card ad__card">
 
                   <div class="post__header">
                       <div class="post__header-left">
                           <div class="user__avatar">
-                              <picture>
-                                  <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                                      src="./images/avatars/user-ava.jpg" alt="user" />
-                              </picture>
+                              @if ($post->author->user_avatar)
+                                  <picture>
+                                      <source srcset="{{ asset('storage/' . $post->author->user_avatar) }}"
+                                          type="image/webp" />
+                                      <img src=" {{ asset('storage/' . $post->author->user_avatar) }}" alt="" />
+                                  </picture>
+                              @else
+                                  <picture>
+                                      <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                                      <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+                                  </picture>
+                              @endif
                           </div>
                           <p class="user__name">{{ $post->author->name ?? 'Пользователь не найден' }}</p>
                           <div class="post__date">{{ $post->created_at->diffForHumans() }}</div>
@@ -95,12 +103,11 @@
                           </div>
                       </div>
 
-                      @if (file_exists('storage/' . $post->post_image))
+                      @if ($post->post_image)
                           <div class="post__img">
                               <picture>
                                   <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp"><img
-                                      src="{{ asset('storage/' . $post->post_image) }}"
-                                      alt="{{ asset('storage/' . $post->post_image) }}" />
+                                      src="{{ asset('storage/' . $post->post_image) }}" alt="" />
                               </picture>
                           </div>
                       @endif
@@ -294,7 +301,7 @@
               </div>
           @endforeach
       @else
-          <p class="post__title">Вы еще не написали ни одной статьи.</p>
+          <p class="post__title">Записей нет.</p>
           <a href="{{ route('personal.post.create') }}" style="text-align: center" class="btn btn__blue">Создать
               статью</a>
       @endif

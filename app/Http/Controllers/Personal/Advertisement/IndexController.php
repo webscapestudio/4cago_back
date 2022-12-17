@@ -15,10 +15,10 @@ class IndexController extends Controller
     public function __invoke()
     {
         $user = Auth::user();
-        $posts = Post::latest()->with('like')->paginate(6)->where('published', '1');
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $advertisements = User::find($user->id)->advertisements->where('published', '1');
         $categories = CategoryAdvertisement::all();
         $tags = Tag::all();
-        return view('personal.advertisements.index', compact('advertisements', 'user', 'posts'));
+        return view('personal.advertisements.index', compact('advertisements', 'user', 'posts_read'));
     }
 }

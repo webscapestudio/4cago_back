@@ -23,7 +23,7 @@
     <div class="aside__tags read__now">
         <p class="title__mini">читают сейчас</p>
         <div class="aside__tags-items">
-            @foreach ($posts as $post)
+            @foreach ($posts_read as $post)
                 <!-- item -->
                 <div class="read__now-item">
 

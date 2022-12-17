@@ -32,9 +32,17 @@ class Category extends Model
   {
     return $this->hasMany(self::class, 'parent_id');
   }
+  public function parent()
+  {
+    return $this->belongsTo(Category::class, 'parent_id');
+  }
 
   public function postCount()
   {
     return $this->hasMany(Post::class);
+  }
+  function comments()
+  {
+    return $this->hasMany(Comment::class);
   }
 }

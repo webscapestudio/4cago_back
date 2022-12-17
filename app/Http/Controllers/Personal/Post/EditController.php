@@ -12,6 +12,7 @@ class EditController extends Controller
 {
     public function __invoke(Post $post, Category $category)
     {
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $posts = Post::all();
         $categories = Category::all();
@@ -20,6 +21,6 @@ class EditController extends Controller
             'category' => $category,
             'categories'  => Category::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories', 'posts', 'post', 'tags', 'user'));
+        ], compact('categories', 'posts_read', 'post', 'tags', 'user'));
     }
 }

@@ -8,10 +8,10 @@
                 <div class="post__header">
                     <div class="post__header-left">
                         <div class="user__avatar">
-                            @if (file_exists('storage/' . $user->user_avatar))
+                            @if ($post->author->user_avatar)
                                 <picture>
-                                    <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
-                                    <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                                    <source srcset="{{ asset('storage/' . $post->author->user_avatar) }}" type="image/webp" />
+                                    <img src=" {{ asset('storage/' . $post->author->user_avatar) }}" alt="" />
                                 </picture>
                             @else
                                 <picture>
@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    @if (file_exists('storage/' . $post->post_image))
+                    @if ($post->post_image)
                         <div class="post__img">
                             <picture>
                                 <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp"><img

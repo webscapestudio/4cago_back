@@ -4,7 +4,7 @@
         <div class="profile__card-top">
             <div class="profile__card-left">
                 <div class="user__img">
-                    @if (file_exists('storage/' . $user->user_avatar))
+                    @if ($user->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
@@ -40,7 +40,7 @@
         <div class="post__header">
             <div class="post__header-left">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $user->user_avatar))
+                    @if ($user->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
@@ -87,16 +87,17 @@
             </div>
         </div>
         <div class="post__main">
-            <a class="post__title" href="ad-post.html">{{ $post->title }}</a>
+            <a class="post__title">{{ $post->title }}</a>
             <p class="post__text">{{ $post->content }}</p>
 
-            @if (file_exists('storage/' . $post->post_image))
+            @if ($post->post_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp"><img
                             src="{{ asset('storage/' . $post->post_image) }}" alt="">
                     </picture>
                 </div>
+            @else
             @endif
 
         </div>
@@ -316,7 +317,7 @@
         <div class="ad__comment">
             <div class="ad__comment-top">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $comment->author->user_avatar))
+                    @if ($comment->author->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
@@ -344,31 +345,31 @@
                                     stroke-width="1.5"></path>
                             </svg>
                         </div>
-
-
                         <div class="dropdown report">
-                            <form action="{{ route('post.comment.destroy', [$post->category_id, $post->id, $comment->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
+                            @if (Auth::id() == $comment->author->id)
+                                <form
+                                    action="{{ route('post.comment.destroy', [$post->category_id, $post->id, $comment->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                                        Удалить
+                                    </button>
+                                </form>
+                            @else
                                 <button type="submit" class="title__count report" data-micromodal-trigger="report">
-                                    Удалить
+                                    Пожаловаться
                                 </button>
-                            </form>
-
-                            {{-- <a href="{{ route('advertisement.comment.edit', [$advertisement->id, $comment->id]) }}"
-                                class="text-success">Изменить</a>
-                            <button type="submit" class="title__count report" data-micromodal-trigger="report">
-                                Пожаловаться
-                            </button>
-                            <button class="title__count unlock">Разблокировать</button> --}}
+                            @endif
                         </div>
                     @endauth
                 </div>
 
             </div>
             <p class="post__text">{{ $comment->content }}</p>
-            @if (file_exists('storage/' . $comment->comment_image))
+
+
+            @if ($comment->comment_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $comment->comment_image) }}" type="image/webp"><img

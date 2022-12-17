@@ -13,7 +13,7 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::latest()->with('like')->paginate(6);
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $advertisements = Advertisement::all();
         $categories_advertisements = CategoryAdvertisement::all();
         $tags = Tag::all();
@@ -23,6 +23,6 @@ class CreateController extends Controller
             'category_advertisement' => [],
             'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories_advertisements', 'advertisements', 'tags', 'user', 'posts'));
+        ], compact('categories_advertisements', 'advertisements', 'tags', 'user', 'posts_read'));
     }
 }

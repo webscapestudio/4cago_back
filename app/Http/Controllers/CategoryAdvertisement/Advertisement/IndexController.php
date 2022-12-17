@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers\CategoryAdvertisement\Advertisement;
+
+use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
+use App\Models\CategoryAdvertisement;
+use App\Models\Post;
+use App\Models\Tag;
+use Illuminate\Support\Facades\Auth;
+
+class IndexController extends Controller
+{
+    public function __invoke($category_advertisementId = 0)
+    {
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $advertisements = Advertisement::latest();
+        $categories_advertisements = CategoryAdvertisement::get();
+        if ($category_advertisementId) {
+            $advertisements->where('category_advertisement_id', $category_advertisementId);
+        }
+        $tags = Tag::all();
+        $user = Auth::user();
+        return view('advertisements.index', [
+            'advertisements' => $advertisements->where('published', '1')->get(),
+            'categories_advertisements' => $categories_advertisements->where('published', '1')
+        ], compact('tags', 'user', 'posts_read'));
+    }
+}

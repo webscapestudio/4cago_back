@@ -11,9 +11,9 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::latest()->with('like')->paginate(6);
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $news = News::latest()->where('published', '1')->paginate(6);
-        return view('news.index', compact('news', 'user', 'posts'));
+        return view('news.index', compact('news', 'user', 'posts_read'));
     }
 }

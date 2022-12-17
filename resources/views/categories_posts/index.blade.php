@@ -7,7 +7,7 @@
             <div class="forum__themes">
                 @if (count($category->childrenCategories) > 0)
                     @include('categories_posts.partials.child_category', [
-                        'child_categories' => $category->childrenCategories,
+                        'child_categories' => $category->childrenCategories->where('published', '1'),
                     ])
                 @endif
             </div>

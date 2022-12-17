@@ -12,7 +12,7 @@ class EditController extends Controller
 {
     public function __invoke(Work $work, CategoryWork $category_work)
     {
-        $posts = Post::latest()->with('like')->paginate(6);
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $works = Work::all();
         $categories_works = CategoryWork::all();
@@ -20,6 +20,6 @@ class EditController extends Controller
             'category_work' => $category_work,
             'categories_works'  => CategoryWork::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories_works', 'works', 'work', 'user', 'posts'));
+        ], compact('categories_works', 'works', 'work', 'user', 'posts_read'));
     }
 }

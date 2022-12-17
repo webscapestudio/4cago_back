@@ -14,8 +14,8 @@ class ShowController extends Controller
 
         $post = Post::find($post_id);
         $user = Auth::user();
-        $posts = Post::latest();
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $comments = Comment::all();
-        return view('personal.posts.show', compact('post', 'user', 'comments', 'posts'));
+        return view('personal.posts.show', compact('post', 'user', 'comments', 'posts_read'));
     }
 }

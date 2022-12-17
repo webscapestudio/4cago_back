@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="card-body">
-                            @if (file_exists('storage/' . $post->post_image))
+                            @if ($post->post_image)
                                 <img class="img-fluid pad" src="{{ asset('storage/' . $post->post_image) }}" alt="Photo">
                             @else
                             @endif
@@ -61,7 +61,7 @@
                             <div class="card-comment">
                                 <h5 class="m-0">Коментарии поста</h5>
                                 @foreach ($post->comments as $comment)
-                                    @if (file_exists('storage/' . $comment->comment_image))
+                                    @if ($comment->comment_image)
                                         <img class="img-circle img-sm"
                                             src="{{ asset('storage/' . $comment->comment_image) }}" alt="User Image">
                                     @else

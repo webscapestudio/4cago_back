@@ -20,7 +20,7 @@
                           @endif
 
                       </select>
-                      @error('category_id')
+                      @error('published')
                           <div class="text-danger">{{ $message }}</div>
                       @enderror
                   </div>

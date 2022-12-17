@@ -12,8 +12,8 @@ class ShowController extends Controller
 {
     public function __invoke(News $news)
     {
-        $posts = Post::latest()->with('like')->paginate(6);
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $user = Auth::user();
-        return view('news.show', compact('news', 'user', 'posts'));
+        return view('news.show', compact('news', 'user', 'posts_read'));
     }
 }

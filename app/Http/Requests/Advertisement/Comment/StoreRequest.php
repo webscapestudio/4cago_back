@@ -25,14 +25,14 @@ class StoreRequest extends FormRequest
     {
         return [
             'content' => 'required|string',
-            'post_image' => 'file',
+            'comment_image' => 'nullable|file',
         ];
     }
     public function messages()
     {
         return [
             'content.required' => 'Это поле обязательно для заполнения',
-            'post_image.file' => 'Необходимо выбрать файл',
+            'comment_image.file' => 'Необходимо выбрать файл',
         ];
     }
 }

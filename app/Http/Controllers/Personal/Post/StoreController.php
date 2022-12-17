@@ -20,7 +20,10 @@ class StoreController extends Controller
         endif;
         if (isset($data['post_image'])) :
             $data['post_image'] = Storage::disk('public')->put('/images',  $data['post_image']);
+        else :
+            $data['post_image'] = null;
         endif;
+
         $post = Post::create([
             'category_id' =>  $request->category_id,
             'title' =>  $request->title,

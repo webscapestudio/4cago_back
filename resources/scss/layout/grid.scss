@@ -129,7 +129,7 @@
 @media (max-width: 480px) {
   $containerWidth: 300px;
   .container {
-    max-width: calc($containerWidth + 20px);
+    max-width: none;
     padding: 0 10px;
   }
 }

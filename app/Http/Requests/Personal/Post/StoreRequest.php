@@ -24,9 +24,10 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'published' =>  'required|string',
             'title' => 'required|string',
             'content' => 'required|string',
-            'post_image' => 'required|file',
+            'post_image' => 'nullable|file',
             'category_id' => 'required|exists:categories,id',
             'tag_ids' => 'nullable|array',
             'tag_ids.*' => 'nullable|integer|exists:tags,id',
@@ -41,7 +42,6 @@ class StoreRequest extends FormRequest
             'post_image.required' => 'Это поле обязательно для заполнения',
             'post_image.file' => 'Необходимо выбрать файл',
             'category_id.required' => 'Это поле обязательно для заполнения',
-            'category_id.integer' => 'ID должен быть числом',
             'category_id.exists' => 'ID должен быть в базе данных',
             'tag_ids.array' => 'Должен быть массив данных',
         ];

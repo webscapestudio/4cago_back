@@ -11,9 +11,9 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::latest()->with('like')->paginate(6);
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $works = Work::all();
         $user = Auth::user();
-        return view('personal.works.index', compact('works', 'user', 'posts'));
+        return view('personal.works.index', compact('works', 'user', 'posts_read'));
     }
 }

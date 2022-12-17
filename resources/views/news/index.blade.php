@@ -7,13 +7,14 @@
                 <div class="post__header-left">
                     <div class="user__avatar">
                         <picture>
-                            <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                                src="./images/avatars/user-ava.jpg" alt="user" />
+                            <source srcset="{{ asset('./images/avatars/user-ava.webp') }}" type="image/webp"><img
+                                src="{{ asset('./images/avatars/user-ava.jpg') }}" alt="user" />
                         </picture>
                     </div>
                     <p class="user__name">Admin</p>
                     <div class="post__date">{{ $new->created_at->diffForHumans() }}</div>
                 </div>
+
                 <div class="post__header-right">
                     <div class="post__drop">
                         <div class="meatballs">
@@ -47,7 +48,7 @@
                     </div>
                 </div>
 
-                @if (file_exists('storage/' . $new->news_image))
+                @if ($new->news_image)
                     <div class="post__img">
                         <picture>
                             <source srcset="{{ asset('storage/' . $new->news_image) }}" type="image/webp"><img

@@ -5,8 +5,8 @@
             <div class="post__header-left">
                 <div class="user__avatar">
                     <picture>
-                        <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img
-                            src="./images/avatars/user-ava.jpg" alt="user">
+                        <source srcset="{{ asset('./images/avatars/user-ava.webp') }}" type="image/webp"><img
+                            src="{{ asset('./images/avatars/user-ava.jpg') }}" alt="user" />
                     </picture>
                 </div>
                 <p class="user__name">
@@ -44,7 +44,7 @@
             <a class="post__title" href="ad-post.html">{{ $news->title }}</a>
             <p class="post__text">{{ $news->content }}</p>
 
-            @if (file_exists('storage/' . $news->news_image))
+            @if ($news->news_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $news->news_image) }}" type="image/webp"><img
@@ -313,7 +313,7 @@
 
             </div>
             <p class="post__text">{{ $comment->content }}</p>
-            @if (file_exists('storage/' . $comment->comment_image))
+            @if ($comment->comment_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $comment->comment_image) }}" type="image/webp"><img

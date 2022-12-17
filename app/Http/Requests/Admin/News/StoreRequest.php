@@ -24,8 +24,10 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'published' => 'required|string',
             'title' => 'required|string',
             'content' => 'required|string',
+            'description' => 'required|string',
             'news_image' => 'nullable|file',
         ];
     }
@@ -33,6 +35,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'title.required' => 'Это поле обязательно для заполнения',
+            'content.required' => 'Это поле обязательно для заполнения',
+            'description.required' => 'Это поле обязательно для заполнения',
             'title.string' => 'Данные должны соответствовать строчному типу',
             'content.required' => 'Это поле обязательно для заполнения',
             'news_image.file' => 'Необходимо выбрать файл',

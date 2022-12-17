@@ -22,7 +22,7 @@
                         @endif
 
                     </select>
-                    @error('category_id')
+                    @error('published')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -82,7 +82,7 @@
                     </div>
 
                 </div>
-                @if (file_exists('storage/' . $post->post_image))
+                @if ($post->post_image)
                     <div class="post__img">
                         <picture>
                             <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp">

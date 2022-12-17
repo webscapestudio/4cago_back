@@ -4,7 +4,7 @@
           <div class="profile__card-top">
               <div class="profile__card-left">
                   <div class="user__img">
-                      @if (file_exists('storage/' . $user->user_avatar))
+                      @if ($user->user_avatar)
                           <picture>
                               <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                               <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
@@ -43,20 +43,14 @@
 
                   <div class="post__header">
                       <div class="post__header-left">
+
                           <div class="user__avatar">
-                              @if (file_exists('storage/' . $user->user_avatar))
-                                  <picture>
-                                      <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
-                                      <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
-                                  </picture>
-                              @else
-                                  <picture>
-                                      <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
-                                      <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
-                                  </picture>
-                              @endif
+                              <picture>
+                                  <source srcset="{{ asset('./images/avatars/user-ava.webp') }}" type="image/webp"><img
+                                      src="{{ asset('./images/avatars/user-ava.jpg') }}" alt="user" />
+                              </picture>
                           </div>
-                          <p class="user__name">{{ $new->author->name ?? null }}</p>
+                          <p class="user__name">Admin</p>
                           <div class="post__date">{{ $new->created_at->diffForHumans() }}</div>
                       </div>
                       <div class="post__header-right">
@@ -96,7 +90,7 @@
                           </div>
                       </div>
 
-                      @if (file_exists('storage/' . $new->news_image))
+                      @if ($new->news_image)
                           <div class="post__img">
                               <picture>
                                   <source srcset="{{ asset('storage/' . $new->news_image) }}" type="image/webp"><img
@@ -232,10 +226,12 @@
                   <div class="post__header">
                       <div class="post__header-left">
                           <div class="user__avatar">
-                              @if (file_exists('storage/' . $user->user_avatar))
+                              @if ($advertisement->author->user_avatar)
                                   <picture>
-                                      <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
-                                      <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                                      <source srcset="{{ asset('storage/' . $advertisement->author->user_avatar) }}"
+                                          type="image/webp" />
+                                      <img src=" {{ asset('storage/' . $advertisement->author->user_avatar) }}"
+                                          alt="" />
                                   </picture>
                               @else
                                   <picture>
@@ -264,7 +260,8 @@
                               </div>
 
                               <div class="dropdown">
-                                  <form action="{{ route('advertisement.favourite.store', $advertisement->id) }}"
+                                  <form
+                                      action="{{ route('advertisement.favourite.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
                                       method="POST">
                                       @csrf
                                       <button type="submit">Удалить</button>
@@ -278,7 +275,7 @@
 
                   <div class="post__main">
                       <a class="post__title"
-                          href="{{ route('advertisement.show', $advertisement->id) }}">{{ $advertisement->title }}</a>
+                          href="{{ route('advertisement.show', [$advertisement->category_advertisement_id, $advertisement->id]) }}">{{ $advertisement->title }}</a>
                       <div class="post__content">
                           {{ $advertisement->content }}
                           <div class="read__full">
@@ -286,7 +283,7 @@
                           </div>
                       </div>
 
-                      @if (file_exists('storage/' . $advertisement->advertisement_image))
+                      @if ($advertisement->advertisement_image)
                           <div class="post__img">
                               <picture>
                                   <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}"
@@ -317,18 +314,19 @@
                                   </svg>
                                   <p class="post__views_num">6.9K</p>
                               </a>
-                              <a class="post__comments post__actions-left-item" href="#">
+                              <a class="post__comments post__actions-left-item"
+                                  href="{{ route('advertisement.show', [$advertisement->category_advertisement_id, $advertisement->id]) }}">
                                   <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                       <path
                                           d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                       </path>
                                   </svg>
-                                  <p class="post__coments_num">42</p>
+                                  <p class="post__coments_num">{{ $advertisement->comments->count() }}</p>
                               </a>
 
 
                               <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                                  action="{{ route('advertisement.favourite.store', $advertisement->id) }}"
+                                  action="{{ route('advertisement.favourite.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
                                   method="POST">
                                   @csrf
                                   <button type="submit" class="post__pins post__actions-left-item">
@@ -346,7 +344,8 @@
                           <div class="post__actions-right">
 
                               <form class="post__smile post__actions-right-item"
-                                  action="{{ route('advertisement.like.store', $advertisement->id) }}" method="POST">
+                                  action="{{ route('advertisement.like.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                                  method="POST">
                                   @csrf
                                   <button type="submit">
                                       @if (auth()->user()->like)
@@ -379,7 +378,8 @@
                               </form>
 
                               <form class="post__smile-sad post__actions-right-item active"
-                                  action="{{ route('advertisement.dislike.store', $advertisement->id) }}" method="POST">
+                                  action="{{ route('advertisement.dislike.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                                  method="POST">
                                   @csrf
                                   <button type="submit">
                                       @if (auth()->user()->dislike)
@@ -425,10 +425,11 @@
                   <div class="post__header">
                       <div class="post__header-left">
                           <div class="user__avatar">
-                              @if (file_exists('storage/' . $user->user_avatar))
+                              @if ($post->author->user_avatar)
                                   <picture>
-                                      <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
-                                      <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
+                                      <source srcset="{{ asset('storage/' . $post->author->user_avatar) }}"
+                                          type="image/webp" />
+                                      <img src=" {{ asset('storage/' . $post->author->user_avatar) }}" alt="" />
                                   </picture>
                               @else
                                   <picture>
@@ -479,7 +480,7 @@
                           </div>
                       </div>
 
-                      @if (file_exists('storage/' . $post->post_image))
+                      @if ($post->post_image)
                           <div class="post__img">
                               <picture>
                                   <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp">
@@ -508,13 +509,14 @@
                                   </svg>
                                   <p class="post__views_num">6.9K</p>
                               </a>
-                              <a class="post__comments post__actions-left-item" href="#">
+                              <a class="post__comments post__actions-left-item"
+                                  href="{{ route('post.show', [$post->category_id, $post->id]) }}">
                                   <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                       <path
                                           d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
                                       </path>
                                   </svg>
-                                  <p class="post__coments_num">42</p>
+                                  <p class="post__coments_num">{{ $post->comments->count() }}</p>
                               </a>
 
 

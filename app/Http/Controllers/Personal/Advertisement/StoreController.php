@@ -22,6 +22,8 @@ class StoreController extends Controller
         endif;
         if (isset($data['advertisement_image'])) :
             $data['advertisement_image'] = Storage::disk('public')->put('/images',  $data['advertisement_image']);
+        else :
+            $data['advertisement_image'] = null;
         endif;
         $advertisement = Advertisement::create([
             'category_advertisement_id' =>  $request->category_advertisement_id,
@@ -29,10 +31,8 @@ class StoreController extends Controller
             'content' =>  $request->content,
             'advertisement_image' => $data['advertisement_image'],
             'user_id' => $author->id,
-            'is_published' =>  $request->is_published,
+            'published' =>  $request->published,
             'is_banned' =>  0,
-            'likes' =>  0,
-            'dislikes' =>  0,
             'term' =>  $request->term,
             'type' => $request->type,
         ]);

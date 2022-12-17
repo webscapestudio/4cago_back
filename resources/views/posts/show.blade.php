@@ -4,7 +4,7 @@
         <div class="post__header">
             <div class="post__header-left">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $post->author->user_avatar))
+                    @if ($post->author->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $post->author->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $post->author->user_avatar) }}" alt="" />
@@ -51,7 +51,7 @@
             <a class="post__title">{{ $post->title }}</a>
             <p class="post__text">{{ $post->content }}</p>
 
-            @if (file_exists('storage/' . $post->post_image))
+            @if ($post->post_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp"><img
@@ -263,7 +263,7 @@
                 @error('content')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                @error('post_image')
+                @error('comment_image')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
                 <button class="btn btn__blue">Отправить</button>
@@ -277,7 +277,7 @@
         <div class="ad__comment">
             <div class="ad__comment-top">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $comment->author->user_avatar))
+                    @if ($comment->author->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
@@ -305,31 +305,31 @@
                                     stroke-width="1.5"></path>
                             </svg>
                         </div>
-
-
                         <div class="dropdown report">
-                            <form action="{{ route('post.comment.destroy', [$post->category_id, $post->id, $comment->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
+                            @if (Auth::id() == $comment->author->id)
+                                <form
+                                    action="{{ route('post.comment.destroy', [$post->category_id, $post->id, $comment->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                                        Удалить
+                                    </button>
+                                </form>
+                            @else
                                 <button type="submit" class="title__count report" data-micromodal-trigger="report">
-                                    Удалить
+                                    Пожаловаться
                                 </button>
-                            </form>
-
-                            {{-- <a href="{{ route('advertisement.comment.edit', [$advertisement->id, $comment->id]) }}"
-                                class="text-success">Изменить</a>
-                            <button type="submit" class="title__count report" data-micromodal-trigger="report">
-                                Пожаловаться
-                            </button>
-                            <button class="title__count unlock">Разблокировать</button> --}}
+                            @endif
                         </div>
                     @endauth
                 </div>
 
             </div>
             <p class="post__text">{{ $comment->content }}</p>
-            @if (file_exists('storage/' . $comment->comment_image))
+
+
+            @if ($comment->comment_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $comment->comment_image) }}" type="image/webp"><img

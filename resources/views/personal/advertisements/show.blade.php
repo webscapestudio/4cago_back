@@ -4,7 +4,7 @@
         <div class="profile__card-top">
             <div class="profile__card-left">
                 <div class="user__img">
-                    @if (file_exists('storage/' . $user->user_avatar))
+                    @if ($user->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
@@ -40,7 +40,7 @@
         <div class="post__header">
             <div class="post__header-left">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $user->user_avatar))
+                    @if ($user->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
@@ -91,7 +91,7 @@
             <a class="post__title">{{ $advertisement->title }}</a>
             <p class="post__text">{{ $advertisement->content }}</p>
 
-            @if (file_exists('storage/' . $advertisement->advertisement_image))
+            @if ($advertisement->advertisement_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}" type="image/webp">
@@ -119,7 +119,7 @@
                             <p class="post__views_num">6.9K</p>
                         </a>
                         <a class="post__comments post__actions-left-item"
-                            href="{{ route('advertisement.show', $advertisement->id) }}">
+                            href="{{ route('personal.advertisement.show', $advertisement->id) }}">
                             <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                 <path
                                     d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
@@ -130,7 +130,8 @@
 
 
                         <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                            action="{{ route('advertisement.favourite.store', $advertisement->id) }}" method="POST">
+                            action="{{ route('advertisement.favourite.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                            method="POST">
                             @csrf
                             <button type="submit" class="post__pins post__actions-left-item">
                                 <svg class="icon" viewBox="0 0 24 24">
@@ -147,7 +148,8 @@
                     <div class="post__actions-right">
 
                         <form class="post__smile post__actions-right-item"
-                            action="{{ route('advertisement.like.store', $advertisement->id) }}" method="POST">
+                            action="{{ route('advertisement.like.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                            method="POST">
                             @csrf
                             <button type="submit">
                                 @if (auth()->user()->like)
@@ -180,7 +182,8 @@
                         </form>
 
                         <form class="post__smile-sad post__actions-right-item active"
-                            action="{{ route('advertisement.dislike.store', $advertisement->id) }}" method="POST">
+                            action="{{ route('advertisement.dislike.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                            method="POST">
                             @csrf
                             <button type="submit">
                                 @if (auth()->user()->dislike)
@@ -224,7 +227,7 @@
                             <p class="post__views_num">6.9K</p>
                         </a>
                         <a class="post__comments post__actions-left-item"
-                            href="{{ route('advertisement.show', $advertisement->id) }}">
+                            href="{{ route('personal.advertisement.show', $advertisement->id) }}">
                             <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                                 <path
                                     d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
@@ -282,8 +285,9 @@
     </div>
 
     @auth()
-        <form class="comment" action="{{ route('advertisement.comment.store', $advertisement->id) }}" method="POST"
-            enctype="multipart/form-data">
+        <form class="comment"
+            action="{{ route('advertisement.comment.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+            method="POST" enctype="multipart/form-data">
             @csrf
             <p class="title__comment">Комментарии</p>
             <textarea id="summernote" class="white__textarea" name="content" id="area__comment"
@@ -319,7 +323,7 @@
         <div class="ad__comment">
             <div class="ad__comment-top">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $comment->author->user_avatar))
+                    @if ($comment->author->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
@@ -350,21 +354,21 @@
 
 
                         <div class="dropdown report">
-                            <form action="{{ route('advertisement.comment.destroy', [$advertisement->id, $comment->id]) }}"
-                                method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="title__count report" data-micromodal-trigger="report">
-                                    Удалить
-                                </button>
-                            </form>
-                            {{-- 
-                                <a href="{{ route('advertisement.comment.edit', [$advertisement->id, $comment->id]) }}"
-                                    class="text-success">Изменить</a>
+                            @if (Auth::id() == $comment->author->id)
+                                <form
+                                    action="{{ route('advertisement.comment.destroy', [$advertisement->category_advertisement_id, $advertisement->id, $comment->id]) }}"
+                                    method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                                        Удалить
+                                    </button>
+                                </form>
+                            @else
                                 <button type="submit" class="title__count report" data-micromodal-trigger="report">
                                     Пожаловаться
                                 </button>
-                                <button class="title__count unlock">Разблокировать</button> --}}
+                            @endif
                         </div>
                     @endauth
 
@@ -372,7 +376,7 @@
 
             </div>
             <p class="post__text">{{ $comment->content }}</p>
-            @if (file_exists('storage/' . $comment->comment_image))
+            @if ($comment->comment_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $comment->comment_image) }}" type="image/webp"><img

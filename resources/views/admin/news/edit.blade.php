@@ -25,8 +25,8 @@
                   <div class="col-md-6">
                       < <form class="card card-primary" action="{{ route('admin.news.update', $news->id) }}" method="POST"
                           enctype="multipart/form-data">
+                          <input type="hidden" name="_method" value="PATCH">
                           @csrf
-                          @method('PATCH')
                           <div class="card-header">
                               <h3 class="card-title">Главное</h3>
                               <div class="card-tools">
@@ -76,7 +76,7 @@
                                   @enderror
                               </div>
                               <label for="exampleInputFile">Загрузка файла</label>
-                              @if (file_exists('storage/' . $news->news_image))
+                              @if ($news->news_image)
                                   <div class="row mb-3">
                                       <div class="col-sm-6">
                                           <div class="row">

@@ -12,9 +12,9 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $categories = Category::where('parent_id', '0')->get();
+        $categories = Category::where('parent_id',  0)->where('published', '1')->get();
         $user = Auth::user();
-        $posts = Post::latest()->with('like')->paginate(6);
-        return view('categories_posts.index', compact('categories', 'user', 'posts'));
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        return view('categories_posts.index', compact('categories', 'user', 'posts_read'));
     }
 }

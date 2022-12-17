@@ -4,7 +4,7 @@
         <div class="post__header">
             <div class="post__header-left">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $advertisement->author->user_avatar))
+                    @if ($advertisement->author->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $advertisement->author->user_avatar) }}"
                                 type="image/webp" />
@@ -52,7 +52,7 @@
             <p class="post__title">{{ $advertisement->title }}</p>
             <p class="post__text">{{ $advertisement->content }}</p>
 
-            @if (file_exists('storage/' . $advertisement->advertisement_image))
+            @if ($advertisement->advertisement_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}" type="image/webp">
@@ -89,7 +89,8 @@
                         </a>
 
                         <form class="{{ auth()->user()->favourite ?? 'active' }}"
-                            action="{{ route('advertisement.favourite.store', $advertisement->id) }}" method="POST">
+                            action="{{ route('advertisement.favourite.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                            method="POST">
                             @csrf
                             <button type="submit" class="post__pins post__actions-left-item">
                                 <svg class="icon" viewBox="0 0 24 24">
@@ -106,7 +107,8 @@
                     <div class="post__actions-right">
 
                         <form class="post__smile post__actions-right-item"
-                            action="{{ route('advertisement.like.store', $advertisement->id) }}" method="POST">
+                            action="{{ route('advertisement.like.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                            method="POST">
                             @csrf
                             <button type="submit">
                                 @if (auth()->user()->like)
@@ -139,7 +141,8 @@
                         </form>
 
                         <form class="post__smile-sad post__actions-right-item active"
-                            action="{{ route('advertisement.dislike.store', $advertisement->id) }}" method="POST">
+                            action="{{ route('advertisement.dislike.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+                            method="POST">
                             @csrf
                             <button type="submit">
                                 @if (auth()->user()->dislike)
@@ -240,8 +243,9 @@
     </div>
 
     @auth()
-        <form class="comment" action="{{ route('advertisement.comment.store', $advertisement->id) }}" method="POST"
-            enctype="multipart/form-data">
+        <form class="comment"
+            action="{{ route('advertisement.comment.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+            method="POST" enctype="multipart/form-data">
             @csrf
             <p class="title__comment">Комментарии</p>
             <textarea id="summernote" class="white__textarea" name="content" id="area__comment"
@@ -263,7 +267,7 @@
                 @error('content')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
-                @error('post_image')
+                @error('comment_image')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
                 <button class="btn btn__blue">Отправить</button>
@@ -277,7 +281,7 @@
         <div class="ad__comment">
             <div class="ad__comment-top">
                 <div class="user__avatar">
-                    @if (file_exists('storage/' . $comment->author->user_avatar))
+                    @if ($comment->author->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
@@ -308,7 +312,8 @@
 
 
                         <div class="dropdown report">
-                            <form action="{{ route('advertisement.comment.destroy', [$advertisement->id, $comment->id]) }}"
+                            <form
+                                action="{{ route('advertisement.comment.destroy', [$advertisement->category_advertisement_id, $advertisement->id, $comment->id]) }}"
                                 method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -330,12 +335,11 @@
 
             </div>
             <p class="post__text">{{ $comment->content }}</p>
-            @if (file_exists('storage/' . $comment->comment_image))
+            @if ($comment->comment_image)
                 <div class="post__img">
                     <picture>
                         <source srcset="{{ asset('storage/' . $comment->comment_image) }}" type="image/webp"><img
-                            src="{{ asset('storage/' . $comment->comment_image) }}"
-                            alt="{{ asset('storage/' . $comment->comment_image) }}">
+                            src="{{ asset('storage/' . $comment->comment_image) }}" alt="">
                     </picture>
                 </div>
             @endif

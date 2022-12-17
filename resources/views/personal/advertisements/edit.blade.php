@@ -7,11 +7,11 @@
         <h2 class="delete__title">Редактировать объявление</h2>
         <div class="post-create__inner">
             <div class="custom__select">
-                <select id="a-select" name="is_published">
+                <select id="a-select" name="published">
                     @if (@isset($advertisement->id))
-                        <option value="0" @if ($advertisement->is_published == 0) selected = "" @endif>Не
+                        <option value="0" @if ($advertisement->published == 0) selected = "" @endif>Не
                             опубликовано</option>
-                        <option value="1" @if ($advertisement->is_published == 1) selected = "" @endif>Опубликовано
+                        <option value="1" @if ($advertisement->published == 1) selected = "" @endif>Опубликовано
                         </option>
                     @else
                         <option value="0">Не опубликовано</option>
@@ -19,7 +19,7 @@
                     @endif
 
                 </select>
-                @error('category_advertisement_id')
+                @error('published')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -103,7 +103,7 @@
                     </div>
 
                 </div>
-                @if (file_exists('storage/' . $advertisement->advertisement_image))
+                @if ($advertisement->advertisement_image)
                     <div class="post__img">
                         <picture>
                             <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}"

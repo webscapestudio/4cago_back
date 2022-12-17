@@ -17,7 +17,7 @@
             @enderror
             <div class="avatar__setting">
                 <h2 class="delete__title">Аватар профиля</h2>
-                @if (file_exists('storage/' . $user->user_avatar))
+                @if ($user->user_avatar)
                     <div class="row mb-3">
                         <div class="col-sm-6">
                             <div class="row">

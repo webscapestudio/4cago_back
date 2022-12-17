@@ -12,7 +12,7 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
-        $posts = Post::all();
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $categories = Category::all();
         $tags = Tag::all();
         $user = Auth::user();
@@ -20,6 +20,6 @@ class CreateController extends Controller
             'category' => [],
             'categories'  => Category::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories', 'posts', 'tags', 'user'));
+        ], compact('categories', 'posts_read', 'tags', 'user'));
     }
 }

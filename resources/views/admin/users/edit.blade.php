@@ -56,7 +56,7 @@
                               @enderror
                           </div>
                           <label for="exampleInputFile">Изображение профиля</label>
-                          @if (file_exists('storage/' . $user->user_avatar))
+                          @if ($user->user_avatar)
                               <div class="row mb-3">
                                   <div class="col-sm-6">
                                       <div class="row">

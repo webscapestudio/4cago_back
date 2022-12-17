@@ -11,12 +11,20 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke($categoryId = 0)
     {
         $user = Auth::user();
-        $posts = User::find($user->id)->posts->where('published', '1');
-        $categories = Category::all();
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts =  User::find($user->id)->posts->where('published', '1');
+        $categories = Category::get();
+        if ($categoryId) {
+            $posts->where('category_id', $categoryId);
+        }
         $tags = Tag::all();
-        return view('personal.posts.index', compact('posts', 'user'));
+        $user = Auth::user();
+        return view('personal.posts.index', [
+            'posts' => $posts,
+            'categories' => $categories->where('published', '1')
+        ], compact('tags', 'user', 'posts_read'));
     }
 }

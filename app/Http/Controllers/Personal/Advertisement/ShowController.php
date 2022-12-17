@@ -12,8 +12,8 @@ class ShowController extends Controller
     public function __invoke(Advertisement $advertisement)
     {
         $user = Auth::user();
-        $posts = Post::latest()->with('like')->paginate(6);
+        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $advertisements = Advertisement::all();
-        return view('personal.advertisements.show', compact('advertisement', 'advertisements', 'posts', 'user'));
+        return view('personal.advertisements.show', compact('advertisement', 'advertisements', 'posts_read', 'user'));
     }
 }

@@ -12,7 +12,7 @@ class News extends Model
     use HasFactory;
     protected $table = 'news';
     protected $guarded = false;
-
+    protected $fillable = ['user_id', 'published', 'title', 'description', 'content', 'news_image'];
 
     public function tags()
     {

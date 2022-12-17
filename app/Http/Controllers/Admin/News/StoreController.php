@@ -16,10 +16,13 @@ class StoreController extends Controller
 
         $author = Auth::user();
         $data = $request->validated();
+
         if (isset($data['news_image'])) :
             $data['news_image'] = Storage::disk('public')->put('/images',  $data['news_image']);
+        else :
+            $data['news_image'] = null;
         endif;
-        $post = News::create([
+        $news = News::create([
             'title' =>  $request->title,
             'description' => $request->description,
             'content' =>  $request->content,
@@ -29,7 +32,7 @@ class StoreController extends Controller
             'is_banned' =>  0,
 
         ]);
-        $post->save();
+        $news->save();
 
         return redirect()->route('admin.news.index');
     }

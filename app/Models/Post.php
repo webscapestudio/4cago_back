@@ -13,7 +13,7 @@ class Post extends Model
     use HasFactory;
     protected $table = 'posts';
     protected $guarded = false;
-
+    protected $fillable = ['user_id', 'published', 'title', 'category_id', 'content', 'post_image'];
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',

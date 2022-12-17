@@ -7,11 +7,11 @@
         <div class="forum__theme-right">
             <div class="right__themes">
                 <p class="forum__tags">Темы:</p>
-                <p class="forum__tags count__theme">180</p>
+                <p class="forum__tags count__theme">{{ $category_list->postCount->count() }}</p>
             </div>
             <div class="right__themes">
                 <p class="forum__tags">Сообщения:</p>
-                <p class="forum__tags count__message">1.6К</p>
+                <p class="forum__tags count__message">{{ $category_list->comments->count() }}</p>
             </div>
         </div>
     </a>

@@ -5,7 +5,7 @@
         <div class="profile__card-top">
             <div class="profile__card-left">
                 <div class="user__img">
-                    @if (file_exists('storage/' . $user->user_avatar))
+                    @if ($user->user_avatar)
                         <picture>
                             <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                             <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />

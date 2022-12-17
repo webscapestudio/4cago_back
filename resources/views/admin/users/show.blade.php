@@ -139,7 +139,7 @@
                                                     </div>
                                                     <h4> <a href="{{ route('admin.post.show', $post->id) }}">
                                                             {{ $post->title }}</a></h4>
-                                                    @if (file_exists('storage/' . $post->post_image))
+                                                    @if ($post->post_image)
                                                         <div class="col-sm-6">
                                                             <img class="img-fluid mb-3"
                                                                 src="{{ asset('storage/' . $post->post_image) }}"
@@ -196,7 +196,7 @@
                                                     <h4> <a
                                                             href="{{ route('admin.advertisement.show', $advertisement->id) }}">
                                                             {{ $advertisement->title }}</a></h4>
-                                                    @if (file_exists('storage/' . $advertisement->advertisement_image))
+                                                    @if ($advertisement->advertisement_image)
                                                         <div class="col-sm-6">
                                                             <img class="img-fluid mb-3"
                                                                 src="{{ asset('storage/' . $advertisement->advertisement_image) }}"
