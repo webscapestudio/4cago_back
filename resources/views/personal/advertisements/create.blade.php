@@ -7,13 +7,13 @@
         <div class="custom__select">
           <select id="a-select" name="published">
             @if (@isset($advertisement->id))
-              <option value="0" @if ($advertisement->published == 0) selected = "" @endif>Не
-                опубликовано</option>
               <option value="1" @if ($advertisement->published == 1) selected = "" @endif>Опубликовано
               </option>
+              <option value="0" @if ($advertisement->published == 0) selected = "" @endif>Не
+                опубликовано</option>
             @else
-              <option value="0">Не опубликовано</option>
               <option value="1">Опубликовано</option>
+              <option value="0">Не опубликовано</option>
             @endif
 
           </select>

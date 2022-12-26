@@ -5,7 +5,17 @@
     @endif
 
   @endauth
-
+  <div class="aside__ad">
+    <a class="side-ad" href="#">
+      <p class="side-ad__text">Реклама</p>
+      <div class="side-ad__banner">
+        <picture>
+          <source srcset="./images/content/side-ad.webp" type="image/webp"><img src="./images/content/side-ad.jpg"
+            alt="">
+        </picture>
+      </div>
+    </a>
+  </div>
 
   @if (!$right_banners->count() == 0)
     @foreach ($right_banners as $right_banner)

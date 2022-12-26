@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Personal\Advertisement;
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\CategoryAdvertisement;
+use App\Models\LeftBanner;
 use App\Models\Post;
 use App\Models\RightBanner;
 use App\Models\Tag;
@@ -20,10 +21,11 @@ class EditController extends Controller
         $categories_advertisements = CategoryAdvertisement::all();
         $tags = Tag::all();
         $right_banners = RightBanner::all()->where('published', '1');
+        $left_banners = LeftBanner::all()->where('published', '1');
         return view('personal.advertisements.edit', [
             'category_advertisement' => $category_advertisement,
-            'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
+            'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '>', '0')->get(),
             'delimiter' => ''
-        ], compact('categories_advertisements', 'advertisements', 'advertisement', 'tags', 'user', 'posts_read', 'right_banners'));
+        ], compact('categories_advertisements', 'advertisements', 'advertisement', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners'));
     }
 }

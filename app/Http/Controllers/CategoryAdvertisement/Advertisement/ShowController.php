@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Advertisement;
 use App\Models\Comment;
+use App\Models\LeftBanner;
 use App\Models\Post;
 use App\Models\RightBanner;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,7 @@ class ShowController extends Controller
         $comments = Comment::all();
         $advertisement->increment('views');
         $right_banners = RightBanner::all()->where('published', '1');
-        return view('advertisements.show', compact('advertisement', 'user', 'comments', 'posts_read', 'right_banners'));
+        $left_banners = LeftBanner::all()->where('published', '1');
+        return view('advertisements.show', compact('advertisement', 'user', 'comments', 'posts_read', 'right_banners', 'left_banners'));
     }
 }

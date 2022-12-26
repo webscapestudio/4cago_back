@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Personal\Post;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\LeftBanner;
 use App\Models\Tag;
 use App\Models\Post;
 use App\Models\RightBanner;
@@ -18,10 +19,12 @@ class CreateController extends Controller
         $tags = Tag::all();
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
+        $left_banners = LeftBanner::all()->where('published', '1');
+
         return view('personal.posts.create', [
             'category' => [],
-            'categories'  => Category::with('childrenCategories')->where('parent_id', '0')->get(),
+            'categories'  => Category::with('childrenCategories')->where('parent_id', '>', '0')->get(),
             'delimiter' => ''
-        ], compact('categories', 'posts_read', 'tags', 'user', 'right_banners'));
+        ], compact('categories', 'posts_read', 'tags', 'user', 'right_banners', 'left_banners'));
     }
 }

@@ -8,6 +8,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
+use App\Models\LeftBanner;
 use App\Models\RightBanner;
 
 class ShowController extends Controller
@@ -21,6 +22,7 @@ class ShowController extends Controller
         $comments = Comment::all();
         $post->increment('views');
         $right_banners = RightBanner::all()->where('published', '1');
-        return view('posts.show', compact('post', 'user', 'comments', 'posts', 'posts_read', 'right_banners'));
+        $left_banners = LeftBanner::all()->where('published', '1');
+        return view('posts.show', compact('post', 'user', 'comments', 'posts', 'posts_read', 'right_banners', 'left_banners'));
     }
 }
