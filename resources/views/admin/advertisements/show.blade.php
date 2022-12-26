@@ -34,7 +34,7 @@
               </div>
 
               <div class="card-tools">
-                <span class="description">Опубликовано
+                <span class="description">Опубликовано:
                   {{ $advertisement->created_at->diffForHumans() }}</span>
               </div>
             </div>
@@ -76,7 +76,7 @@
 
 
                     <form
-                      action="{{ route('advertisement.comment.destroy', [$advertisement->category_id, $advertisement->id, $comment->id]) }}"
+                      action="{{ route('advertisement.comment.destroy', [$advertisement->category_advertisement_id, $advertisement->id, $comment->id]) }}"
                       method="POST">
                       @csrf
                       @method('DELETE')

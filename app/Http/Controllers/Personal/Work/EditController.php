@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Work;
 use App\Models\CategoryWork;
 use App\Models\Post;
+use App\Models\RightBanner;
 use Illuminate\Support\Facades\Auth;
 
 class EditController extends Controller
@@ -16,10 +17,11 @@ class EditController extends Controller
         $user = Auth::user();
         $works = Work::all();
         $categories_works = CategoryWork::all();
+        $right_banners = RightBanner::all()->where('published', '1');
         return view('personal.works.edit', [
             'category_work' => $category_work,
             'categories_works'  => CategoryWork::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories_works', 'works', 'work', 'user', 'posts_read'));
+        ], compact('categories_works', 'works', 'work', 'user', 'posts_read', 'right_banners'));
     }
 }

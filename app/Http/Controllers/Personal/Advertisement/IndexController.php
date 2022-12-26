@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\CategoryAdvertisement;
 use App\Models\Post;
+use App\Models\RightBanner;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,7 @@ class IndexController extends Controller
         $advertisements = User::find($user->id)->advertisements->where('published', '1');
         $categories = CategoryAdvertisement::all();
         $tags = Tag::all();
-        return view('personal.advertisements.index', compact('advertisements', 'user', 'posts_read'));
+        $right_banners = RightBanner::all()->where('published', '1');
+        return view('personal.advertisements.index', compact('advertisements', 'user', 'posts_read', 'right_banners'));
     }
 }

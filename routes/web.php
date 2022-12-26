@@ -83,6 +83,29 @@ Route::group(['namespace' => 'News', 'prefix' => 'news'], function () {
         Route::delete('/{comment}', 'DestroyController')->name('news.comment.destroy');
     });
 });
+//MarketingFaq
+Route::group(['namespace' => 'MarketingFaq', 'prefix' => '/faq/faq_marketings'], function () {
+    Route::get('/all', 'IndexController')->name('faq.faq_marketing.index');
+    Route::get('/{faq_marketing}', 'ShowController')->name('faq.faq_marketing.show');
+});
+//Rules
+Route::group(['namespace' => 'Rules', 'prefix' => '/faq/rules'], function () {
+    Route::get('/all', 'IndexController')->name('faq.rule.index');
+    Route::get('/{rules}', 'ShowController')->name('faq.rule.show');
+});
+//Help
+Route::group(['namespace' => 'CategoryHelp', 'prefix' => '/faq/categories_asked_questions'], function () {
+    Route::get('/all', 'IndexController')->name('faq.category_asked_question.index');
+    Route::group(['namespace' => 'Help', 'prefix' => '{category_asked_question}/asked_questions'], function () {
+        Route::get('/{asked_question}', 'ShowController')->name('faq.asked_question.show');
+    });
+});
+//Rules
+Route::group(['namespace' => 'Contacts', 'prefix' => '/faq/contacts'], function () {
+    Route::get('/all', 'IndexController')->name('faq.contact.index');
+    Route::get('/{contact}', 'ShowController')->name('faq.contact.show');
+});
+
 //Admin 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::group(['namespace' => 'Main'], function () {
@@ -159,6 +182,66 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/{news}/edit', 'EditController')->name('admin.news.edit');
         Route::patch('/{news}', 'UpdateController')->name('admin.news.update');
         Route::delete('/{news}', 'DestroyController')->name('admin.news.destroy');
+    });
+    // Rules admin CRUD
+    Route::group(['namespace' => 'Rules', 'prefix' => 'rules'], function () {
+        Route::get('/', 'IndexController')->name('admin.rule.index');
+        Route::get('/create', 'CreateController')->name('admin.rule.create');
+        Route::post('/', 'StoreController')->name('admin.rule.store');
+        Route::get('/{rules}', 'ShowController')->name('admin.rule.show');
+        Route::get('/{rules}/edit', 'EditController')->name('admin.rule.edit');
+        Route::patch('/{rules}', 'UpdateController')->name('admin.rule.update');
+        Route::delete('/{rules}', 'DestroyController')->name('admin.rule.destroy');
+    });
+    // CategoryHelp admin CRUD
+    Route::group(['namespace' => 'CategoryHelp', 'prefix' => 'categories_asked_questions'], function () {
+        Route::get('/', 'IndexController')->name('admin.category_question.index');
+        Route::get('/create', 'CreateController')->name('admin.category_question.create');
+        Route::post('/', 'StoreController')->name('admin.category_question.store');
+        Route::get('/{categories_asked_question}', 'ShowController')->name('admin.category_question.show');
+        Route::get('/{categories_asked_question}/edit', 'EditController')->name('admin.category_question.edit');
+        Route::patch('/{categories_asked_question}', 'UpdateController')->name('admin.category_question.update');
+        Route::delete('/{categories_asked_question}', 'DestroyController')->name('admin.category_question.destroy');
+    });
+    // Help admin CRUD
+    Route::group(['namespace' => 'Help', 'prefix' => 'asked_questions'], function () {
+        Route::get('/', 'IndexController')->name('admin.asked_question.index');
+        Route::get('/create', 'CreateController')->name('admin.asked_question.create');
+        Route::post('/', 'StoreController')->name('admin.asked_question.store');
+        Route::get('/{asked_question}', 'ShowController')->name('admin.asked_question.show');
+        Route::get('/{asked_question}/edit', 'EditController')->name('admin.asked_question.edit');
+        Route::patch('/{asked_question}', 'UpdateController')->name('admin.asked_question.update');
+        Route::delete('/{asked_question}', 'DestroyController')->name('admin.asked_question.destroy');
+    });
+    // CategoryMarketing admin CRUD
+    Route::group(['namespace' => 'MarketingFaq', 'prefix' => 'faq_marketings'], function () {
+        Route::get('/', 'IndexController')->name('admin.faq_marketing.index');
+        Route::get('/create', 'CreateController')->name('admin.faq_marketing.create');
+        Route::post('/', 'StoreController')->name('admin.faq_marketing.store');
+        Route::get('/{faq_marketing}', 'ShowController')->name('admin.faq_marketing.show');
+        Route::get('/{faq_marketing}/edit', 'EditController')->name('admin.faq_marketing.edit');
+        Route::patch('/{faq_marketing}', 'UpdateController')->name('admin.faq_marketing.update');
+        Route::delete('/{faq_marketing}', 'DestroyController')->name('admin.faq_marketing.destroy');
+    });
+    // Contacts admin CRUD
+    Route::group(['namespace' => 'Contacts', 'prefix' => 'contacts'], function () {
+        Route::get('/', 'IndexController')->name('admin.contact.index');
+        Route::get('/create', 'CreateController')->name('admin.contact.create');
+        Route::post('/', 'StoreController')->name('admin.contact.store');
+        Route::get('/{contact}', 'ShowController')->name('admin.contact.show');
+        Route::get('/{contact}/edit', 'EditController')->name('admin.contact.edit');
+        Route::patch('/{contact}', 'UpdateController')->name('admin.contact.update');
+        Route::delete('/{contact}', 'DestroyController')->name('admin.contact.destroy');
+    });
+    // RightBanner admin CRUD
+    Route::group(['namespace' => 'RightBanner', 'prefix' => 'right_banners'], function () {
+        Route::get('/', 'IndexController')->name('admin.right_banner.index');
+        Route::get('/create', 'CreateController')->name('admin.right_banner.create');
+        Route::post('/', 'StoreController')->name('admin.right_banner.store');
+        Route::get('/{right_banner}', 'ShowController')->name('admin.right_banner.show');
+        Route::get('/{right_banner}/edit', 'EditController')->name('admin.right_banner.edit');
+        Route::patch('/{right_banner}', 'UpdateController')->name('admin.right_banner.update');
+        Route::delete('/{right_banner}', 'DestroyController')->name('admin.right_banner.destroy');
     });
 });
 //Personal

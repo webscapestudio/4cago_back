@@ -7,6 +7,7 @@ use App\Models\CategoryAdvertisement;
 use App\Models\Tag;
 use App\Models\Advertisement;
 use App\Models\Post;
+use App\Models\RightBanner;
 use Illuminate\Support\Facades\Auth;
 
 class CreateController extends Controller
@@ -18,11 +19,11 @@ class CreateController extends Controller
         $categories_advertisements = CategoryAdvertisement::all();
         $tags = Tag::all();
         $user = Auth::user();
-        //dd($user);
+        $right_banners = RightBanner::all()->where('published', '1');
         return view('personal.advertisements.create', [
             'category_advertisement' => [],
             'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '0')->get(),
             'delimiter' => ''
-        ], compact('categories_advertisements', 'advertisements', 'tags', 'user', 'posts_read'));
+        ], compact('categories_advertisements', 'advertisements', 'tags', 'user', 'posts_read', 'right_banners'));
     }
 }

@@ -25,7 +25,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'category_image' => 'nullable|file',
+            'description' => 'nullable|string',
         ];
     }
     public function messages()
@@ -33,6 +33,7 @@ class StoreRequest extends FormRequest
         return [
             'title.required' => 'Это поле обязательно для заполнения',
             'title.string' => 'Данные должны соответствовать строчному типу',
+            'description.string' => 'Данные должны соответствовать строчному типу',
 
         ];
     }

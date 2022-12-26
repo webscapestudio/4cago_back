@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\RightBanner;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,6 +21,7 @@ class IndexController extends Controller
             ->paginate(12);
         $tags = Tag::all();
         $user = Auth::user();
-        return view('main.index', compact('posts', 'tags', 'user', 'posts_read'));
+        $right_banners = RightBanner::all()->where('published', '1');
+        return view('main.index', compact('posts', 'tags', 'user', 'posts_read', 'right_banners'));
     }
 }

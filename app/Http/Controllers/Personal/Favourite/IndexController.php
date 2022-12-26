@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
 use App\Models\News;
 use App\Models\Post;
+use App\Models\RightBanner;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
@@ -28,6 +29,7 @@ class IndexController extends Controller
             $query->where('user_id', Auth::id())
                 ->where('favouritable_type', News::class)->where('published', '1');
         })->get();
-        return view('personal.favourites.index',  compact('user', 'posts', 'advertisements', 'news', 'posts_read'));
+        $right_banners = RightBanner::all()->where('published', '1');
+        return view('personal.favourites.index',  compact('user', 'posts', 'advertisements', 'news', 'posts_read', 'right_banners'));
     }
 }
