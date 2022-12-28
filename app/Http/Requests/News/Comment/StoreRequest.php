@@ -25,7 +25,8 @@ class StoreRequest extends FormRequest
     {
         return [
             'content' => 'required|string',
-            'post_image' => 'file',
+            'comment_image' => 'nullable|file',
+            'parent_id' => 'nullable|string'
         ];
     }
     public function messages()

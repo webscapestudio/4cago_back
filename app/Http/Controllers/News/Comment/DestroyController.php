@@ -11,9 +11,8 @@ class DestroyController extends Controller
 {
     public function __invoke(News $news, Comment $comment)
     {
-
+        $comment->replies()->delete();
         $news->comments()->where('id', $comment->id)->delete();
-
         return redirect()->back();
     }
 }
