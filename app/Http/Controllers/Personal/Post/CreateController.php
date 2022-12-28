@@ -15,16 +15,12 @@ class CreateController extends Controller
     public function __invoke()
     {
         $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
-        $categories = Category::all();
+        $categories = Category::with('childrenCategories')->where('parent_id', '>', '0')->get();
         $tags = Tag::all();
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
 
-        return view('personal.posts.create', [
-            'category' => [],
-            'categories'  => Category::with('childrenCategories')->where('parent_id', '>', '0')->get(),
-            'delimiter' => ''
-        ], compact('categories', 'posts_read', 'tags', 'user', 'right_banners', 'left_banners'));
+        return view('personal.posts.create', compact('categories', 'posts_read', 'tags', 'user', 'right_banners', 'left_banners'));
     }
 }

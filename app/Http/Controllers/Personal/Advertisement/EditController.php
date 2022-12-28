@@ -18,14 +18,10 @@ class EditController extends Controller
         $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $advertisements = Advertisement::all();
-        $categories_advertisements = CategoryAdvertisement::all();
+        $categories_advertisements = CategoryAdvertisement::with('childrenCategories')->where('parent_id', '>', '0')->get();
         $tags = Tag::all();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('personal.advertisements.edit', [
-            'category_advertisement' => $category_advertisement,
-            'categories_advertisements'  => CategoryAdvertisement::with('childrenCategories')->where('parent_id', '>', '0')->get(),
-            'delimiter' => ''
-        ], compact('categories_advertisements', 'advertisements', 'advertisement', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners'));
+        return view('personal.advertisements.edit', compact('categories_advertisements', 'advertisements', 'advertisement', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners'));
     }
 }

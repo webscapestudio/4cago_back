@@ -31,10 +31,9 @@
 
           <div class="custom__select">
             <select id="a-select" name="category_id">
-              @include('personal.posts.partials.categoriesCreate', [
-                  'categories' => $categories,
-              ])
-
+              @foreach ($categories as $category)
+                <option value="{{ $category->id }}"> {{ $category->title }} </option>
+              @endforeach
             </select>
             @error('category_id')
               <div class="text-danger">{{ $message }}</div>

@@ -32,10 +32,14 @@
 
         <div class="custom__select">
           <select id="a-select" name="category_id">
-            @include('admin.categories.partials.categoriesEdit', [
-                'categories' => $categories,
-            ])
-
+            @foreach ($categories as $category)
+              @if (@isset($category->id))
+                <option value="{{ $category->id }}"@if ($category->id == $post->category_id) selected = "" @endif>
+                  {{ $category->title }} </option>
+              @else
+                <option value="{{ $category->id }}"> {{ $category->title }} </option>
+              @endif
+            @endforeach
           </select>
           @error('category_id')
             <div class="text-danger">{{ $message }}</div>

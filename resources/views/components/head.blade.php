@@ -22,7 +22,6 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/apple-touch-icon-180x180.png') }}">
   <!-- <link rel="manifest" href="./images/manifest.json"> -->
   <link rel="stylesheet" href="{{ mix('/css/main.css') }}" />
-  <link href="https://unpkg.com/slim-select@latest/dist/slimselect.css" rel="stylesheet">
-  <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+
   <title>Chicago</title>
 </head>

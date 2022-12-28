@@ -7,7 +7,7 @@
     <h2 class="delete__title">Редактировать объявление</h2>
     <div class="post-create__inner">
       <div class="custom__select">
-        <select id="a-select" name="published">
+        <select name="published">
           @if (@isset($advertisement->id))
             <option value="1" @if ($advertisement->published == 1) selected = "" @endif>Опубликовано
             </option>
@@ -27,11 +27,15 @@
         <p class="post__date">Категория</p>
 
         <div class="custom__select">
-          <select id="a-select" name="category_advertisement_id">
-            @include('personal.advertisements.partials.categories_advertisementsCreate', [
-                'categories_advertisements' => $categories_advertisements,
-            ])
-
+          <select name="category_advertisement_id">
+            @foreach ($categories_advertisements as $category_advertisement)
+              @if (@isset($category_advertisement->id))
+                <option value="{{ $category_advertisement->id }}"@if ($category_advertisement->id == $advertisement->category_advertisement_id) selected = "" @endif>
+                  {{ $category_advertisement->title }} </option>
+              @else
+                <option value="{{ $category_advertisement->id }}"> {{ $category_advertisement->title }} </option>
+              @endif
+            @endforeach
           </select>
           @error('category_advertisement_id')
             <div class="text-danger">{{ $message }}</div>
@@ -42,10 +46,16 @@
         <div class="post__category">
           <p class="post__date">Вид объявления</p>
           <div class="custom__select" action="">
-            <select id="slim-select" name="type">
-              <option value="0">Куплю</option>
-              <option value="1">Продам</option>
-              <option value="2">Потеряшки</option>
+            <select name="type">
+              @if (@isset($advertisement->id))
+                <option value="0"@if ($advertisement->type == 0) selected = "" @endif>Куплю</option>
+                <option value="1"@if ($advertisement->type == 1) selected = "" @endif>Продам</option>
+                <option value="2"@if ($advertisement->type == 2) selected = "" @endif>Потеряшки</option>
+              @else
+                <option value="0">Куплю</option>
+                <option value="1">Продам</option>
+                <option value="2">Потеряшки</option>
+              @endif
             </select>
             @error('type')
               <div class="text-danger">{{ $message }}</div>
@@ -55,10 +65,16 @@
         <div class="post__subcategory">
           <p class="post__date">Срок объявления</p>
           <div class="custom__select" action="">
-            <select id="slim-select-job" name="term">
-              <option value="0">1 день</option>
-              <option value="1">3 дня</option>
-              <option value="2">7 дней</option>
+            <select name="term">
+              @if (@isset($advertisement->id))
+                <option value="0"@if ($advertisement->term == 0) selected = "" @endif>1 день</option>
+                <option value="1"@if ($advertisement->term == 1) selected = "" @endif>3 дня</option>
+                <option value="2"@if ($advertisement->term == 2) selected = "" @endif>7 дней</option>
+              @else
+                <option value="0">1 день</option>
+                <option value="1">3 дня</option>
+                <option value="2">7 дней</option>
+              @endif
             </select>
             @error('term')
               <div class="text-danger">{{ $message }}</div>

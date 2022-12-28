@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Personal\Advertisement;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Personal\Post\UpdateRequest;
+use App\Http\Requests\Personal\Advertisement\UpdateRequest;
 use App\Models\Advertisement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
