@@ -11,7 +11,7 @@ class DestroyController extends Controller
 {
     public function __invoke($category_advertisement_id, $advertisement_id, Comment $comment)
     {
-
+        $comment->replies()->delete();
         $advertisement = Advertisement::find($advertisement_id);
         $advertisement->comments()->where('id', $comment->id)->delete();
 

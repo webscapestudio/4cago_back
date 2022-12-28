@@ -171,7 +171,7 @@
                   d="M2.57441 12.7075C3.03543 13.4213 3.71817 14.3706 4.60454 15.3161C6.39552 17.2264 8.89951 19 12 19C15.1005 19 17.6045 17.2264 19.3955 15.3161C20.2818 14.3706 20.9646 13.4213 21.4256 12.7075C21.6051 12.4296 21.75 12.1889 21.8593 12C21.75 11.8111 21.6051 11.5704 21.4256 11.2925C20.9646 10.5787 20.2818 9.6294 19.3955 8.68394C17.6045 6.77356 15.1005 5 12 5C8.89951 5 6.39552 6.77356 4.60454 8.68394C3.71817 9.6294 3.03543 10.5787 2.57441 11.2925C2.39492 11.5704 2.25003 11.8111 2.14074 12C2.25003 12.1889 2.39492 12.4296 2.57441 12.7075ZM23.8941 11.5521C23.8943 11.5525 23.8944 11.5528 23 12C23.8944 12.4472 23.8943 12.4475 23.8941 12.4479L23.8936 12.4488L23.8925 12.4511L23.889 12.458L23.8777 12.4802C23.8681 12.4987 23.8546 12.5247 23.8372 12.5576C23.8025 12.6233 23.752 12.7168 23.686 12.834C23.5542 13.0684 23.3601 13.3985 23.1057 13.7925C22.5979 14.5787 21.8432 15.6294 20.8545 16.6839C18.8955 18.7736 15.8995 21 12 21C8.10049 21 5.10448 18.7736 3.14546 16.6839C2.15683 15.6294 1.40207 14.5787 0.894336 13.7925C0.63985 13.3985 0.445792 13.0684 0.313971 12.834C0.248023 12.7168 0.19754 12.6233 0.162753 12.5576C0.145357 12.5247 0.131875 12.4987 0.122338 12.4802L0.11099 12.458L0.107539 12.4511L0.10637 12.4488L0.105925 12.4479C0.105741 12.4475 0.105573 12.4472 1 12C0.105573 11.5528 0.105741 11.5525 0.105925 11.5521L0.10637 11.5512L0.107539 11.5489L0.11099 11.542L0.122338 11.5198C0.131875 11.5013 0.145357 11.4753 0.162753 11.4424C0.19754 11.3767 0.248023 11.2832 0.313971 11.166C0.445792 10.9316 0.63985 10.6015 0.894336 10.2075C1.40207 9.42131 2.15683 8.3706 3.14546 7.31606C5.10448 5.22644 8.10049 3 12 3C15.8995 3 18.8955 5.22644 20.8545 7.31606C21.8432 8.3706 22.5979 9.42131 23.1057 10.2075C23.3601 10.6015 23.5542 10.9316 23.686 11.166C23.752 11.2832 23.8025 11.3767 23.8372 11.4424C23.8546 11.4753 23.8681 11.5013 23.8777 11.5198L23.889 11.542L23.8925 11.5489L23.8936 11.5512L23.8941 11.5521ZM23 12L23.8944 11.5528C24.0352 11.8343 24.0352 12.1657 23.8944 12.4472L23 12ZM0.105573 11.5528L1 12L0.105573 12.4472C-0.0351909 12.1657 -0.0351909 11.8343 0.105573 11.5528ZM10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12ZM12 8C9.79086 8 8 9.79086 8 12C8 14.2091 9.79086 16 12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8Z">
                 </path>
               </svg>
-              <p class="post__views_num">{{ $new->views }}</p>
+              <p class="post__views_num">{{ $news->views }}</p>
             </a>
             <a class="post__comments post__actions-left-item" href="#">
               <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
@@ -254,7 +254,7 @@
         @error('content')
           <div class="text-danger">{{ $message }}</div>
         @enderror
-        @error('post_image')
+        @error('comment_image')
           <div class="text-danger">{{ $message }}</div>
         @enderror
         <button class="btn btn__blue">Отправить</button>
@@ -264,14 +264,24 @@
   @guest
     <p class="post__title">Войдите или зарегистрируйтесь для ответа.</p>
   @endguest
-  @foreach ($news->comments as $comment)
+  @foreach ($news->comments->where('parent_id', null)->reverse() as $comment)
     <div class="ad__comment">
       <div class="ad__comment-top">
-        <picture>
-          <source srcset="./images/avatars/user-ava.webp" type="image/webp"><img src="./images/avatars/user-ava.jpg"
-            alt="">
-        </picture>
+        <div class="user__avatar">
+          @if ($comment->author->user_avatar)
+            <picture>
+              <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
+              <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
+            </picture>
+          @else
+            <picture>
+              <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+              <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+            </picture>
+          @endif
+        </div>
         <p class="user__name">{{ $comment->author->name ?? 'Пользователь не найден' }}</p>
+
         <div class="post__date">{{ $comment->created_at->diffForHumans() }}</div>
         <div class="post__drop">
           @auth
@@ -288,25 +298,22 @@
 
 
             <div class="dropdown report">
-              <form action="{{ route('news.comment.destroy', [$news->id, $comment->id]) }}" method="POST">
-                @csrf
-                @method('DELETE')
+              @if (Auth::id() == $comment->author->id)
+                <form action="{{ route('news.comment.destroy', [$news->id, $comment->id]) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                    Удалить
+                  </button>
+                </form>
+              @else
                 <button type="submit" class="title__count report" data-micromodal-trigger="report">
-                  Удалить
+                  Пожаловаться
                 </button>
-              </form>
-              {{-- 
-                            <a href="{{ route('advertisement.comment.edit', [$advertisement->id, $comment->id]) }}"
-                                class="text-success">Изменить</a>
-                            <button type="submit" class="title__count report" data-micromodal-trigger="report">
-                                Пожаловаться
-                            </button>
-                            <button class="title__count unlock">Разблокировать</button> --}}
+              @endif
             </div>
           @endauth
-
         </div>
-
       </div>
       <p class="post__text">{{ $comment->content }}</p>
       @if ($comment->comment_image)
@@ -318,9 +325,102 @@
         </div>
       @else
       @endif
-      <div class="ad__comment-bottom">
-        <a class="comment__link" href="#">Ответить</a>
-      </div>
+      @auth
+        <form class="comment" action="{{ route('news.comment.store', $news->id) }}" method="POST"
+          enctype="multipart/form-data">
+          @csrf
+          <textarea id="summernote" class="white__textarea" name="content" id="area__comment"
+            placeholder="Написать комментарий...">{{ old('content') }}</textarea>
+
+          <div class="comment__bottom">
+            <input type="file" name="comment_image" id="input__comment1">
+            <label for="input__comment1"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#292D32">
+                <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke-width="1.5"
+                  stroke-linecap="round" stroke-linejoin="round"></path>
+                <path
+                  d="M9 10C10.1046 10 11 9.10457 11 8C11 6.89543 10.1046 6 9 6C7.89543 6 7 6.89543 7 8C7 9.10457 7.89543 10 9 10Z"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path
+                  d="M2.66998 18.9501L7.59998 15.6401C8.38998 15.1101 9.52998 15.1701 10.24 15.7801L10.57 16.0701C11.35 16.7401 12.61 16.7401 13.39 16.0701L17.55 12.5001C18.33 11.8301 19.59 11.8301 20.37 12.5001L22 13.9001"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </label>
+            @error('content')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
+            @error('comment_image')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
+            <input type="hidden" name="parent_id" value="{{ $comment->id }}" />
+            <button class="comment__link">Ответить</button>
+          </div>
+        </form>
+      @endauth
     </div>
+    @foreach ($comment->replies->reverse() as $comment1)
+      <div class="ad__comment">
+        <div class="ad__comment-top">
+          <div class="user__avatar">
+            @if ($comment1->author->user_avatar)
+              <picture>
+                <source srcset="{{ asset('storage/' . $comment1->author->user_avatar) }}" type="image/webp" />
+                <img src=" {{ asset('storage/' . $comment1->author->user_avatar) }}" alt="" />
+              </picture>
+            @else
+              <picture>
+                <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
+                <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
+              </picture>
+            @endif
+          </div>
+          <p class="user__name">{{ $comment1->author->name ?? 'Пользователь не найден' }}</p>
+          <p class="user__name">Ответ пользователю: {{ $comment1->parent->author->name ?? 'Пользователь не найден' }}
+          </p>
+
+          <div class="post__date">{{ $comment1->created_at->diffForHumans() }}</div>
+          <div class="post__drop">
+            @auth
+              <div class="meatballs">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="#000F13">
+                  <path d="M5 10C3.9 10 3 10.9 3 12C3 13.1 3.9 14 5 14C6.1 14 7 13.1 7 12C7 10.9 6.1 10 5 10Z"
+                    stroke-width="1.5"></path>
+                  <path d="M19 10C17.9 10 17 10.9 17 12C17 13.1 17.9 14 19 14C20.1 14 21 13.1 21 12C21 10.9 20.1 10 19 10Z"
+                    stroke-width="1.5"></path>
+                  <path d="M12 10C10.9 10 10 10.9 10 12C10 13.1 10.9 14 12 14C13.1 14 14 13.1 14 12C14 10.9 13.1 10 12 10Z"
+                    stroke-width="1.5"></path>
+                </svg>
+              </div>
+
+
+              <div class="dropdown report">
+                @if (Auth::id() == $comment1->author->id)
+                  <form action="{{ route('news.comment.destroy', [$news->id, $comment1->id]) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                      Удалить
+                    </button>
+                  </form>
+                @else
+                  <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                    Пожаловаться
+                  </button>
+                @endif
+              </div>
+            @endauth
+          </div>
+        </div>
+        <p class="post__text">{{ $comment1->content }}</p>
+        @if ($comment1->comment_image)
+          <div class="post__img">
+            <picture>
+              <source srcset="{{ asset('storage/' . $comment1->comment_image) }}" type="image/webp"><img
+                src="{{ asset('storage/' . $comment1->comment_image) }}" alt="">
+            </picture>
+          </div>
+        @else
+        @endif
+      </div>
+    @endforeach
   @endforeach
 @endsection

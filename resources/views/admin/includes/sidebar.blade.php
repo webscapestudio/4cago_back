@@ -149,7 +149,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{ route('admin.left_banner.index') }}" class="nav-link">
               <p>Баннера слева</p>
             </a>
           </li>

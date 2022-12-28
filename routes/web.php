@@ -243,6 +243,16 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::patch('/{right_banner}', 'UpdateController')->name('admin.right_banner.update');
         Route::delete('/{right_banner}', 'DestroyController')->name('admin.right_banner.destroy');
     });
+    // LeftBanner admin CRUD
+    Route::group(['namespace' => 'LeftBanner', 'prefix' => 'left_banners'], function () {
+        Route::get('/', 'IndexController')->name('admin.left_banner.index');
+        Route::get('/create', 'CreateController')->name('admin.left_banner.create');
+        Route::post('/', 'StoreController')->name('admin.left_banner.store');
+        Route::get('/{left_banner}', 'ShowController')->name('admin.left_banner.show');
+        Route::get('/{left_banner}/edit', 'EditController')->name('admin.left_banner.edit');
+        Route::patch('/{left_banner}', 'UpdateController')->name('admin.left_banner.update');
+        Route::delete('/{left_banner}', 'DestroyController')->name('admin.left_banner.destroy');
+    });
 });
 //Personal
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {

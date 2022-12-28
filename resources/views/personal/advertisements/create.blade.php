@@ -4,22 +4,25 @@
       @csrf
       <h2 class="delete__title">Добавить объявление</h2>
       <div class="post-create__inner">
-        <div class="custom__select">
-          <select id="a-select" name="published">
-            @if (@isset($advertisement->id))
-              <option value="0" @if ($advertisement->published == 0) selected = "" @endif>Не
-                опубликовано</option>
-              <option value="1" @if ($advertisement->published == 1) selected = "" @endif>Опубликовано
-              </option>
-            @else
-              <option value="0">Не опубликовано</option>
-              <option value="1">Опубликовано</option>
-            @endif
+        <div class="post__category">
+          <p class="post__date">Статус</p>
+          <div class="custom__select">
+            <select id="a-select" name="published">
+              @if (@isset($advertisement->id))
+                <option value="1" @if ($advertisement->published == 1) selected = "" @endif>Опубликовано
+                </option>
+                <option value="0" @if ($advertisement->published == 0) selected = "" @endif>Не
+                  опубликовано</option>
+              @else
+                <option value="1">Опубликовано</option>
+                <option value="0">Не опубликовано</option>
+              @endif
 
-          </select>
-          @error('published')
-            <div class="text-danger">{{ $message }}</div>
-          @enderror
+            </select>
+            @error('published')
+              <div class="text-danger">{{ $message }}</div>
+            @enderror
+          </div>
         </div>
         <div class="post__category">
           <p class="post__date">Категория</p>
@@ -36,6 +39,7 @@
             @enderror
           </div>
         </div>
+
         <div class="categories">
           <div class="post__category">
             <p class="post__date">Вид объявления</p>
@@ -64,6 +68,7 @@
             </div>
           </div>
         </div>
+
 
         <div class="create__title">
           <p class="post__date">Заголовок</p>

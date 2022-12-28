@@ -21,12 +21,17 @@ class StoreController extends Controller
         if (isset($data['comment_image'])) :
             $data['comment_image'] = Storage::disk('public')->put('/images',  $data['comment_image']);
         endif;
-
+        if (isset($data['parent_id'])) :
+            $data['parent_id'] = $data['parent_id'];
+        else :
+            $data['parent_id'] = null;
+        endif;
         $advertisement->comments()->create([
             'user_id' => Auth::user()->id,
             'content' =>  $request->content,
             'comment_image' => $data['comment_image'],
-            'category_advertisement_id' => $category_advertisement_id
+            'category_advertisement_id' => $category_advertisement_id,
+            'parent_id' => $data['parent_id']
         ]);
 
         return redirect()->back();

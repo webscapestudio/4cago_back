@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Personal\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\LeftBanner;
 use App\Models\Post;
 use App\Models\RightBanner;
 use App\Models\Tag;
@@ -20,6 +21,7 @@ class IndexController extends Controller
         $categories = Category::all();
         $tags = Tag::all();
         $right_banners = RightBanner::all()->where('published', '1');
-        return view('personal.main.index', compact('categories', 'posts', 'tags', 'user', 'posts_read', 'right_banners'));
+        $left_banners = LeftBanner::all()->where('published', '1');
+        return view('personal.main.index', compact('categories', 'posts', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners'));
     }
 }

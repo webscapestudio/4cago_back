@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Personal\Favourite;
 
 use App\Http\Controllers\Controller;
 use App\Models\Advertisement;
+use App\Models\LeftBanner;
 use App\Models\News;
 use App\Models\Post;
 use App\Models\RightBanner;
@@ -30,6 +31,7 @@ class IndexController extends Controller
                 ->where('favouritable_type', News::class)->where('published', '1');
         })->get();
         $right_banners = RightBanner::all()->where('published', '1');
-        return view('personal.favourites.index',  compact('user', 'posts', 'advertisements', 'news', 'posts_read', 'right_banners'));
+        $left_banners = LeftBanner::all()->where('published', '1');
+        return view('personal.favourites.index',  compact('user', 'posts', 'advertisements', 'news', 'posts_read', 'right_banners', 'left_banners'));
     }
 }

@@ -56,23 +56,19 @@
                 {{ $advertisement->comments->count() }} / Добавленно в избранное -
                 {{ $advertisement->favourite->count() }}</span>
             </div>
-
             <div class="card-footer card-comments">
-
-
               <div class="card-comment">
                 <h5 class="m-0">Коментарии поста</h5>
-                @foreach ($advertisement->comments as $comment)
-                  @if ($comment->comment_image)
-                    <img class="img-circle img-sm" src="{{ asset('storage/' . $comment->comment_image) }}"
+                @foreach ($advertisement->comments->where('parent_id', null)->reverse() as $comment)
+                  @if ($comment->author->user_avatar)
+                    <img class="img-circle img-sm" src="{{ asset('storage/' . $comment->author->user_avatar) }}"
                       alt="User Image">
                   @else
+                    <img class="img-circle img-sm" src="{{ asset('./images/avatars/user-ava.jpg') }}" alt="User Image">
                   @endif
                   <div class="comment-text">
-                    <span class="username">
-                      {{ $comment->author->name ?? 'Пользователь не найден' }}
-                      <span class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
-                    </span>
+                    <span class="username">{{ $comment->author->name ?? 'Пользователь не найден' }}</span>
+                    <span class="text-muted">{{ $comment->created_at->diffForHumans() }}</span>
 
 
                     <form
@@ -80,15 +76,53 @@
                       method="POST">
                       @csrf
                       @method('DELETE')
-                      <button type="submit" class="text-muted float-right" data-micromodal-trigger="report">
-                        Удалить
+                      <button type="submit" class="btn bg-danger float-right" data-micromodal-trigger="report">
+                        <i class="fas fa-trash"></i>
                       </button>
                     </form>
                     {{ $comment->content }}
                   </div>
+                  @foreach ($comment->replies->reverse() as $comment1)
+                    @if ($comment1->author->user_avatar)
+                      <img class="img-circle img-sm" src="{{ asset('storage/' . $comment1->author->user_avatar) }}"
+                        alt="User Image">
+                    @else
+                      <img class="img-circle img-sm" src="{{ asset('./images/avatars/user-ava.jpg') }}" alt="User Image">
+                    @endif
+                    <div class="comment-text">
+                      <span class="username">
+                        {{ $comment1->author->name ?? 'Пользователь не найден' }}</span>
+                      <span class="text-muted">
+                        Ответ пользователю: {{ $comment1->parent->author->name ?? 'Пользователь не найден' }}</span>
+                      <span class="text-muted">{{ $comment1->created_at->diffForHumans() }}</span>
+                      <form
+                        action="{{ route('advertisement.comment.destroy', [$advertisement->category_advertisement_id, $advertisement->id, $comment1->id]) }}"
+                        method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn bg-danger float-right" data-micromodal-trigger="report">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </form>
+                      {{ $comment1->content }}
+                      @if ($comment1->comment_image)
+                        <div class="row mb-3">
+                          <div class="col-sm-6">
+                            <div class="row">
+                              <div class="col-sm-6">
+                                <img class="img-fluid pad" src="{{ asset('storage/' . $comment1->comment_image) }}"
+                                  alt="Photo">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      @endif
+                    </div>
+                  @endforeach
                 @endforeach
               </div>
             </div>
+
             <div class="card-footer">
               <div class="float-right">
                 <button type="submit" class="btn btn-default"><i class="fas fa-ban"></i> Забанить</button>
