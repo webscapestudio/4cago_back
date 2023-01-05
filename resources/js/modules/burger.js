@@ -3,7 +3,6 @@ const menu = document.querySelector(".sidebar");
 
 window.addEventListener("click", (e) => {
     const target = e.target.classList;
-    console.log(e.target.classList);
     if (target.contains("burger") || target.contains("sidebar")) {
         burgerBtn.classList.add("active");
         menu.classList.add("active");
@@ -13,5 +12,4 @@ window.addEventListener("click", (e) => {
         menu.classList.remove("active");
         document.body.classList.remove("overflow-hidden");
     }
-    console.log(13123);
 });
