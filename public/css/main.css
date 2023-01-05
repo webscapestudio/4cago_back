@@ -2596,6 +2596,7 @@ form.error .form__message {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 20px;
+  pointer-events: none;
   height: 2px;
   border-radius: 2px;
   background-color: #1b1b1b;
