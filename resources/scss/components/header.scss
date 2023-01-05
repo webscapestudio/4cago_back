@@ -9,6 +9,9 @@
     align-items: center;
 }
 
+.login__link {
+}
+
 .header__nav {
     display: flex;
     margin-left: auto;
@@ -25,7 +28,11 @@
 .header__link {
     display: inline-flex;
     position: relative;
+    img {
+        pointer-events: none;
+    }
     .icon {
+        pointer-events: none;
         width: 24px;
         height: 24px;
         fill: $text;
