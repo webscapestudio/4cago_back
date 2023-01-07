@@ -16,7 +16,6 @@
           </div><!-- /.col -->
         </div><!-- /.row -->
         <div class="invoice p-3 mb-3">
-
           <div class="row">
             <div class="col-12">
               <h4>
@@ -26,7 +25,6 @@
             </div>
 
           </div>
-
           <div class="row invoice-info">
             <div class="col-sm-4 invoice-col">
 
@@ -51,11 +49,6 @@
             </div>
 
           </div>
-
-
-
-
-
           <div class="row no-print">
             <div class="col-12">
 

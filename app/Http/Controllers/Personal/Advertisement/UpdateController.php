@@ -15,9 +15,9 @@ class UpdateController extends Controller
         $author = Auth::user();
         $data = $request->validated();
 
-        if (isset($data['tag_ids'])) :
-            $tagIds = $data['tag_ids'];
-            unset($data['tag_ids']);
+        if (isset($data['tags'])) :
+            $tagIds = $data['tags'];
+            unset($data['tags']);
         endif;
         if (isset($data['advertisement_image'])) :
             $data['advertisement_image'] = Storage::disk('public')->put('/images',  $data['advertisement_image']);

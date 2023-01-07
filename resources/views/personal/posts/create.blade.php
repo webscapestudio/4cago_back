@@ -84,15 +84,15 @@
 
 
         <div class="create__tags">
-          <select class="select2" name="tag_ids[]" multiple="multiple" data-placeholder="Выберите теги"
+          <select class="select2" name="tags[]" multiple="multiple" data-placeholder="Выберите теги"
             style="width: 100%;">
             @foreach ($tags as $tag)
-              <option {{ is_array(old('tag_ids')) && in_array($tag->id, old('tag_ids')) ? ' selected' : '' }}
+              <option {{ is_array(old('tag_id')) && in_array($tag->id, old('tag_id')) ? ' selected' : '' }}
                 value="{{ $tag->id }}" {{ $tag->id == old('tag_id') ? 'selected' : '' }}>
                 {{ $tag->title }}</option>
             @endforeach
           </select>
-          @error('tag_ids')
+          @error('tags')
             <div class="text-danger">{{ $message }}</div>
           @enderror
         </div>

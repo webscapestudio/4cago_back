@@ -16,7 +16,7 @@ class News extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(Tag::class, 'post_tags', 'post_id', 'tag_id');
+        return $this->morphToMany(Tag::class, 'taggable');
     }
     public function author()
     {

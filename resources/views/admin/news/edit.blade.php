@@ -23,7 +23,7 @@
       <section class="content">
         <div class="row">
           <div class="col-md-6">
-            < <form class="card card-primary" action="{{ route('admin.news.update', $news->id) }}" method="POST"
+            <form class="card card-primary" action="{{ route('admin.news.update', $news->id) }}" method="POST"
               enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PATCH">
               @csrf
@@ -98,8 +98,21 @@
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
               </div>
+              <div class="form-group">
+                <label for="inputTag">Теги</label>
+                <select id="inputTag" class="form-control" name="tags[]" multiple="multiple" style="width: 100%;">
+                  @foreach ($tags as $tag)
+                    <option value="{{ $tag->id }}"
+                      {{ is_array($news->tags->pluck('id')->toArray()) && in_array($tag->id, $news->tags->pluck('id')->toArray()) ? 'selected' : '' }}>
+                      {{ $tag->title }} </option>
+                  @endforeach
+                </select>
+                @error('tags')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
+              </div>
               <input type="submit" class="btn btn-primary" value="Сохранить">
-              </form>
+            </form>
           </div>
         </div>
       </section>

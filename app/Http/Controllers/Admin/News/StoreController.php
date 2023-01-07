@@ -16,7 +16,10 @@ class StoreController extends Controller
 
         $author = Auth::user();
         $data = $request->validated();
-
+        if (isset($data['tags'])) :
+            $tagIds = $data['tags'];
+            unset($data['tags']);
+        endif;
         if (isset($data['news_image'])) :
             $data['news_image'] = Storage::disk('public')->put('/images',  $data['news_image']);
         else :
@@ -32,6 +35,9 @@ class StoreController extends Controller
             'is_banned' =>  0,
 
         ]);
+        if (isset($tagIds)) :
+            $news->tags()->attach($tagIds);
+        endif;
         $news->save();
 
         return redirect()->route('admin.news.index');

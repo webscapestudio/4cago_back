@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-  @if (!$posts->count() == 0) 
+  @if (!$posts->count() == 0)
     @foreach ($posts as $post)
       <div class="post__card ad__card">
 
@@ -252,22 +252,5 @@
   @else
     <p>Тут пока ничего нет...</p>
   @endif
-  <div class="feed__ad">
-    <div class="feed__header">
-      <picture>
-        <source srcset="./images/content/vw.webp" type="image/webp"><img src="./images/content/vw.jpg"
-          alt="" />
-      </picture>
-      <p class="user__name">Реклама</p>
-      <a class="user__name" href="#">volkswagen.ru</a>
-    </div>
-    <p class="post__title">Большие скидки на автомобили</p>
-    <div class="feed__img">
-      <picture>
-        <source srcset="./images/content/feed-ad.webp" type="image/webp"><img src="./images/content/feed-ad.jpg"
-          alt="" />
-      </picture>
-    </div>
-    <p class="feed__text">Акция ограничена</p>
-  </div>
+
 @endsection

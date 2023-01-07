@@ -29,8 +29,8 @@ class StoreRequest extends FormRequest
             'content' => 'required|string',
             'post_image' => 'nullable|file',
             'category_id' => 'required|exists:categories,id',
-            'tag_ids' => 'nullable|array',
-            'tag_ids.*' => 'nullable|integer|exists:tags,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
         ];
     }
     public function messages()
@@ -43,7 +43,7 @@ class StoreRequest extends FormRequest
             'post_image.file' => 'Необходимо выбрать файл',
             'category_id.required' => 'Это поле обязательно для заполнения',
             'category_id.exists' => 'ID должен быть в базе данных',
-            'tag_ids.array' => 'Должен быть массив данных',
+            'tags.array' => 'Должен быть массив данных',
         ];
     }
 }

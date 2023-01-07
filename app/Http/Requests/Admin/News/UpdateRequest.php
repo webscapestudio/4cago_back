@@ -29,6 +29,8 @@ class UpdateRequest extends FormRequest
             'content' => 'required|string',
             'description' => 'required|string',
             'news_image' => 'nullable|file',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
         ];
     }
 }

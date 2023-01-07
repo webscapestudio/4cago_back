@@ -14,8 +14,15 @@ class UpdateController extends Controller
     {
         $author = Auth::user();
         $data = $request->validated();
+        if (isset($data['tags'])) :
+            $tagIds = $data['tags'];
+            unset($data['tags']);
+        endif;
         if (isset($data['news_image'])) :
             $data['news_image'] = Storage::disk('public')->put('/images',  $data['news_image']);
+        endif;
+        if (isset($tagIds)) :
+            $news->tags()->sync($tagIds);
         endif;
         $news->update($data);
         return view('admin.news.show', compact('news'));

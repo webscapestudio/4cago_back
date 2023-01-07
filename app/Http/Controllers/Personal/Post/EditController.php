@@ -16,7 +16,6 @@ class EditController extends Controller
     {
         $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $user = Auth::user();
-        $posts = Post::all();
         $categories = Category::with('childrenCategories')->where('parent_id', '>', '0')->get();
         $tags = Tag::all();
         $right_banners = RightBanner::all()->where('published', '1');

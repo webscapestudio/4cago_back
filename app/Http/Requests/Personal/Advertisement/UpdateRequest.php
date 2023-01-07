@@ -31,8 +31,8 @@ class UpdateRequest extends FormRequest
             'term' => 'required|string',
             'type' => 'required|string',
             'category_advertisement_id' => 'required|exists:categories,id',
-            'tag_ids' => 'nullable|array',
-            'tag_ids.*' => 'nullable|integer|exists:tags,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
 
         ];
     }

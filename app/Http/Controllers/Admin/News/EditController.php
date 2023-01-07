@@ -12,6 +12,7 @@ class EditController extends Controller
 {
     public function __invoke(News $news)
     {
-        return view('admin.news.edit',  compact('news'));
+        $tags = Tag::all();
+        return view('admin.news.edit',  compact('news', 'tags'));
     }
 }

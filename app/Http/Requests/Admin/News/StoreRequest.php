@@ -29,6 +29,8 @@ class StoreRequest extends FormRequest
             'content' => 'required|string',
             'description' => 'required|string',
             'news_image' => 'nullable|file',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
         ];
     }
     public function messages()
@@ -40,6 +42,7 @@ class StoreRequest extends FormRequest
             'title.string' => 'Данные должны соответствовать строчному типу',
             'content.required' => 'Это поле обязательно для заполнения',
             'news_image.file' => 'Необходимо выбрать файл',
+            'tags.array' => 'Должен быть массив данных',
         ];
     }
 }
