@@ -114,12 +114,14 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     // Post admin 
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
         Route::get('/', 'IndexController')->name('admin.post.index');
+        Route::get('/search', 'SearchController')->name('admin.post.search');
         Route::get('/{post}', 'ShowController')->name('admin.post.show');
         Route::delete('/{post}', 'DestroyController')->name('admin.post.destroy');
     });
     // Advertisement admin 
     Route::group(['namespace' => 'Advertisement', 'prefix' => 'advertisements'], function () {
         Route::get('/', 'IndexController')->name('admin.advertisement.index');
+        Route::get('/search', 'SearchController')->name('admin.advertisement.search');
         Route::get('/{advertisement}', 'ShowController')->name('admin.advertisement.show');
         Route::delete('/{advertisement}', 'DestroyController')->name('admin.advertisement.destroy');
     });
@@ -156,6 +158,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     // Tag admin CRUD
     Route::group(['namespace' => 'Tag', 'prefix' => 'tags'], function () {
         Route::get('/', 'IndexController')->name('admin.tag.index');
+        Route::get('/search', 'SearchController')->name('admin.tag.search');
         Route::get('/create', 'CreateController')->name('admin.tag.create');
         Route::post('/', 'StoreController')->name('admin.tag.store');
         Route::get('/{tag}', 'ShowController')->name('admin.tag.show');
@@ -166,6 +169,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     // User admin CRUD
     Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
         Route::get('/', 'IndexController')->name('admin.user.index');
+        Route::get('/search', 'SearchController')->name('admin.user.search');
         Route::get('/create', 'CreateController')->name('admin.user.create');
         Route::post('/', 'StoreController')->name('admin.user.store');
         Route::get('/{user}', 'ShowController')->name('admin.user.show');
@@ -176,6 +180,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
     // News admin CRUD
     Route::group(['namespace' => 'News', 'prefix' => 'news'], function () {
         Route::get('/', 'IndexController')->name('admin.news.index');
+        Route::get('/search', 'SearchController')->name('admin.news.search');
         Route::get('/create', 'CreateController')->name('admin.news.create');
         Route::post('/', 'StoreController')->name('admin.news.store');
         Route::get('/{news}', 'ShowController')->name('admin.news.show');

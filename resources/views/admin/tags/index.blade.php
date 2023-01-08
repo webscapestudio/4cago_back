@@ -18,13 +18,38 @@
         </div><!-- /.container-fluid -->
       </div>
       <!-- /.content-header -->
-
+      <nav class="main-header navbar navbar-expand navbar-light mx-auto">
+        <div class="col-1 mb-3">
+          <a href="{{ route('admin.tag.create') }}" class="btn btn-block btn-primary">Добавить</a>
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="navbar-search" href="#" role="button">
+              <i class="fas fa-search"></i>
+            </a>
+            <div class="navbar-search-block" style="display: none;">
+              <form class="form-inline" action="{{ route('admin.tag.search') }}" method="get">
+                <div class="input-group input-group-sm">
+                  <input class="form-control form-control-navbar" type="search" name="s" placeholder="Поиск"
+                    aria-label="Search">
+                  <div class="input-group-append">
+                    <button class="btn btn-navbar" type="submit">
+                      <i class="fas fa-search"></i>
+                    </button>
+                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </li>
+        </ul>
+      </nav>
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <div class="col-1 mb-3">
-            <a href="{{ route('admin.tag.create') }}" class="btn btn-block btn-primary">Добавить</a>
-          </div>
+
           <div class="row">
             <div class="col-12">
               <div class="card">
