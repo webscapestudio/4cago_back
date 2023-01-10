@@ -73,7 +73,7 @@
                 @if (Route::has('register'))
                 <div class="have__account mt-4">
                     <p class="profile__name">Нет аккаунта?</p>
-                    <a class="reg__link" href="#" data-micromodal-trigger="registration" data-micromodal-close>Регистрация</a>
+                    <p class="reg__link" data-micromodal-trigger="registration">Регистрация</p>
                 </div>
                 @endif
             </div>
