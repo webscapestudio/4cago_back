@@ -1,15 +1,16 @@
 const burgerBtn = document.querySelector(".burger");
 const menu = document.querySelector(".sidebar");
 
-window.addEventListener("click", (e) => {
+burgerBtn.addEventListener("click", (e) => {
     const target = e.target.classList;
-    if (target.contains("burger") || target.contains("sidebar")) {
-        burgerBtn.classList.add("active");
-        menu.classList.add("active");
-        document.body.classList.add("overflow-hidden");
-    } else {
+    console.log(target);
+    if (target.contains("burger") && target.contains("active")) {
         burgerBtn.classList.remove("active");
         menu.classList.remove("active");
-        document.body.classList.remove("overflow-hidden");
+        document.querySelector("html").style.overflow = "";
+    } else {
+        burgerBtn.classList.add("active");
+        menu.classList.add("active");
+        document.querySelector("html").style.overflow = "hidden";
     }
 });
