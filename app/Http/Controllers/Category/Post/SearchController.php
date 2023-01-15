@@ -44,8 +44,6 @@ class SearchController extends Controller
                 ->orWhere('content', 'LIKE', "%{$search}%")
                 ->get();
         endif;
-        $posts = Post::has('tags')->get();
-
         return view('posts.index', [
             'posts' => $posts,
             'categories' => $categories->where('published', '1')
