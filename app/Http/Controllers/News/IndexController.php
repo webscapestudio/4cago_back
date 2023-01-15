@@ -15,7 +15,7 @@ class IndexController extends Controller
     {
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $user = Auth::user();
-        $news = News::where('published', '1')->paginate(1000);
+        $news = News::latest()->where('published', '1')->paginate(1000);
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
         return view('news.index', compact('news', 'user', 'posts_read', 'right_banners', 'left_banners'));
