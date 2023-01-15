@@ -82,11 +82,9 @@
 
           <div class="post__main">
             <a class="post__title" href="{{ route('news.show', $new->id) }}">{{ $new->title }}</a>
-            <div class="post__content">
+            <div class="post__content js-read-smore" data-read-smore-words="40">
               {{ $new->content }}
-              <div class="read__full">
-                <a class="vacancy__link" href="{{ route('news.show', $new->id) }}">Читать полностью</a>
-              </div>
+
             </div>
 
             @if ($new->news_image)
@@ -272,13 +270,9 @@
           <div class="post__main">
             <a class="post__title"
               href="{{ route('advertisement.show', [$advertisement->category_advertisement_id, $advertisement->id]) }}">{{ $advertisement->title }}</a>
-            <div class="post__content">
+            <div class="post__content js-read-smore" data-read-smore-words="40">
               {{ $advertisement->content }}
-              <div class="read__full">
-                <a class="vacancy__link"
-                  href="{{ route('advertisement.show', [$advertisement->category_advertisement_id, $advertisement->id]) }}">Читать
-                  полностью</a>
-              </div>
+
             </div>
 
             @if ($advertisement->advertisement_image)
@@ -466,12 +460,9 @@
           <div class="post__main">
             <a class="post__title"
               href="{{ route('post.show', [$post->category_id, $post->id]) }}">{{ $post->title }}</a>
-            <div class="post__content">
+            <div class="post__content js-read-smore" data-read-smore-words="40">
               {{ $post->content }}
-              <div class="read__full">
-                <a class="vacancy__link" href="{{ route('post.show', [$post->category_id, $post->id]) }}">Читать
-                  полностью</a>
-              </div>
+
             </div>
 
             @if ($post->post_image)

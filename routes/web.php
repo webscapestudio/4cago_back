@@ -24,6 +24,7 @@ Route::group(['namespace' => 'CategoryAdvertisement', 'prefix' => 'categories_ad
     Route::get('/', 'IndexController')->name('categories_advertisements.index');
     Route::group(['namespace' => 'Advertisement', 'prefix' => '/{categories_advertisements}/advertisements'], function () {
         Route::get('/', 'IndexController')->name('advertisement.index');
+        Route::get('/search', 'SearchController')->name('advertisement.search');
         Route::get('/{advertisement}', 'ShowController')->name('advertisement.show');
         Route::group(['namespace' => 'Favourite', 'prefix' => '{advertisement}/favourites'], function () {
             Route::post('/', 'StoreController')->name('advertisement.favourite.store');

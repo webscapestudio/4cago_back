@@ -25,9 +25,10 @@ class IndexController extends Controller
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
+        $post_cat = $request->route('category');
         return view('posts.index', [
             'posts' => $posts->where('published', '1')->get(),
             'categories' => $categories->where('published', '1')
-        ], compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'request'));
+        ], compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'post_cat'));
     }
 }
