@@ -577,6 +577,9 @@ video {
 .mb-0 {
   margin-bottom: 0px;
 }
+.ml-3 {
+  margin-left: 0.75rem;
+}
 .block {
   display: block;
 }
@@ -1892,6 +1895,9 @@ input[type=number]::-webkit-inner-spin-button {
 }
 .ad__comment .ad__comment-bottom {
   padding-top: 15px;
+}
+.ad__comment form {
+  padding: 0;
 }
 
 @media (max-width: 1200px) {
