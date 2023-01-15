@@ -16,7 +16,7 @@ class ShowController extends Controller
 
         $post = Post::find($post_id);
         $user = Auth::user();
-        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $comments = Comment::all();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');

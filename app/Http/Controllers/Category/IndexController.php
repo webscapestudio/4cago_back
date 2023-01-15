@@ -16,7 +16,7 @@ class IndexController extends Controller
     {
         $categories = Category::where('parent_id',  0)->where('published', '1')->get();
         $user = Auth::user();
-        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
         return view('categories_posts.index', compact('categories', 'user', 'posts_read', 'right_banners', 'left_banners'));

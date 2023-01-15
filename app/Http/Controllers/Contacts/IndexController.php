@@ -14,7 +14,7 @@ class IndexController extends Controller
     public function __invoke()
     {
         $contacts = Contacts::all()->where('published', '1');
-        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');

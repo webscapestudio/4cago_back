@@ -15,7 +15,7 @@ class IndexController extends Controller
 {
     public function __invoke($category_advertisementId = 0)
     {
-        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $advertisements = Advertisement::latest();
         $categories_advertisements = CategoryAdvertisement::get();
         if ($category_advertisementId) {

@@ -14,7 +14,7 @@ class CreateController extends Controller
 {
     public function __invoke()
     {
-        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $works = Work::all();
         $categories_works = CategoryWork::all();
         $user = Auth::user();

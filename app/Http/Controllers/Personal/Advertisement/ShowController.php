@@ -14,7 +14,7 @@ class ShowController extends Controller
     public function __invoke(Advertisement $advertisement)
     {
         $user = Auth::user();
-        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $advertisements = Advertisement::all();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');

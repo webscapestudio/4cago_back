@@ -14,7 +14,7 @@ class EditController extends Controller
 {
     public function __invoke(Post $post, Category $category)
     {
-        $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $categories = Category::with('childrenCategories')->where('parent_id', '>', '0')->get();
         $tags = Tag::all();

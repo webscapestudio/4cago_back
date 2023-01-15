@@ -47,6 +47,7 @@ Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () 
     Route::get('/', 'IndexController')->name('categories_posts.index');
     Route::group(['namespace' => 'Post', 'prefix' => '/{category}/posts'], function () {
         Route::get('/', 'IndexController')->name('post.index');
+        Route::get('/search', 'SearchController')->name('post.search');
         Route::get('/{post}', 'ShowController')->name('post.show');
         Route::group(['namespace' => 'Favourite', 'prefix' => '{post}/favourites'], function () {
             Route::post('/', 'StoreController')->name('post.favourite.store');
@@ -67,6 +68,7 @@ Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () 
 //News
 Route::group(['namespace' => 'News', 'prefix' => 'news'], function () {
     Route::get('/', 'IndexController')->name('news.index');
+    Route::get('/search', 'SearchController')->name('news.search');
     Route::get('/{news}', 'ShowController')->name('news.show');
     Route::group(['namespace' => 'Favourite', 'prefix' => '{news}/favourites'], function () {
         Route::post('/', 'StoreController')->name('news.favourite.store');
