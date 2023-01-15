@@ -46,6 +46,7 @@
   "homepage": "https://github.com/webscapestudio/4cago_back#readme",
   "dependencies": {
     "laravel-mix-glob": "^1.1.10",
-    "normalize.css": "^8.0.1"
+    "normalize.css": "^8.0.1",
+    "read-smore": "^2.1.0"
   }
 }

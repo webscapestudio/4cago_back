@@ -8,7 +8,7 @@ import MicroModal from "micromodal";
 import { tab } from "./modules/tab.js";
 import SlimSelect from "slim-select";
 import tags from "./modules/tags";
-
+import ReadSmore from "read-smore";
 try {
     new SlimSelect({
         select: "#slim-select",
@@ -23,6 +23,16 @@ try {
     console.log("error");
 }
 
+const readMores = document.querySelectorAll(".js-read-smore");
+
+const options = {
+    // blockClassName: "read-more",
+    moreText: "Показать больше",
+    lessText: "Скрыть",
+};
+
+// Pass in options param
+ReadSmore(readMores, options).init();
 MicroModal.init({
     disableScroll: true, // [6]
 });

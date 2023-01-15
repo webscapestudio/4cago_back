@@ -1523,6 +1523,18 @@ input[type=number]::-webkit-inner-spin-button {
   color: #1b465c;
 }
 
+.read-smore__link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  color: #245d7b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.read-smore__link:hover {
+  color: #1b465c;
+}
+
 .form__link {
   font-weight: 500;
   font-size: 16px;
@@ -4225,6 +4237,7 @@ form.error .form__message {
   text-align: left;
   overflow: hidden;
   position: relative;
+  transform: all 0.3s ease;
 }
 .post__content .read__full {
   height: 53px;
@@ -4406,6 +4419,18 @@ form.error .form__message {
 }
 
 .vacancy__link:hover {
+  color: #1b465c;
+}
+
+.read-smore__link {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 170%;
+  color: #245d7b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.read-smore__link:hover {
   color: #1b465c;
 }
 
