@@ -3,7 +3,6 @@ const menu = document.querySelector(".sidebar");
 
 burgerBtn.addEventListener("click", (e) => {
     const target = e.target.classList;
-    console.log(target);
     if (target.contains("burger") && target.contains("active")) {
         burgerBtn.classList.remove("active");
         menu.classList.remove("active");
