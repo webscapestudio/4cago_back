@@ -29,7 +29,7 @@
           <div class="card card-widget">
             <div class="card-header">
               <div class="user-block">
-                <h3 class="card-title">{{ $post->author->name ?? null }}</h3>
+                <h3 class="card-title">{{ $post->author->name ?? 'Пользователь не найден' }}</h3>
 
               </div>
 
@@ -58,7 +58,7 @@
               <div class="card-comment">
                 <h5 class="m-0">Коментарии поста</h5>
                 @foreach ($post->comments->where('parent_id', null)->reverse() as $comment)
-                  @if ($comment->author->user_avatar)
+                  @if ($comment->author->user_avatar ?? null)
                     <img class="img-circle img-sm" src="{{ asset('storage/' . $comment->author->user_avatar) }}"
                       alt="User Image">
                   @else
@@ -79,7 +79,7 @@
                     {{ $comment->content }}
                   </div>
                   @foreach ($comment->replies->reverse() as $comment1)
-                    @if ($comment1->author->user_avatar)
+                    @if ($comment1->author->user_avatar ?? null)
                       <img class="img-circle img-sm" src="{{ asset('storage/' . $comment1->author->user_avatar) }}"
                         alt="User Image">
                     @else

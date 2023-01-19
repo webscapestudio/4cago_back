@@ -4,7 +4,7 @@
     <div class="post__header">
       <div class="post__header-left">
         <div class="user__avatar">
-          @if ($advertisement->author->user_avatar)
+          @if ($advertisement->author->user_avatar ?? null)
             <picture>
               <source srcset="{{ asset('storage/' . $advertisement->author->user_avatar) }}" type="image/webp" />
               <img src=" {{ asset('storage/' . $advertisement->author->user_avatar) }}" alt="" />
@@ -17,7 +17,7 @@
           @endif
         </div>
         <p class="user__name">
-          {{ $advertisement->author->name ?? null }}{{ $advertisement->created_at->diffForHumans() }}
+          {{ $advertisement->author->name ?? 'Пользователь не найден' }}
         </p>
         <div class="post__date">{{ $advertisement->created_at->diffForHumans() }}</div>
       </div>
@@ -277,7 +277,7 @@
     <div class="ad__comment">
       <div class="ad__comment-top">
         <div class="user__avatar">
-          @if ($comment->author->user_avatar)
+          @if ($comment->author->user_avatar ?? null)
             <picture>
               <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
               <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
@@ -305,7 +305,7 @@
             </div>
 
             <div class="dropdown report">
-              @if (Auth::id() == $comment->author->id)
+              @if (Auth::id() == isset($comment->author->id))
                 <form
                   action="{{ route('advertisement.comment.destroy', [$advertisement->category_advertisement_id, $advertisement->id, $comment->id]) }}"
                   method="POST">
@@ -372,7 +372,7 @@
       <div class="ad__comment">
         <div class="ad__comment-top">
           <div class="user__avatar">
-            @if ($comment1->author->user_avatar)
+            @if ($comment1->author->user_avatar ?? null)
               <picture>
                 <source srcset="{{ asset('storage/' . $comment1->author->user_avatar) }}" type="image/webp" />
                 <img src=" {{ asset('storage/' . $comment1->author->user_avatar) }}" alt="" />
@@ -403,7 +403,7 @@
 
 
               <div class="dropdown report">
-                @if (Auth::id() == $comment1->author->id)
+                @if (Auth::id() == isset($comment1->author->id))
                   <form
                     action="{{ route('advertisement.comment.destroy', [$advertisement->category_advertisement_id, $advertisement->id, $comment1->id]) }}"
                     method="POST">

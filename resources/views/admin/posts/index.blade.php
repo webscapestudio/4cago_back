@@ -77,7 +77,7 @@
                           <td>{{ $post->id }}</td>
                           <td>{{ $post->title }}</td>
                           <td>{{ $post->category->title ?? null }}</td>
-                          <td>{{ $post->author->name ?? null }}</td>
+                          <td>{{ $post->author->name ?? 'Пользователь не найден' }}</td>
                           <td>{{ $post->favourite->count() }}</td>
                           <td>{{ $post->comments->count() }}</td>
                           <td>{{ $post->like->count() }}</td>

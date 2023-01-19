@@ -7,7 +7,7 @@
       <div class="post__header">
         <div class="post__header-left">
           <div class="user__avatar">
-            @if ($post->author->user_avatar)
+            @if ($post->author->user_avatar ?? null)
               <picture>
                 <source srcset="{{ asset('storage/' . $post->author->user_avatar) }}" type="image/webp" />
                 <img src=" {{ asset('storage/' . $post->author->user_avatar) }}" alt="" />

@@ -1,28 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
+  <link rel="stylesheet" href="{{ mix('/css/main.css') }}" />
+  <section class="pc">
+    <div class="container">
+      <div class="pass__restore">
+        <a class="close__btn" href="{{ url('/') }}">
+          <svg class="icon" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z">
+            </path>
+          </svg>
+        </a>
+        @if (session('success'))
+          <h2 class="delete__title">{{ session('success') }}</h2>
+        @else
+          <h2 class="delete__title">Подтвердите свой адрес электронной почты!</h2>
+          <p class="post__text">На ваш адрес электронной почты была отправлена новая ссылка для подтверждения.</p>
+          <p class="post__text">Прежде чем продолжить, пожалуйста, проверьте свою электронную почту на наличие ссылки для
+            подтверждения.</p>
+          <p class="post__text">Если вы не получили электронное письмо.</p>
+          <div class="registration__inputs">
+            <form class="d-inline" method="POST" action="{{ route('verification.send') }}">
+              @csrf
+              <button type="submit" class="btn btn__blue">{{ __('Повторная отправка') }}</button>.
+            </form>
+          </div>
+        @endif
+      </div>
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
-                        </div>
-                    @endif
-
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
+  </section>
 @endsection

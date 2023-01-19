@@ -59,7 +59,7 @@
               <div class="card-comment">
                 <h5 class="m-0">Коментарии поста</h5>
                 @foreach ($news->comments->where('parent_id', null)->reverse() as $comment)
-                  @if ($comment->author->user_avatar)
+                  @if ($comment->author->user_avatar ?? null)
                     <img class="img-circle img-sm" src="{{ asset('storage/' . $comment->author->user_avatar) }}"
                       alt="User Image">
                   @else
@@ -80,7 +80,7 @@
                     {{ $comment->content }}
                   </div>
                   @foreach ($comment->replies->reverse() as $comment1)
-                    @if ($comment1->author->user_avatar)
+                    @if ($comment1->author->user_avatar ?? null)
                       <img class="img-circle img-sm" src="{{ asset('storage/' . $comment1->author->user_avatar) }}"
                         alt="User Image">
                     @else

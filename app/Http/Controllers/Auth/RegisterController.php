@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -50,9 +52,21 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'name.required' => 'Поле "Имя" обязательно для заполнения',
+            'name.string' => 'Поле "Имя" должно быть строкой',
+            'name.unique' => 'Пользователь с таким "Именем" уже существует',
+            'email.required' => 'Поле "E-mail" обязательно для заполнения',
+            'email.string' => 'Поле "E-mail" должно быть строкой',
+            'email.email' => 'Поле "E-mail" должно соответствовать формату name@domain.com',
+            'email.unique' => 'Пользователь с таким "E-mail" уже существует',
+            'password.required' => 'Поле "Пароль" обязательно для заполнения',
+            'password.string' => 'Поле "Пароль" должно быть строкой',
+            'password.confirmed' => 'Пароли не совпадают',
+            'password.min' => 'Пароли должны содержать не менее 8 символов',
         ]);
     }
 
@@ -64,10 +78,12 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+        return $user;
     }
 }

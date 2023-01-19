@@ -75,7 +75,7 @@
                           <td>{{ $advertisement->id }}</td>
                           <td>{{ $advertisement->title }}</td>
                           <td>{{ $advertisement->category_advertisement->title ?? null }}</td>
-                          <td>{{ $advertisement->author->name ?? null }}</td>
+                          <td>{{ $advertisement->author->name ?? 'Пользователь не найден' }}</td>
                           <td>{{ $advertisement->favourite->count() }}</td>
                           <td>{{ $advertisement->comments->count() }}</td>
                           <td>{{ $advertisement->like->count() }}</td>

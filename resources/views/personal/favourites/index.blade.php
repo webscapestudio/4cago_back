@@ -4,7 +4,7 @@
       <div class="profile__card-top">
         <div class="profile__card-left">
           <div class="user__img">
-            @if ($user->user_avatar)
+            @if ($user->user_avatar ?? null)
               <picture>
                 <source srcset="{{ asset('storage/' . $user->user_avatar) }}" type="image/webp" />
                 <img src=" {{ asset('storage/' . $user->user_avatar) }}" alt="" />
@@ -223,7 +223,7 @@
           <div class="post__header">
             <div class="post__header-left">
               <div class="user__avatar">
-                @if ($advertisement->author->user_avatar)
+                @if ($advertisement->author->user_avatar ?? null)
                   <picture>
                     <source srcset="{{ asset('storage/' . $advertisement->author->user_avatar) }}" type="image/webp" />
                     <img src=" {{ asset('storage/' . $advertisement->author->user_avatar) }}" alt="" />
@@ -235,7 +235,7 @@
                   </picture>
                 @endif
               </div>
-              <p class="user__name">{{ $advertisement->author->name ?? null }}</p>
+              <p class="user__name">{{ $advertisement->author->name ?? 'Пользователь не найден' }}</p>
               <div class="post__date">{{ $advertisement->created_at->diffForHumans() }}</div>
             </div>
             <div class="post__header-right">
@@ -415,7 +415,7 @@
           <div class="post__header">
             <div class="post__header-left">
               <div class="user__avatar">
-                @if ($post->author->user_avatar)
+                @if ($post->author->user_avatar ?? null)
                   <picture>
                     <source srcset="{{ asset('storage/' . $post->author->user_avatar) }}" type="image/webp" />
                     <img src=" {{ asset('storage/' . $post->author->user_avatar) }}" alt="" />

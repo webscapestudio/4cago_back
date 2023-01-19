@@ -268,7 +268,7 @@
     <div class="ad__comment">
       <div class="ad__comment-top">
         <div class="user__avatar">
-          @if ($comment->author->user_avatar)
+          @if ($comment->author->user_avatar ?? null)
             <picture>
               <source srcset="{{ asset('storage/' . $comment->author->user_avatar) }}" type="image/webp" />
               <img src=" {{ asset('storage/' . $comment->author->user_avatar) }}" alt="" />
@@ -361,7 +361,7 @@
       <div class="ad__comment">
         <div class="ad__comment-top">
           <div class="user__avatar">
-            @if ($comment1->author->user_avatar)
+            @if ($comment1->author->user_avatar ?? null)
               <picture>
                 <source srcset="{{ asset('storage/' . $comment1->author->user_avatar) }}" type="image/webp" />
                 <img src=" {{ asset('storage/' . $comment1->author->user_avatar) }}" alt="" />

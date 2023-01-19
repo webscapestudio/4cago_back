@@ -1,8 +1,11 @@
 <?php
 
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Redirect;
+use App\Providers\RouteServiceProvider;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,8 +20,26 @@ use Illuminate\Support\Facades\Auth;
 Route::group(['namespace' => 'Main'], function () {
     Route::get('/', 'IndexController')->name('main.index');
 });
-
-
+Route::get('/email/verify',  function (Request $request) {
+    if ($request->user()->hasVerifiedEmail()) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+    }
+    return view('auth.verify');
+})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    if ($request->user()->hasVerifiedEmail()) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+    }
+    $request->fulfill();
+    return redirect()->intended(RouteServiceProvider::HOME);
+})->middleware('auth', 'signed')->name('verification.verify');
+Route::post('/email/verification-notification', function (Request $request) {
+    if ($request->user()->hasVerifiedEmail()) {
+        return redirect()->intended(RouteServiceProvider::HOME);
+    }
+    $request->user()->sendEmailVerificationNotification();
+    return redirect()->back()->with('success', 'Ссылка для подтверждения почты отправлена!');
+})->middleware('auth')->name('verification.send');
 //Advertisement
 Route::group(['namespace' => 'CategoryAdvertisement', 'prefix' => 'categories_advertisements'], function () {
     Route::get('/', 'IndexController')->name('categories_advertisements.index');

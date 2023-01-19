@@ -15,13 +15,13 @@
     </div>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                              <option value="date">По
-                                дате</option>
-                              <option value="views">По
-                                количеству просмотров</option>
-                              <option value="like">По
-                                рейтингу</option>
-                            </select> -->
+                                <option value="date">По
+                                  дате</option>
+                                <option value="views">По
+                                  количеству просмотров</option>
+                                <option value="like">По
+                                  рейтингу</option>
+                              </select> -->
     </div>
   </form>
   @if (!$advertisements->count() == 0)
@@ -31,7 +31,7 @@
         <div class="post__header">
           <div class="post__header-left">
             <div class="user__avatar">
-              @if ($advertisement->author->user_avatar)
+              @if ($advertisement->author->user_avatar ?? null)
                 <picture>
                   <source srcset="{{ asset('storage/' . $advertisement->author->user_avatar) }}" type="image/webp" />
                   <img src=" {{ asset('storage/' . $advertisement->author->user_avatar) }}" alt="" />
