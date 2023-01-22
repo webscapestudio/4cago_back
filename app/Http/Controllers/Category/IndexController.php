@@ -14,7 +14,7 @@ class IndexController extends Controller
 {
     public function __invoke()
     {
-        $categories = Category::where('parent_id',  0)->where('published', '1')->get();
+        $categories = Category::where('parent_id',  0)->where('published', '1')->with('childrenCategories')->get();
         $user = Auth::user();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $right_banners = RightBanner::all()->where('published', '1');

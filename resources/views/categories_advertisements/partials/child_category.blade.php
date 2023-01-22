@@ -1,4 +1,4 @@
-@foreach ($categories_advertisement as $category_list)
+@foreach ($child_categories as $category_list)
   <a class="forum__theme" href="{{ route('advertisement.index', $category_list->id) }}">
     <div class="forum__theme-left">
       <p class="title__comment"> {{ $category_list->title }}</p>
@@ -15,4 +15,9 @@
       </div>
     </div>
   </a>
+  @if (count($category_list->childrenCategories) > 0)
+    @include('categories_advertisements.partials.child_category', [
+        'child_categories' => $category_list->childrenCategories->where('published', '1'),
+    ])
+  @endif
 @endforeach

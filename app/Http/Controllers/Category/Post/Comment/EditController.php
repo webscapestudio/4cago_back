@@ -15,7 +15,7 @@ class EditController extends Controller
 {
     public function __invoke($category_id, $post_id, CommentStoreRequest $request)
     {
-        dd(1111);
+
         return view('posts.comment.edit');
     }
 }

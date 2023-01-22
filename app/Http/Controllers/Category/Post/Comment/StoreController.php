@@ -13,8 +13,10 @@ class StoreController extends Controller
 {
     public function __invoke($category_id, $post_id, CommentStoreRequest $request)
     {
+
         $post = Post::find($post_id);
         $data = $request->validated();
+
         if (empty($data['comment_image'])) :
             $data['comment_image'] = null;
         endif;

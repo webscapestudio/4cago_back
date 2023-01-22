@@ -17,4 +17,5 @@
       <p class="post__title">Тут пока ничего нет...</p>
     @endif
   </div>
+
 @endsection
