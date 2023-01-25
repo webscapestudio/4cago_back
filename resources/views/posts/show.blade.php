@@ -38,7 +38,6 @@
             <button class="title__count report" data-micromodal-trigger="report">
               Пожаловаться
             </button>
-            <button class="title__count unlock">Разблокировать</button>
           </div>
 
         </div>

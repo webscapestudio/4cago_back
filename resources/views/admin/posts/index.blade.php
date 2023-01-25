@@ -82,7 +82,14 @@
                           <td>{{ $post->comments->count() }}</td>
                           <td>{{ $post->like->count() }}</td>
                           <td>{{ $post->dislike->count() }}</td>
-                          <td>{{ $post->published == 1 ? 'Опубликовано' : 'Не опубликовано' }}
+                          <td>
+                            @if ($post->published == '0')
+                              Не опубликовано
+                            @elseif($post->published == '1')
+                              Опубликовано
+                            @else
+                              Заблокировано
+                            @endif
                           <td><a href="{{ route('admin.post.show', $post->id) }}"><i class="far fa-eye"></i></a></td>
                           <td>
                             <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST">

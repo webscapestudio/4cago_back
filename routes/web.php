@@ -62,6 +62,9 @@ Route::group(['namespace' => 'CategoryAdvertisement', 'prefix' => 'categories_ad
             Route::patch('/{comment}', 'UpdateController')->name('advertisement.comment.update');
             Route::delete('/{comment}', 'DestroyController')->name('advertisement.comment.destroy');
         });
+        Route::group(['namespace' => 'BannedReason', 'prefix' => '{advertisement}/banned_reason', 'middleware' => ['auth', 'verified']], function () {
+            Route::post('/', 'StoreController')->name('advertisement.banned_reason.store');
+        });
     });
 });
 //Post
@@ -85,6 +88,9 @@ Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () 
             Route::patch('/{comment}', 'UpdateController')->name('post.comment.update');
             Route::delete('/{comment}', 'DestroyController')->name('post.comment.destroy');
         });
+        Route::group(['namespace' => 'BannedReason', 'prefix' => '{post}/banned_reason', 'middleware' => ['auth', 'verified']], function () {
+            Route::post('/', 'StoreController')->name('post.banned_reason.store');
+        });
     });
 });
 //News
@@ -105,6 +111,9 @@ Route::group(['namespace' => 'News', 'prefix' => 'news'], function () {
         Route::post('/', 'StoreController')->name('news.comment.store');
         Route::patch('/{comment}', 'UpdateController')->name('news.comment.update');
         Route::delete('/{comment}', 'DestroyController')->name('news.comment.destroy');
+    });
+    Route::group(['namespace' => 'BannedReason', 'prefix' => '{news}/banned_reason', 'middleware' => ['auth', 'verified']], function () {
+        Route::post('/', 'StoreController')->name('news.banned_reason.store');
     });
 });
 //MarketingFaq
@@ -282,12 +291,30 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::patch('/{left_banner}', 'UpdateController')->name('admin.left_banner.update');
         Route::delete('/{left_banner}', 'DestroyController')->name('admin.left_banner.destroy');
     });
+    // UpperBanner admin CRUD
+    Route::group(['namespace' => 'UpperBanner', 'prefix' => 'upper_banners'], function () {
+        Route::get('/', 'IndexController')->name('admin.upper_banner.index');
+        Route::get('/create', 'CreateController')->name('admin.upper_banner.create');
+        Route::post('/', 'StoreController')->name('admin.upper_banner.store');
+        Route::get('/{upper_banner}', 'ShowController')->name('admin.upper_banner.show');
+        Route::get('/{upper_banner}/edit', 'EditController')->name('admin.upper_banner.edit');
+        Route::patch('/{upper_banner}', 'UpdateController')->name('admin.upper_banner.update');
+        Route::delete('/{upper_banner}', 'DestroyController')->name('admin.upper_banner.destroy');
+    });
+    Route::group(['namespace' => 'BannedReason', 'prefix' => 'banned_reasons'], function () {
+        Route::get('/', 'IndexController')->name('admin.banned_reason.index');
+        Route::get('/search', 'SearchController')->name('admin.banned_reason.search');
+        Route::patch('/{banned_reason}', 'ReportController')->name('admin.banned_reason.report');
+        Route::get('/{banned_reason}', 'ShowController')->name('admin.banned_reason.show');
+        Route::delete('/{banned_reason}', 'DestroyController')->name('admin.banned_reason.destroy');
+    });
 });
 //Personal
 Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' => ['auth', 'verified']], function () {
     Route::group(['namespace' => 'Main'], function () {
         Route::get('/', 'IndexController')->name('personal.main.index');
     });
+
     // Post personal CRUD
     Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
         Route::get('/all', 'IndexController')->name('personal.post.index');

@@ -42,4 +42,9 @@ class News extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+    //Banned reason
+    public function banned_reason()
+    {
+        return $this->morphMany(BannedReason::class, 'banned_reasonable');
+    }
 }

@@ -144,6 +144,11 @@
         </a>
         <ul class="nav nav-treeview" style="display: none;">
           <li class="nav-item">
+            <a href="{{ route('admin.upper_banner.index') }}" class="nav-link">
+              <p>Верхний банер</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="{{ route('admin.right_banner.index') }}" class="nav-link">
               <p>Банера справа</p>
             </a>
@@ -155,6 +160,14 @@
           </li>
 
         </ul>
+      </li>
+      <li class="nav-item">
+        <a href="{{ route('admin.banned_reason.index') }}" class="nav-link">
+          <i class="nav-icon fas fa-brush"></i>
+          <p>
+            Жалобы
+          </p>
+        </a>
       </li>
     </ul>
   </div>

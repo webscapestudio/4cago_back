@@ -30,7 +30,7 @@ class StoreController extends Controller
         endif;
         $post->comments()->create([
             'user_id' => Auth::user()->id,
-            'content' =>  $request->content,
+            'banned_reason' =>  $request->content,
             'comment_image' => $data['comment_image'],
             'category_id' => $category_id,
             'parent_id' => $data['parent_id']

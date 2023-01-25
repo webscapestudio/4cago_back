@@ -9,12 +9,14 @@ use App\Models\CategoryAdvertisement;
 use App\Models\RightBanner;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\UpperBanner;
 use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
     public function __invoke(Request $request, $category_advertisementId = 0)
     {
+        $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
@@ -45,6 +47,6 @@ class SearchController extends Controller
         return view('advertisements.index', [
             'advertisements' => $advertisements,
             'categories_advertisements' => $categories_advertisements->where('published', '1')
-        ], compact('advertisement_cat', 'user', 'posts_read', 'right_banners', 'left_banners'));
+        ], compact('advertisement_cat', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
     }
 }

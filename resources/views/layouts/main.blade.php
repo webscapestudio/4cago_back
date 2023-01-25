@@ -24,7 +24,7 @@
   </main>
   @include('components.modals.authorization')
   @include('components.modals.registration')
-
+  @include('components.modals.report')
 </body>
 
 <!-- <script src="{{ asset('./js/main.min.js') }}"></script> -->

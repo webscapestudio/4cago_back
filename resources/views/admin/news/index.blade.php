@@ -78,7 +78,15 @@
                           <td>{{ $news->comments->count() }}</td>
                           <td>{{ $news->like->count() }}</td>
                           <td>{{ $news->dislike->count() }}</td>
-                          <td>{{ $news->published == 1 ? 'Опубликовано' : 'Не опубликовано' }}
+                          <td>
+                            @if ($news->published == '0')
+                              Не опубликовано
+                            @elseif($news->published == '1')
+                              Опубликовано
+                            @else
+                              Заблокировано
+                            @endif
+                          </td>
                           <td><a href="{{ route('admin.news.show', $news->id) }}"><i class="far fa-eye"></i></a></td>
                           <td><a href="{{ route('admin.news.edit', $news->id) }}" class="text-success"><i
                                 class="fas fa-pencil-alt"></i></a></td>

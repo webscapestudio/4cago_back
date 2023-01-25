@@ -80,7 +80,15 @@
                           <td>{{ $advertisement->comments->count() }}</td>
                           <td>{{ $advertisement->like->count() }}</td>
                           <td>{{ $advertisement->dislike->count() }}</td>
-                          <td>{{ $advertisement->published == 1 ? 'Опубликовано' : 'Не опубликовано' }}
+                          <td>
+                            @if ($advertisement->published == '0')
+                              Не опубликовано
+                            @elseif($advertisement->published == '1')
+                              Опубликовано
+                            @else
+                              Заблокировано
+                            @endif
+                          </td>
                           <td><a href="{{ route('admin.advertisement.show', $advertisement->id) }}"><i
                                 class="far fa-eye"></i></a></td>
                           <td>
