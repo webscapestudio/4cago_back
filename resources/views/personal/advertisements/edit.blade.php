@@ -95,8 +95,8 @@
         <p class="post__date">Текст</p>
         <div class="white__area">
 
-          <textarea id="summernote" class="white__textarea" name="content" id="white-area">{{ $advertisement->content }}</textarea>
-          @error('content')
+          <textarea class="white__textarea" name="description" id="white-area">{{ $advertisement->description }}</textarea>
+          @error('description')
             <div class="text-danger">{{ $message }}</div>
           @enderror
 
@@ -128,6 +128,13 @@
           </div>
         @else
         @endif
+        <div class="create__text">
+          <p class="post__date">Текст</p>
+          <textarea class="tiny_editor" name="content">{{ $advertisement->content }}</textarea>
+          @error('content')
+            <div class="text-danger">{{ $message }}</div>
+          @enderror
+        </div>
       </div>
       <div class="create__tags">
         <select class="select2" name="tags[]" multiple="multiple" data-placeholder="Выберите теги" style="width: 100%;">

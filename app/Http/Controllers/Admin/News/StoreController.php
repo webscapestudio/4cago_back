@@ -32,8 +32,6 @@ class StoreController extends Controller
             'news_image' => $data['news_image'],
             'user_id' => $author->id,
             'published' =>  $request->published,
-            'is_banned' =>  0,
-
         ]);
         if (isset($tagIds)) :
             $news->tags()->attach($tagIds);

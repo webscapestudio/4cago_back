@@ -47,7 +47,7 @@
     </div>
     <div class="post__main">
       <p class="post__title">{{ $advertisement->title }}</p>
-      <p class="post__text">{{ $advertisement->content }}</p>
+      <p class="post__text">{!! $advertisement->content !!}</p>
 
       @if ($advertisement->advertisement_image)
         <div class="post__img">

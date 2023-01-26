@@ -27,12 +27,12 @@ class IndexController extends Controller
                 ->where('favouritable_type', Advertisement::class)->where('published', '1');
         })->get();
 
-        $news = News::whereHas('favourite', function ($query) {
+        $news_all = News::whereHas('favourite', function ($query) {
             $query->where('user_id', Auth::id())
                 ->where('favouritable_type', News::class)->where('published', '1');
         })->get();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('personal.favourites.index',  compact('user', 'posts', 'advertisements', 'news', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
+        return view('personal.favourites.index',  compact('user', 'posts', 'advertisements', 'news_all', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
     }
 }

@@ -8,7 +8,7 @@
         <p class="post__title">{{ $rule->title }}</p>
         <ul class="rule__items">
           <li class="rule__item">
-            <p class="feed__text">{{ $rule->content }}</p>
+            <p class="feed__text">{!! $rule->content !!}</p>
           </li>
         </ul>
       @endforeach

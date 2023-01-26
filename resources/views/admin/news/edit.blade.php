@@ -68,7 +68,7 @@
                 </div>
                 <div class="form-group">
                   <label for="inputDescription">Текст новости</label>
-                  <textarea id="inputDescription" class="form-control" rows="4" style="height: 170px;" name="content"
+                  <textarea id="inputDescription" class="tiny_editor" rows="4" style="height: 170px;" name="content"
                     placeholder="Текст ...">{{ $news->content }}</textarea>
 
                   @error('content')

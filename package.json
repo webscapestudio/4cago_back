@@ -47,6 +47,7 @@
   "dependencies": {
     "laravel-mix-glob": "^1.1.10",
     "normalize.css": "^8.0.1",
-    "read-smore": "^2.1.0"
+    "read-smore": "^2.1.0",
+    "tinymce": "^6.3.1"
   }
 }

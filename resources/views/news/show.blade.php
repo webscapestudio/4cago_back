@@ -40,7 +40,7 @@
     </div>
     <div class="post__main">
       <a class="post__title" href="ad-post.html">{{ $news->title }}</a>
-      <p class="post__text">{{ $news->content }}</p>
+      <p class="post__text">{!! $news->content !!}</p>
 
       @if ($news->news_image)
         <div class="post__img">

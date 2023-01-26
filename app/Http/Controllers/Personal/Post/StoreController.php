@@ -32,6 +32,7 @@ class StoreController extends Controller
             'post_image' => $data['post_image'],
             'user_id' => $author->id,
             'published' =>  $request->published,
+            'description' =>  $request->description,
         ]);
 
         if (isset($tagIds)) :

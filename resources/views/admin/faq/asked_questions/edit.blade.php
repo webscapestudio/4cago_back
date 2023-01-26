@@ -65,7 +65,7 @@
               </div>
               <div class="card-body" style="display: block;">
                 <div class="form-group">
-                  <label for="inputName">Название правила</label>
+                  <label for="inputName">Название вопроса</label>
                   <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
                     value="{{ $asked_question->title }}">
                   @error('title')
@@ -74,8 +74,8 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="inputDescription">Текст правила</label>
-                  <textarea id="inputDescription" class="form-control" rows="4" style="height: 170px;" name="content"
+                  <label for="inputDescription">Текст вопроса</label>
+                  <textarea id="inputDescription" class="tiny_editor" rows="4" style="height: 170px;" name="content"
                     placeholder="Текст ...">{{ $asked_question->content }}</textarea>
 
                   @error('content')

@@ -43,7 +43,7 @@
             <div class="card-body">
 
               <h4>Текст</h4>
-              <p>{{ $faq_marketing->content }}</p>
+              <p>{!! $faq_marketing->content !!}</p>
             </div>
 
             <div class="card-footer card-comments">

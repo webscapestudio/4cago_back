@@ -96,7 +96,7 @@
             <a class="post__title"
               href="{{ route('personal.advertisement.show', $advertisement->id) }}">{{ $advertisement->title }}</a>
             <div class="post__content js-read-smore" data-read-smore-words="40">
-              {{ $advertisement->content }}
+              {{ $advertisement->description }}
 
             </div>
 

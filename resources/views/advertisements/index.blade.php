@@ -15,13 +15,13 @@
     </div>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                                        <option value="date">По
-                                          дате</option>
-                                        <option value="views">По
-                                          количеству просмотров</option>
-                                        <option value="like">По
-                                          рейтингу</option>
-                                      </select> -->
+                                          <option value="date">По
+                                            дате</option>
+                                          <option value="views">По
+                                            количеству просмотров</option>
+                                          <option value="like">По
+                                            рейтингу</option>
+                                        </select> -->
     </div>
   </form>
   @if (!$advertisements->count() == 0)
@@ -52,7 +52,7 @@
           <a class="post__title"
             href="{{ route('advertisement.show', [$advertisement->category_advertisement_id, $advertisement->id]) }}">{{ $advertisement->title }}</a>
           <div class="post__content js-read-smore" data-read-smore-words="40">
-            {{ $advertisement->content }}
+            {{ $advertisement->description }}
           </div>
 
           @if ($advertisement->advertisement_image)

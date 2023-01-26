@@ -5,7 +5,7 @@
     <p class="post__title">{{ $faq_marketing->title }}</p>
 
     <p class="feed__text">
-      {{ $faq_marketing->content }}
+      {!! $faq_marketing->content !!}
     </p>
 
   </div>

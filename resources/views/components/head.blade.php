@@ -22,6 +22,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/images/apple-touch-icon-180x180.png') }}">
   <!-- <link rel="manifest" href="./images/manifest.json"> -->
   <link rel="stylesheet" href="{{ mix('/css/main.css') }}" />
-  <script src="/path/to/tinymce.min.js"></script>
+  <script src="https://cdn.tiny.cloud/1/v783xme3bbuz1q1joy5jp5p3sxeskit6syyhz9wvq4pj0amf/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
   <title>Chicago</title>
 </head>

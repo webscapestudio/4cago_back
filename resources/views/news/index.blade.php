@@ -16,13 +16,13 @@
     </div>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                      <option value="date">По
-                        дате</option>
-                      <option value="views">По
-                        количеству просмотров</option>
-                      <option value="like">По
-                        рейтингу</option>
-                    </select> -->
+                          <option value="date">По
+                            дате</option>
+                          <option value="views">По
+                            количеству просмотров</option>
+                          <option value="like">По
+                            рейтингу</option>
+                        </select> -->
     </div>
 
 
@@ -51,7 +51,7 @@
         <div class="post__main">
           <a class="post__title" href="{{ route('news.show', $new->id) }}">{{ $new->title }}</a>
           <div class="post__content js-read-smore" data-read-smore-words="40">
-            {{ $new->content }}
+            {{ $new->description }}
           </div>
 
           @if ($new->news_image)

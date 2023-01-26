@@ -51,7 +51,7 @@
               <div class="card-body" style="display: block;">
                 <div class="form-group">
                   <label for="inputName">Название контакта(реклама, поддержка, моредация)</label>
-                  <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
+                  <input type="text" id="inputName" class="form-control" name="title" placeholder="Название контакта"
                     value="{{ old('title') }}">
                   @error('title')
                     <div class="text-danger">{{ $message }}</div>

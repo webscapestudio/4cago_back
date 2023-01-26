@@ -16,13 +16,12 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-  <!-- summernote -->
-  <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
-
+  <script src="https://cdn.tiny.cloud/1/v783xme3bbuz1q1joy5jp5p3sxeskit6syyhz9wvq4pj0amf/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -83,8 +82,6 @@
   <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <!-- Select2 -->
   <script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
-  <!-- Summernote -->
-  <script src="{{ asset('plugins/summernote/summernote-bs4.min.js') }}"></script>
   <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
   <script>
     $.widget.bridge('uibutton', $.ui.button)
@@ -99,9 +96,16 @@
   <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
   <!-- AdminLTE App -->
   <script src="{{ asset('dist/js/adminlte.js') }}"></script>
-  <script src="{{ asset('./js/summernote.js') }}"></script>
   <script src="{{ asset('./js/bs-castom-file-init.js') }}"></script>
   <script src="{{ asset('./js/select2.js') }}"></script>
+  <script>
+    tinymce.init({
+      selector: '.tiny_editor',
+      plugins: 'anchor autolink charmap codesample emoticons link lists searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      language: 'ru',
+    });
+  </script>
 </body>
 
 </html>

@@ -94,7 +94,7 @@
             <a class="post__title"
               href="{{ route('personal.advertisement.show', $advertisement->id) }}">{{ $advertisement->title }}</a>
             <div class="post__content js-read-smore" data-read-smore-words="40">
-              {{ $advertisement->content }}
+              {{ $advertisement->description }}
             </div>
 
             @if ($advertisement->advertisement_image)
@@ -286,7 +286,7 @@
             <a class="post__title"
               href="{{ route('post.show', [$post->category_id, $post->id]) }}">{{ $post->title }}</a>
             <div class="post__content js-read-smore" data-read-smore-words="40">
-              {{ $post->content }}
+              {{ $post->description }}
             </div>
 
             @if ($post->post_image)

@@ -49,7 +49,7 @@
               <h4>Краткое описание</h4>
               <p>{{ $advertisement->description }}</p>
               <h4>Текст</h4>
-              <p>{{ $advertisement->content }}</p>
+              <p>{!! $advertisement->content !!}</p>
 
               <span class="float-right text-muted">Лайки - {{ $advertisement->like->count() }} / Дизлайки -
                 {{ $advertisement->dislike->count() }} / Коментарии -

@@ -44,7 +44,7 @@
             <div class="card-body">
 
               <h4>Текст</h4>
-              <p>{{ $asked_question->content }}</p>
+              <p>{!! $asked_question->content !!}</p>
             </div>
 
             <div class="card-footer card-comments">

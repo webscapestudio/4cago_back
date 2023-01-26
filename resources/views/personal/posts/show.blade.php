@@ -86,7 +86,7 @@
     </div>
     <div class="post__main">
       <a class="post__title">{{ $post->title }}</a>
-      <p class="post__text">{{ $post->content }}</p>
+      <p class="post__text">{!! $post->content !!}</p>
 
       @if ($post->post_image)
         <div class="post__img">

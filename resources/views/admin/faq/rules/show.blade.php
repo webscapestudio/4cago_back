@@ -41,7 +41,7 @@
             <div class="card-body">
 
               <h4>Текст</h4>
-              <p>{{ $rules->content }}</p>
+              <p>{!! $rules->content !!}</p>
             </div>
 
             <div class="card-footer card-comments">

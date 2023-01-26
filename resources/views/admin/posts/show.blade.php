@@ -47,7 +47,7 @@
               <h4>Краткое описание</h4>
               <p>{{ $post->description }}</p>
               <h4>Текст</h4>
-              <p>{{ $post->content }}</p>
+              <p>{!! $post->content !!}</p>
 
               <span class="float-right text-muted">Лайки - {{ $post->like->count() }} / Дизлайки -
                 {{ $post->dislike->count() }} / Коментарии -

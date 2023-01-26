@@ -31,6 +31,7 @@ class UpdateRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'nullable|integer|exists:tags,id',
+            'description' => 'nullable|string'
         ];
     }
 }

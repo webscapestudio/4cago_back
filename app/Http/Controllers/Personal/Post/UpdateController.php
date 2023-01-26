@@ -14,6 +14,7 @@ class UpdateController extends Controller
     {
         $author = Auth::user();
         $data = $request->validated();
+
         if (isset($data['tags'])) :
             $tagIds = $data['tags'];
             unset($data['tags']);

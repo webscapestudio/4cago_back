@@ -33,6 +33,7 @@ class StoreRequest extends FormRequest
             'category_advertisement_id' => 'required|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'nullable|integer|exists:tags,id',
+            'description' => 'nullable|string'
 
         ];
     }
@@ -45,6 +46,7 @@ class StoreRequest extends FormRequest
             'category_advertisement_id.required' => 'Это поле обязательно для заполнения',
             'category_advertisement_id.exists' => 'ID должен быть в базе данных',
             'tags.array' => 'Должен быть массив данных',
+            'description.string' => 'Данные должны соответствовать строчному типу',
         ];
     }
 }

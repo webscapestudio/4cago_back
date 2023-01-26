@@ -31,6 +31,7 @@ class StoreRequest extends FormRequest
             'category_id' => 'required|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'nullable|integer|exists:tags,id',
+            'description' => 'nullable|string'
         ];
     }
     public function messages()
@@ -44,6 +45,7 @@ class StoreRequest extends FormRequest
             'category_id.required' => 'Это поле обязательно для заполнения',
             'category_id.exists' => 'ID должен быть в базе данных',
             'tags.array' => 'Должен быть массив данных',
+            'description.string' => 'Данные должны соответствовать строчному типу',
         ];
     }
 }

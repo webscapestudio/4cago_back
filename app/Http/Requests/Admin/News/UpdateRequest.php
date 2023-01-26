@@ -27,10 +27,10 @@ class UpdateRequest extends FormRequest
             'published' => 'required|string',
             'title' => 'required|string',
             'content' => 'required|string',
-            'description' => 'required|string',
             'news_image' => 'nullable|file',
             'tags' => 'nullable|array',
             'tags.*' => 'nullable|integer|exists:tags,id',
+            'description' => 'nullable|string'
         ];
     }
 }

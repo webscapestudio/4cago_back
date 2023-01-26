@@ -84,8 +84,8 @@
           <p class="post__date">Текст</p>
           <div class="white__area">
 
-            <textarea id="summernote" class="white__textarea" name="content" id="white-area">{{ old('content') }}</textarea>
-            @error('content')
+            <textarea class="white__textarea" name="description" id="white-area">{{ old('description') }}</textarea>
+            @error('description')
               <div class="text-danger">{{ $message }}</div>
             @enderror
 
@@ -108,6 +108,14 @@
             </div>
           </div>
         </div>
+        <div class="create__text">
+          <p class="post__date">Текст</p>
+          <textarea class="tiny_editor" name="content">{{ old('content') }}</textarea>
+          @error('content')
+            <div class="text-danger">{{ $message }}</div>
+          @enderror
+        </div>
+
         <div class="create__tags">
           <select class="select2" name="tags[]" multiple="multiple" data-placeholder="Выберите теги"
             style="width: 100%;">
