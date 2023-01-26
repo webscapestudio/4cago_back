@@ -1,7 +1,7 @@
 <div class="profile__card-bottom category__tabs_wrap">
   <ul class="theme__items">
     <li class="theme__item">
-      <a href="{{ route('personal.post.index') }}" class="profile__link tabs-btn">Записи</a>
+      <a href="{{ route('personal.post.index') }}" class="profile__link tabs-btn">Форум</a>
     </li>
     <li class="theme__item">
       <a href="{{ route('personal.advertisement.index') }}" class="profile__link tabs-btn">Обьявления</a>
