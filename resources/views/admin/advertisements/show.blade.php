@@ -124,9 +124,6 @@
             </div>
 
             <div class="card-footer">
-              <div class="float-right">
-                <button type="submit" class="btn btn-default"><i class="fas fa-ban"></i> Забанить</button>
-              </div>
               <form action="{{ route('admin.advertisement.destroy', $advertisement->id) }}" method="POST">
                 @csrf
                 @method('DELETE')

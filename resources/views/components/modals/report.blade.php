@@ -15,6 +15,7 @@
         <form class="custom__select" method="POST"
           action="@if (isset($post)) {{ route('post.banned_reason.store', [$post->category_id, $post->id]) }} @endif
           @if (isset($advertisement)) {{ route('advertisement.banned_reason.store', [$advertisement->category_advertisement_id, $advertisement->id]) }} @endif
+            @if (isset($work)) {{ route('work.banned_reason.store', [$work->category_work_id, $work->id]) }} @endif
           @if (isset($news)) {{ route('news.banned_reason.store', $news->id) }} @endif"
           novalidate>
           @csrf

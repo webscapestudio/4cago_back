@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Personal\Work;
+namespace App\Http\Controllers\CategoryWork;
 
 use App\Http\Controllers\Controller;
+use App\Models\CategoryWork;
+use App\Models\Work;
 use App\Models\LeftBanner;
 use App\Models\Post;
 use App\Models\RightBanner;
 use App\Models\UpperBanner;
-use App\Models\Work;
 use Illuminate\Support\Facades\Auth;
 
-class ShowController extends Controller
+class IndexController extends Controller
 {
-    public function __invoke($work_id)
+    public function __invoke()
     {
         $upper_banner = UpperBanner::latest()->first();
-        $work = Work::find($work_id);
+        $categories_work = CategoryWork::where('parent_id',  0)->where('published', '1')->with('childrenCategories')->get();
         $user = Auth::user();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('personal.works.show', compact('work', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
+        return view('categories_works.index', compact('categories_work', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
     }
 }

@@ -7,6 +7,7 @@ use App\Models\CategoryWork;
 use App\Models\LeftBanner;
 use App\Models\Post;
 use App\Models\RightBanner;
+use App\Models\Tag;
 use App\Models\UpperBanner;
 use App\Models\Work;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +23,7 @@ class CreateController extends Controller
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('personal.works.create', [
-            'category_work' => [],
-            'categories_works'  => CategoryWork::with('childrenCategories')->where('parent_id', '0')->get(),
-            'delimiter' => ''
-        ], compact('categories_works', 'works', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
+        $tags = Tag::all();
+        return view('personal.works.create', compact('categories_works', 'works', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
     }
 }

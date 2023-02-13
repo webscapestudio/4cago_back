@@ -6,12 +6,12 @@
         <div class="container-fluid">
           <div class="row mb-2">
             <div class="col-sm-6">
-              <h1 class="m-0">Жалобы</h1>
+              <h1 class="m-0">Посты</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item"><a href="{{ route('admin.main.index') }}">Главная</a></li>
-                <li class="breadcrumb-item active">Жалобы</li>
+                <li class="breadcrumb-item active">Посты</li>
               </ol>
             </div><!-- /.col -->
           </div><!-- /.row -->
@@ -26,7 +26,7 @@
               <i class="fas fa-search"></i>
             </a>
             <div class="navbar-search-block" style="display: none;">
-              <form class="form-inline" action="{{ route('admin.banned_reason.search') }}" method="get">
+              <form class="form-inline" action="{{ route('admin.work.search') }}" method="get">
                 <div class="input-group input-group-sm">
                   <input class="form-control form-control-navbar" type="search" name="s" placeholder="Поиск"
                     aria-label="Search">
@@ -58,55 +58,34 @@
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Причина</th>
-                        <th>Автор жалобы</th>
-                        <th>Дата</th>
+                        <th>Название</th>
+                        <th>Категория</th>
+                        <th>Пользователь</th>
+                        <th>Добавлено в избранное</th>
                         <th>Статус</th>
                         <th colspan="3">Действия</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($banned_reasons as $banned_reason)
+                      @foreach ($works as $work)
                         <tr>
-                          <td>{{ $banned_reason->id }}</td>
-                          <td>{{ $banned_reason->banned_reason }}</td>
-                          <td>{{ $banned_reason->author->name ?? 'Пользователь не найден' }}</td>
-                          <td>{{ $banned_reason->created_at }}</td>
+                          <td>{{ $work->id }}</td>
+                          <td>{{ $work->title }}</td>
+                          <td>{{ $work->category_work->title ?? null }}</td>
+                          <td>{{ $work->author->name ?? 'Пользователь не найден' }}</td>
+                          <td>{{ $work->favourite->count() }}</td>
                           <td>
-                            @if (empty($banned_reason->banned_reasonable->published))
-                              Запись удалена
-                            @elseif(
-                                $banned_reason->banned_reasonable->published == 2 and $banned_reason->status == '1' or
-                                    $banned_reason->banned_reasonable->published == 2)
-                              Одобрено(Заблокировано)
+                            @if ($work->published == '0')
+                              Не опубликовано
+                            @elseif($work->published == '1')
+                              Опубликовано
                             @else
-                              Неодобрено
+                              Заблокировано
                             @endif
                           </td>
-                          <td><a href="{{ route('admin.banned_reason.show', $banned_reason->id) }}"><i
-                                class="far fa-eye"></i></a></td>
-                          @if (empty($banned_reason->banned_reasonable->published))
-                          @elseif($banned_reason->banned_reasonable->published == 1 and $banned_reason->status == '0')
-                            <td>
-                              <form action="{{ route('admin.banned_reason.report', $banned_reason->id) }}" method="POST">
-                                <input type="hidden" name="_method" value="PATCH">
-                                {{ csrf_field() }}
-                                <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-ban text-danger"
-                                    role="button"></i></button>
-                              </form>
-                            </td>
-                          @elseif($banned_reason->banned_reasonable->published == 2 and $banned_reason->status == '1')
-                            <td>
-                              <form action="{{ route('admin.banned_reason.report', $banned_reason->id) }}" method="POST">
-                                <input type="hidden" name="_method" value="PATCH">
-                                {{ csrf_field() }}
-                                <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-ban text-blue"
-                                    role="button"></i></button>
-                              </form>
-                            </td>
-                          @endif
+                          <td><a href="{{ route('admin.work.show', $work->id) }}"><i class="far fa-eye"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.banned_reason.destroy', $banned_reason->id) }}" method="POST">
+                            <form action="{{ route('admin.work.destroy', $work->id) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-trash text-danger"

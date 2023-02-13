@@ -7,6 +7,7 @@ use App\Models\Advertisement;
 use App\Models\BannedReason;
 use App\Models\News;
 use App\Models\Post;
+use App\Models\Work;
 
 class ReportController extends Controller
 {
@@ -20,6 +21,9 @@ class ReportController extends Controller
         endif;
         if ($banned_reason->banned_reasonable_type == 'App\Models\News') :
             $val = News::find($banned_reason->banned_reasonable->id);
+        endif;
+        if ($banned_reason->banned_reasonable_type == 'App\Models\Work') :
+            $val = Work::find($banned_reason->banned_reasonable->id);
         endif;
         if (($banned_reason->banned_reasonable->published == 2) and  ($banned_reason->status == "1")) {
             $data = ['published' => '1'];

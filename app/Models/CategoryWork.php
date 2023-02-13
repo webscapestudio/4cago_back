@@ -20,7 +20,8 @@ class CategoryWork extends Model
     'parent_id',
     'published',
     'created_by',
-    'modified_by'
+    'modified_by',
+    'description'
   ];
   // Mutators
   public function setSlugAttribute()
@@ -34,5 +35,13 @@ class CategoryWork extends Model
   public function workCount()
   {
     return $this->hasMany(Work::class);
+  }
+  function comments()
+  {
+    return $this->hasMany(Comment::class);
+  }
+  public function parent()
+  {
+    return $this->belongsTo(CategoryWork::class, 'parent_id');
   }
 }

@@ -7,7 +7,7 @@
       <a href="{{ route('personal.advertisement.index') }}" class="profile__link tabs-btn">Обьявления</a>
     </li>
     <li class="theme__item">
-      <a href="{{ route('personal.work.index') }}" class="profile__link tabs-btn">Вакансии(в разработке)</a>
+      <a href="{{ route('personal.work.index') }}" class="profile__link tabs-btn">Вакансии</a>
     </li>
 
     <li class="theme__item">

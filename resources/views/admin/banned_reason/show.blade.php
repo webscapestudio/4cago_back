@@ -32,11 +32,14 @@
 
               <address>
                 <strong>Общая информация.</strong><br>
+
                 ID: {{ $banned_reason->id }}<br>
                 Статус: @if (
                     $banned_reason->banned_reasonable->published == 2 and $banned_reason->status == '1' or
                         $banned_reason->banned_reasonable->published == 2)
                   Одобрено(Заблокировано)
+                @elseif(!$banned_reason->banned_reasonable->deleted_at == null)
+                  Запись удалена
                 @else
                   Неодобрено
                 @endif
@@ -70,7 +73,7 @@
               <strong>Текст записи.</strong>
               <address>
 
-                {{ $banned_reason->banned_reasonable->content }}
+                {!! $banned_reason->banned_reasonable->content !!}
               </address>
             </div>
 

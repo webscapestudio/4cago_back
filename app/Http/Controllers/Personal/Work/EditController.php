@@ -8,6 +8,7 @@ use App\Models\CategoryWork;
 use App\Models\LeftBanner;
 use App\Models\Post;
 use App\Models\RightBanner;
+use App\Models\Tag;
 use App\Models\UpperBanner;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +20,10 @@ class EditController extends Controller
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $works = Work::all();
+        $tags = Tag::all();
         $categories_works = CategoryWork::all();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('personal.works.edit', [
-            'category_work' => $category_work,
-            'categories_works'  => CategoryWork::with('childrenCategories')->where('parent_id', '0')->get(),
-            'delimiter' => ''
-        ], compact('categories_works', 'works', 'work', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
+        return view('personal.works.edit',  compact('categories_works', 'works', 'work', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner', 'tags'));
     }
 }

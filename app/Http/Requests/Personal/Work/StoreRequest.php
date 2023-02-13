@@ -24,18 +24,14 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'published' =>  'required|string',
             'title' => 'required|string',
             'content' => 'required|string',
             'work_image' => 'nullable|file',
-            'requirements' => 'nullable|string',
-            'tasks' => 'nullable|string',
-            'conditions' => 'nullable|string',
-            'mail_applicants' => 'nullable|string',
-            'mail_notifications' => 'nullable|string',
-            'whatsapp' => 'nullable|string',
-            'telegram' => 'nullable|string',
-            'salary_from' => 'nullable|string',
-            'salary_before' => 'nullable|string',
+            'category_work_id' => 'required|exists:categories,id',
+            'tags' => 'nullable|array',
+            'tags.*' => 'nullable|integer|exists:tags,id',
+            'description' => 'nullable|string'
         ];
     }
     public function messages()
@@ -44,7 +40,12 @@ class StoreRequest extends FormRequest
             'title.required' => 'Это поле обязательно для заполнения',
             'title.string' => 'Данные должны соответствовать строчному типу',
             'content.required' => 'Это поле обязательно для заполнения',
+            'work_image.required' => 'Это поле обязательно для заполнения',
             'work_image.file' => 'Необходимо выбрать файл',
+            'category_work_id.required' => 'Это поле обязательно для заполнения',
+            'category_work_id.exists' => 'ID должен быть в базе данных',
+            'tags.array' => 'Должен быть массив данных',
+            'description.string' => 'Данные должны соответствовать строчному типу',
         ];
     }
 }

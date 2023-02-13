@@ -66,6 +66,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(News::class);
     }
+    public function works()
+    {
+        return $this->hasMany(Work::class);
+    }
     //Favourite--------------------------------------------------------
     public function  hasFavouritedPost(Post $post)
     {
@@ -82,6 +86,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function  hasFavouritedNews(News $news)
     {
         return (bool) $news->favourite
+            ->where('user_id', $this->id)
+            ->count();
+    }
+    public function  hasFavouritedWork(Work $work)
+    {
+        return (bool) $work->favourite
             ->where('user_id', $this->id)
             ->count();
     }

@@ -138,7 +138,21 @@ Route::group(['namespace' => 'Contacts', 'prefix' => '/faq/contacts'], function 
     Route::get('/all', 'IndexController')->name('faq.contact.index');
     Route::get('/{contact}', 'ShowController')->name('faq.contact.show');
 });
-
+//Work
+Route::group(['namespace' => 'CategoryWork', 'prefix' => 'categories_works'], function () {
+    Route::get('/', 'IndexController')->name('categories_works.index');
+    Route::group(['namespace' => 'Work', 'prefix' => '/{categories_works}/works'], function () {
+        Route::get('/', 'IndexController')->name('work.index');
+        Route::get('/search', 'SearchController')->name('work.search');
+        Route::get('/{work}', 'ShowController')->name('work.show');
+        Route::group(['namespace' => 'Favourite', 'prefix' => '{work}/favourites'], function () {
+            Route::post('/', 'StoreController')->name('work.favourite.store');
+        });
+        Route::group(['namespace' => 'BannedReason', 'prefix' => '{work}/banned_reason', 'middleware' => ['auth', 'verified']], function () {
+            Route::post('/', 'StoreController')->name('work.banned_reason.store');
+        });
+    });
+});
 //Admin 
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::group(['namespace' => 'Main'], function () {
@@ -157,6 +171,13 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => ['aut
         Route::get('/search', 'SearchController')->name('admin.advertisement.search');
         Route::get('/{advertisement}', 'ShowController')->name('admin.advertisement.show');
         Route::delete('/{advertisement}', 'DestroyController')->name('admin.advertisement.destroy');
+    });
+    // Work admin 
+    Route::group(['namespace' => 'Work', 'prefix' => 'works'], function () {
+        Route::get('/', 'IndexController')->name('admin.work.index');
+        Route::get('/search', 'SearchController')->name('admin.work.search');
+        Route::get('/{work}', 'ShowController')->name('admin.work.show');
+        Route::delete('/{work}', 'DestroyController')->name('admin.work.destroy');
     });
     // Category admin CRUD
     Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
