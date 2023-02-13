@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Categorywork\work;
 
 use App\Http\Controllers\Controller;
 use App\Models\Work;
-use App\Models\Categorywork;
+use App\Models\CategoryWork;
 use App\Models\LeftBanner;
 use App\Models\Post;
 use App\Models\RightBanner;
@@ -20,7 +20,7 @@ class IndexController extends Controller
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $works = Work::latest();
-        $categories_works = Categorywork::get();
+        $categories_works = CategoryWork::get();
         $work_cat = $request->route('categories_works');
         if ($category_workId) {
             $works->where('category_work_id', $category_workId);
