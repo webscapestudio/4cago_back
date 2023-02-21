@@ -14,18 +14,21 @@ use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $posts = Post::withCount('comments')
             ->orderBy('comments_count', 'desc')
             ->where('published', '1')
-            ->paginate(12);
+            ->paginate(6);
         $tags = Tag::all();
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('main.index', compact('posts', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
+        if ($request->ajax()) {
+            return view('main.post_card', compact('posts'));
+        }
+        return view('main.index', compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
     }
 }

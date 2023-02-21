@@ -24,5 +24,6 @@
   <link rel="stylesheet" href="{{ mix('/css/main.css') }}" />
   <script src="https://cdn.tiny.cloud/1/v783xme3bbuz1q1joy5jp5p3sxeskit6syyhz9wvq4pj0amf/tinymce/6/tinymce.min.js"
     referrerpolicy="origin"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
   <title>Chicago</title>
 </head>

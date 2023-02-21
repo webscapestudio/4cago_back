@@ -29,9 +29,12 @@ class IndexController extends Controller
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('advertisements.index', [
-            'advertisements' => $advertisements->where('published', '1')->get(),
-            'categories_advertisements' => $categories_advertisements->where('published', '1')
-        ], compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'advertisement_cat', 'upper_banner'));
+        if ($request->ajax()) {
+            return view('advertisements.post_card', [
+                'advertisements' => $advertisements->where('published', '1')->paginate(6),
+                'categories_advertisements' => $categories_advertisements->where('published', '1')
+            ], compact('advertisements'));
+        }
+        return view('advertisements.index',  compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'advertisement_cat', 'upper_banner'));
     }
 }

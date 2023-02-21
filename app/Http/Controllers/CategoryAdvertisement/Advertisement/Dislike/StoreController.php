@@ -15,10 +15,10 @@ class StoreController extends Controller
         $advertisement = Advertisement::find($advertisement_id);
         if (Auth::user()->hasDislikedAdvertisement($advertisement)) :
             $advertisement->dislike()->where('user_id', Auth::user()->id)->delete();
-            return redirect()->back();
+            return response()->json($advertisement);
         endif;
         $advertisement->dislike()->create(['user_id' => Auth::user()->id]);
 
-        return redirect()->back();
+        return response()->json($advertisement);
     }
 }

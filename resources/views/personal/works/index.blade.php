@@ -38,8 +38,8 @@
     </div>
     @if (isset($works) and !$works->isEmpty())
       <a href="{{ route('personal.work.create') }}" style="text-align: center" class="btn btn__blue">Создать
-        запись</a>
-      <p class="post__title">Ваши записи.</p>
+        вакансию</a>
+      <p class="post__title">Ваши вакансии.</p>
       @foreach ($works as $work)
         <div class="post__card ad__card">
 

@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Auth;
 class StoreController extends Controller
 {
 
-    public function __invoke(News $news)
+    public function __invoke($id)
     {
-        $news = News::find($news->id);
-        if (Auth::user()->hasFavouritedNews($news)) :
-            $news->favourite()->where('user_id', Auth::user()->id)->delete();
-            return redirect()->back();
+        $new = News::find($id);
+        if (Auth::user()->hasFavouritedNews($new)) :
+            $new->favourite()->where('user_id', Auth::user()->id)->delete();
+            return response()->json($new);
         endif;
-        $news->favourite()->create(['user_id' => Auth::user()->id]);
+        $new->favourite()->create(['user_id' => Auth::user()->id]);
 
-        return redirect()->back();
+        return response()->json($new);
     }
 }

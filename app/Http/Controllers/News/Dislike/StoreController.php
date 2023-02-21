@@ -9,15 +9,15 @@ use Illuminate\Support\Facades\Auth;
 class StoreController extends Controller
 {
 
-    public function __invoke(News $news)
+    public function __invoke($id)
     {
-        $news = News::find($news->id);
-        if (Auth::user()->hasDislikedNews($news)) :
-            $news->dislike()->where('user_id', Auth::user()->id)->delete();
-            return redirect()->back();
+        $new = News::find($id);
+        if (Auth::user()->hasDislikedNews($new)) :
+            $new->dislike()->where('user_id', Auth::user()->id)->delete();
+            return response()->json($new);
         endif;
-        $news->dislike()->create(['user_id' => Auth::user()->id]);
+        $new->dislike()->create(['user_id' => Auth::user()->id]);
 
-        return redirect()->back();
+        return response()->json($new);
     }
 }
