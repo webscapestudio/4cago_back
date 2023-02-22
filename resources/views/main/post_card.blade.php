@@ -175,7 +175,7 @@
 
                   <p class="post__smile-num">{{ $post->like->count() }}</p>
                 </div>
-                <div class="post__smile-sad post__actions-right-item active">
+                <div class="post__smile-sad post__actions-right-item">
 
                   <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
                     <path

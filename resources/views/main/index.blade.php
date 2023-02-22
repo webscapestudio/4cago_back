@@ -40,7 +40,6 @@
           }
         })
         .done(function(response) {
-          console.log(response.post);
           if (response.length == 0) {
             $('.auto-load').html("We don't have more data to display :(");
             return;

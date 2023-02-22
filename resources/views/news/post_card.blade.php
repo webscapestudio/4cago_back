@@ -164,7 +164,7 @@
 
                  <p class="post__smile-num">{{ $new->like->count() }}</p>
                </div>
-               <div class="post__smile-sad post__actions-right-item active">
+               <div class="post__smile-sad post__actions-right-item">
 
                  <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
                    <path
@@ -189,7 +189,6 @@
  @else
    <p>Тут пока ничего нет...</p>
  @endif
-
  <script>
    $('.smile').on('click', function(event) {
      event.preventDefault();
