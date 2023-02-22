@@ -14,10 +14,10 @@ class StoreController extends Controller
         $post = Post::find($post_id);
         if (Auth::user()->hasLikedPost($post)) :
             $post->like()->where('user_id', Auth::user()->id)->delete();
-            return redirect()->back();
+            return response()->json($post);
         endif;
         $post->like()->create(['user_id' => Auth::user()->id]);
 
-        return redirect()->back();
+        return response()->json($post);
     }
 }

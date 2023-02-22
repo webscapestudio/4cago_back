@@ -28,9 +28,13 @@ class IndexController extends Controller
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
         $post_cat = $request->route('category');
-        return view('posts.index', [
-            'posts' => $posts->where('published', '1')->get(),
-            'categories' => $categories->where('published', '1')
-        ], compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'post_cat', 'upper_banner'));
+        if ($request->ajax()) {
+            return view('posts.post_card', [
+                'posts' => $posts->where('published', '1')->paginate(6),
+                'categories' => $categories->where('published', '1')
+            ], compact('posts'));
+        }
+
+        return view('posts.index', compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'post_cat', 'upper_banner'));
     }
 }

@@ -29,9 +29,12 @@ class IndexController extends Controller
         $user = Auth::user();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('works.index', [
-            'works' => $works->where('published', '1')->get(),
-            'categories_works' => $categories_works->where('published', '1')
-        ], compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'work_cat', 'upper_banner'));
+        if ($request->ajax()) {
+            return view('works.post_card', [
+                'works' => $works->where('published', '1')->paginate(6),
+                'categories_works' => $categories_works->where('published', '1')
+            ], compact('works'));
+        }
+        return view('works.index', compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'work_cat', 'upper_banner'));
     }
 }

@@ -42,7 +42,7 @@
                     method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="title__count report" data-micromodal-trigger="report">
+                    <button type="submit" class="title__count report">
                       Удалить
                     </button>
                   </form>

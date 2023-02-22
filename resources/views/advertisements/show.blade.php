@@ -76,7 +76,8 @@
               </svg>
               <p class="post__views_num">{{ $advertisement->views }}</p>
             </a>
-            <a class="post__comments post__actions-left-item" href="#">
+            <a class="post__comments post__actions-left-item"
+              href="{{ route('advertisement.show', [$advertisement->category_advertisement_id, $advertisement->id]) }}">
               <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                 <path
                   d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">
@@ -85,7 +86,9 @@
               <p class="post__coments_num">{{ $advertisement->comments->count() }}</p>
             </a>
 
-            <form class="{{ auth()->user()->favourite ?? 'active' }}"
+            <form id="favourite{{ $advertisement->id }}"
+              class="post__pins post__actions-left-item favourite {{ Auth::user()->hasFavouritedAdvertisement($advertisement) ? 'active' : '' }}"
+              data-id="{{ $advertisement->id }}"
               action="{{ route('advertisement.favourite.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
               method="POST">
               @csrf
@@ -95,80 +98,55 @@
                     d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
                   </path>
                 </svg>
-                <p class="post__pins_num"> {{ $advertisement->favourite->count() }}</p>
+                <p class="post__pins_num fav{{ $advertisement->id }}"> {{ $advertisement->favourite->count() }}</p>
               </button>
             </form>
-
-
           </div>
           <div class="post__actions-right">
-
-            <form class="post__smile post__actions-right-item"
+            <form id="like{{ $advertisement->id }}"
+              class="post__smile post__actions-right-item smile {{ Auth::user()->hasLikedAdvertisement($advertisement) ? 'active' : '' }}"
+              data-id="{{ $advertisement->id }}"
               action="{{ route('advertisement.like.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
               method="POST">
               @csrf
               <button type="submit">
-                @if (auth()->user()->like)
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
-                    <path
-                      d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z">
-                    </path>
-                    <path
-                      d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z">
-                    </path>
-                    <path
-                      d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 16C10.52 16 9.25 15.19 8.55 14H6.88C7.68 16.05 9.67 17.5 12 17.5C14.33 17.5 16.32 16.05 17.12 14H15.45C14.75 15.19 13.48 16 12 16Z">
-                    </path>
-                  </svg>
-                @else
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
-                    <path
-                      d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z">
-                    </path>
-                    <path
-                      d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z">
-                    </path>
-                    <path
-                      d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 16C10.52 16 9.25 15.19 8.55 14H6.88C7.68 16.05 9.67 17.5 12 17.5C14.33 17.5 16.32 16.05 17.12 14H15.45C14.75 15.19 13.48 16 12 16Z">
-                    </path>
-                  </svg>
-                @endif
+                <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
+                  <path
+                    d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z">
+                  </path>
+                  <path
+                    d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z">
+                  </path>
+                  <path
+                    d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 16C10.52 16 9.25 15.19 8.55 14H6.88C7.68 16.05 9.67 17.5 12 17.5C14.33 17.5 16.32 16.05 17.12 14H15.45C14.75 15.19 13.48 16 12 16Z">
+                  </path>
+                </svg>
               </button>
-              <p class="post__smile-num">{{ $advertisement->like->count() }}</p>
+              <p class="post__smile-num like{{ $advertisement->id }}">
+                {{ $advertisement->like->count() }}</p>
             </form>
 
-            <form class="post__smile-sad post__actions-right-item active"
+            <form id="dislike{{ $advertisement->id }}"
+              class="post__smile-sad post__actions-right-item smile__sad {{ Auth::user()->hasDislikedAdvertisement($advertisement) ? 'active' : '' }}"
+              data-id="{{ $advertisement->id }}"
               action="{{ route('advertisement.dislike.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
               method="POST">
               @csrf
               <button type="submit">
-                @if (auth()->user()->dislike)
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
-                    <path
-                      d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z">
-                    </path>
-                    <path
-                      d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z">
-                    </path>
-                    <path
-                      d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 14C9.67 14 7.68 15.45 6.88 17.5H8.55C9.24 16.31 10.52 15.5 12 15.5C13.48 15.5 14.75 16.31 15.45 17.5H17.12C16.32 15.45 14.33 14 12 14Z">
-                    </path>
-                  </svg>
-                @else
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
-                    <path
-                      d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z">
-                    </path>
-                    <path
-                      d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z">
-                    </path>
-                    <path
-                      d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 14C9.67 14 7.68 15.45 6.88 17.5H8.55C9.24 16.31 10.52 15.5 12 15.5C13.48 15.5 14.75 16.31 15.45 17.5H17.12C16.32 15.45 14.33 14 12 14Z">
-                    </path>
-                  </svg>
-                @endif
+                <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
+                  <path
+                    d="M15.5 11C16.3284 11 17 10.3284 17 9.5C17 8.67157 16.3284 8 15.5 8C14.6716 8 14 8.67157 14 9.5C14 10.3284 14.6716 11 15.5 11Z">
+                  </path>
+                  <path
+                    d="M8.5 11C9.32843 11 10 10.3284 10 9.5C10 8.67157 9.32843 8 8.5 8C7.67157 8 7 8.67157 7 9.5C7 10.3284 7.67157 11 8.5 11Z">
+                  </path>
+                  <path
+                    d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20ZM12 14C9.67 14 7.68 15.45 6.88 17.5H8.55C9.24 16.31 10.52 15.5 12 15.5C13.48 15.5 14.75 16.31 15.45 17.5H17.12C16.32 15.45 14.33 14 12 14Z">
+                  </path>
+                </svg>
               </button>
-              <p class="post__smile-sad-num">{{ $advertisement->dislike->count() }}</p>
+              <p class="post__smile-sad-num dislike{{ $advertisement->id }}">{{ $advertisement->dislike->count() }}
+              </p>
             </form>
           </div>
         @endauth
@@ -190,7 +168,7 @@
               </svg>
               <p class="post__coments_num">{{ $advertisement->comments->count() }}</p>
             </a>
-            <div type="submit" class="post__pins post__actions-left-item">
+            <div class="post__pins post__actions-left-item">
               <svg class="icon" viewBox="0 0 24 24">
                 <path
                   d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
@@ -216,7 +194,7 @@
 
               <p class="post__smile-num">{{ $advertisement->like->count() }}</p>
             </div>
-            <div class="post__smile-sad post__actions-right-item active">
+            <div class="post__smile-sad post__actions-right-item">
 
               <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">
                 <path
@@ -239,4 +217,73 @@
   </div>
 
   @include('advertisements.comments.comments_advertisement')
+
+  <script>
+    $('.smile').on('click', function(event) {
+      event.preventDefault();
+      var id = $(this).attr("data-id");
+      var route = $(this).attr("action");
+      $.ajax({
+        type: "POST",
+        url: route,
+        data: {
+          "_token": "{{ csrf_token() }}",
+        },
+        success: function(data) {
+          $('.like' + id).text(data.like.length);
+
+          if ($('#like' + id).hasClass('active')) {
+            $('#like' + id).removeClass('active');
+          } else {
+            $('#like' + id).addClass('active');
+          }
+        }
+      });
+    });
+  </script>
+  <script>
+    $('.smile__sad').on('click', function(event) {
+      event.preventDefault();
+      var id = $(this).attr("data-id");
+      var route = $(this).attr("action");
+      $.ajax({
+        type: "POST",
+        url: route,
+        data: {
+          "_token": "{{ csrf_token() }}",
+        },
+        success: function(data) {
+          $('.dislike' + id).text(data.dislike.length);
+
+          if ($('#dislike' + id).hasClass('active')) {
+            $('#dislike' + id).removeClass('active');
+          } else {
+            $('#dislike' + id).addClass('active');
+          }
+        }
+      });
+    });
+  </script>
+  <script>
+    $('.favourite').on('click', function(event) {
+      event.preventDefault();
+      var id = $(this).attr("data-id");
+      var route = $(this).attr("action");
+      $.ajax({
+        type: "POST",
+        url: route,
+        data: {
+          "_token": "{{ csrf_token() }}",
+        },
+        success: function(data) {
+          $('.fav' + id).text(data.favourite.length);
+          if ($('#favourite' + id).hasClass('active')) {
+            $('#favourite' + id).removeClass('active');
+          } else {
+            $('#favourite' + id).addClass('active');
+          }
+        }
+      });
+    });
+  </script>
 @endsection

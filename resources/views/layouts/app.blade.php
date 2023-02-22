@@ -22,8 +22,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon-180x180.png">
   <script src="https://jsuites.net/v4/jsuites.js"></script>
   <script src="https://jsuites.net/v4/jsuites.webcomponents.js"></script>
-  <!-- <link rel="manifest" href="./images/manifest.json"> -->
   <link rel="stylesheet" href="./css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
 
 
 </head>

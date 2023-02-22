@@ -59,8 +59,10 @@
           </svg>
           <p class="post__views_num">{{ $work->views }}</p>
         </a>
-        <form class="{{ auth()->user()->favourite ?? 'active' }}"
-          action="{{ route('work.favourite.store', [$work->category_work_id, $work->id]) }}" method="POST">
+        <form id="favourite{{ $work->id }}"
+          class="post__pins post__actions-left-item favourite {{ Auth::user()->hasFavouritedWork($work) ? 'active' : '' }}"
+          data-id="{{ $work->id }}" action="{{ route('work.favourite.store', [$work->category_work_id, $work->id]) }}"
+          method="POST">
           @csrf
           <button type="submit" class="post__pins post__actions-left-item">
             <svg class="icon" viewBox="0 0 24 24">
@@ -68,7 +70,7 @@
                 d="M4 4C4 2.34315 5.34315 1 7 1H17C18.6569 1 20 2.34315 20 4V22C20 22.3905 19.7727 22.7453 19.4179 22.9085C19.0631 23.0717 18.6457 23.0134 18.3492 22.7593L12 17.3171L5.65079 22.7593C5.35428 23.0134 4.93694 23.0717 4.58214 22.9085C4.22734 22.7453 4 22.3905 4 22V4ZM7 3C6.44772 3 6 3.44772 6 4V19.8258L11.3492 15.2407C11.7237 14.9198 12.2763 14.9198 12.6508 15.2407L18 19.8258V4C18 3.44772 17.5523 3 17 3H7Z">
               </path>
             </svg>
-            <p class="post__pins_num"> {{ $work->favourite->count() }}</p>
+            <p class="post__pins_num fav{{ $work->id }}"> {{ $work->favourite->count() }}</p>
           </button>
         </form>
       @endauth
@@ -95,4 +97,27 @@
       @endguest
     </div>
   </div>
+
+  <script>
+    $('.favourite').on('click', function(event) {
+      event.preventDefault();
+      var id = $(this).attr("data-id");
+      var route = $(this).attr("action");
+      $.ajax({
+        type: "POST",
+        url: route,
+        data: {
+          "_token": "{{ csrf_token() }}",
+        },
+        success: function(data) {
+          $('.fav' + id).text(data.favourite.length);
+          if ($('#favourite' + id).hasClass('active')) {
+            $('#favourite' + id).removeClass('active');
+          } else {
+            $('#favourite' + id).addClass('active');
+          }
+        }
+      });
+    });
+  </script>
 @endsection
