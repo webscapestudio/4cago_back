@@ -14,10 +14,10 @@ class StoreController extends Controller
         $work = Work::find($work_id);
         if (Auth::user()->hasFavouritedWork($work)) :
             $work->favourite()->where('user_id', Auth::user()->id)->delete();
-            return response()->json($work);
+        else :
+            $work->favourite()->create(['user_id' => Auth::user()->id])->save();
         endif;
-        $work->favourite()->create(['user_id' => Auth::user()->id]);
-
-        return response()->json($work);
+        $workCount = Work::find($work_id);
+        return response()->json($workCount->favourite->count());
     }
 }

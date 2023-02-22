@@ -18,9 +18,7 @@ class StoreController extends Controller
         } else {
             $new->dislike()->create(['user_id' => Auth::user()->id])->save();
         }
-
-        $newN = News::find($id);
-
-        return response()->json($newN->dislike->count());
+        $newCount = News::find($id);
+        return response()->json($newCount->dislike->count());
     }
 }

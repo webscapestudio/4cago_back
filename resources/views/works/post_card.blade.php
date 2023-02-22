@@ -95,24 +95,42 @@
   @endif
 
   <script>
-    $('.favourite').on('click', function(event) {
-      event.preventDefault();
-      var id = $(this).attr("data-id");
-      var route = $(this).attr("action");
-      $.ajax({
-        type: "POST",
-        url: route,
-        data: {
-          "_token": "{{ csrf_token() }}",
-        },
-        success: function(data) {
-          $('.fav' + id).text(data.favourite.length);
-          if ($('#favourite' + id).hasClass('active')) {
-            $('#favourite' + id).removeClass('active');
-          } else {
-            $('#favourite' + id).addClass('active');
-          }
+    document.addEventListener("DOMContentLoaded", ready);
+
+    function ready() {
+      const card = document.querySelectorAll('.ad__card')
+      card.forEach(item => {
+        const favoriteButton = item.querySelector('.favourite')
+        const favoriteButtonCount = item.querySelector('.favourite p')
+
+        const uriFavorite = favoriteButton.getAttribute("action")
+        const token = item.querySelector('input[name = "_token"]').value;
+        const likeID = favoriteButton.dataset.id
+        const loadingText = "Загрузка"
+
+        favoriteButton.addEventListener('click', favoriteHandler)
+
+        async function favoriteHandler(e) {
+          e.preventDefault()
+          favoriteButtonCount.innerText = loadingText
+          const responce = await fetch(uriFavorite, {
+              headers: {
+                "X-CSRF-TOKEN": token
+              },
+              method: "POST"
+            })
+            .then(res => res.json())
+            .then(data => {
+              if ($('#favourite' + likeID).hasClass('active')) {
+                $('#favourite' + likeID).removeClass('active');
+              } else {
+                $('#favourite' + likeID).addClass('active');
+              }
+              dislikeCount = data
+              favoriteButtonCount.innerText = dislikeCount
+            })
         }
-      });
-    });
+      })
+
+    }
   </script>

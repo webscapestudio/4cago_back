@@ -14,10 +14,10 @@ class StoreController extends Controller
         $post = Post::find($post_id);
         if (Auth::user()->hasFavouritedPost($post)) :
             $post->favourite()->where('user_id', Auth::user()->id)->delete();
-            return response()->json($post);
+        else :
+            $post->favourite()->create(['user_id' => Auth::user()->id])->save();
         endif;
-        $post->favourite()->create(['user_id' => Auth::user()->id]);
-
-        return response()->json($post);
+        $postCount = Post::find($post_id);
+        return response()->json($postCount->favourite->count());
     }
 }

@@ -16,13 +16,13 @@
     </div>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                                                                                                                                                  <option value="date">По
-                                                                                                                                                    дате</option>
-                                                                                                                                                  <option value="views">По
-                                                                                                                                                    количеству просмотров</option>
-                                                                                                                                                  <option value="like">По
-                                                                                                                                                    рейтингу</option>
-                                                                                                                                                </select> -->
+                                                                                                                                                    <option value="date">По
+                                                                                                                                                      дате</option>
+                                                                                                                                                    <option value="views">По
+                                                                                                                                                      количеству просмотров</option>
+                                                                                                                                                    <option value="like">По
+                                                                                                                                                      рейтингу</option>
+                                                                                                                                                  </select> -->
     </div>
   </form>
 
@@ -65,7 +65,6 @@
           }
         })
         .done(function(response) {
-          console.log(response.post);
           if (response.length == 0) {
             $('.auto-load').html("We don't have more data to display :(");
             return;

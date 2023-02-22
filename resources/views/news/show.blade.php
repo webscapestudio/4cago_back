@@ -241,7 +241,6 @@
           })
           .then(res => res.json())
           .then(data => {
-            console.log(data)
             if ($('#like' + likeID).hasClass('active')) {
               $('#like' + likeID).removeClass('active');
             } else {
@@ -295,27 +294,4 @@
       }
     }
   </script>
-
-  {{-- <script>
-    $('.favourite').on('click', function(event) {
-      event.preventDefault();
-      var id = $(this).attr("data-id");
-      var route = $(this).attr("action");
-      $.ajax({
-        type: "POST",
-        url: route,
-        data: {
-          "_token": "{{ csrf_token() }}",
-        },
-        success: function(data) {
-          $('.fav' + id).text(data.favourite.length);
-          if ($('#favourite' + id).hasClass('active')) {
-            $('#favourite' + id).removeClass('active');
-          } else {
-            $('#favourite' + id).addClass('active');
-          }
-        }
-      });
-    });
-  </script> --}}
 @endsection

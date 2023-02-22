@@ -14,10 +14,10 @@ class StoreController extends Controller
         $post = Post::find($post_id);
         if (Auth::user()->hasDislikedPost($post)) :
             $post->dislike()->where('user_id', Auth::user()->id)->delete();
-            return response()->json($post);
+        else :
+            $post->dislike()->create(['user_id' => Auth::user()->id])->save();
         endif;
-        $post->dislike()->create(['user_id' => Auth::user()->id]);
-
-        return response()->json($post);
+        $postCount = Post::find($post_id);
+        return response()->json($postCount->dislike->count());
     }
 }

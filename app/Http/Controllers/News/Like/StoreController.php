@@ -18,8 +18,8 @@ class StoreController extends Controller
             $new->like()->create(['user_id' => Auth::user()->id])->save();
         }
 
-        $newN = News::find($id);
+        $newCount = News::find($id);
 
-        return response()->json($newN->like->count());
+        return response()->json($newCount->like->count());
     }
 }

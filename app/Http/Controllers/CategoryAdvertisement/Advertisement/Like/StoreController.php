@@ -14,10 +14,10 @@ class StoreController extends Controller
         $advertisement = Advertisement::find($advertisement_id);
         if (Auth::user()->hasLikedAdvertisement($advertisement)) :
             $advertisement->like()->where('user_id', Auth::user()->id)->delete();
-            return response()->json($advertisement);
+        else :
+            $advertisement->like()->create(['user_id' => Auth::user()->id])->save();
         endif;
-        $advertisement->like()->create(['user_id' => Auth::user()->id]);
-
-        return response()->json($advertisement);
+        $advertisementCount = Advertisement::find($advertisement_id);
+        return response()->json($advertisementCount->like->count());
     }
 }
