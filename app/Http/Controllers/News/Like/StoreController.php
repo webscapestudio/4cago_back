@@ -12,12 +12,14 @@ class StoreController extends Controller
     public function __invoke($id)
     {
         $new = News::find($id);
-        if (Auth::user()->hasLikedNews($new)) :
+        if (Auth::user()->hasLikedNews($new)) {
             $new->like()->where('user_id', Auth::user()->id)->delete();
-            return response()->json($new);
-        endif;
-        $new->like()->create(['user_id' => Auth::user()->id]);
+        } else {
+            $new->like()->create(['user_id' => Auth::user()->id])->save();
+        }
 
-        return response()->json($new);
+        $newN = News::find($id);
+
+        return response()->json($newN->like->count());
     }
 }

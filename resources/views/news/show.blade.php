@@ -208,7 +208,50 @@
   @include('news.comments.comments_news')
 
   <script>
-    $('.smile').on('click', function(event) {
+    document.addEventListener("DOMContentLoaded", ready);
+
+    function ready() {
+      const card = document.querySelector('.ad__card')
+      const likeButton = card.querySelector('.smile')
+      const dislikeButton = card.querySelector('.smile__sad')
+      const favoriteButton = card.querySelector('.favourite')
+
+      const uri = likeButton.getAttribute("action")
+      const token = document.querySelector('input[name = "_token"]').value;
+      const likeID = likeButton.dataset.id
+
+      likeButton.addEventListener('click', likeHandler)
+      dislikeButton.addEventListener('click', dislikeHandler)
+      favoriteButton.addEventListener('click', favoriteHandler)
+
+      let likeCount = ''
+
+      async function likeHandler(e) {
+        e.preventDefault()
+        likeButton.innerText = "Загрузка"
+
+        const responce = await fetch(uri, {
+            headers: {
+              "X-CSRF-TOKEN": token
+            },
+            method: "POST"
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log(data)
+            likeCount = data
+            likeButton.innerText = likeCount
+          })
+      }
+
+      function dislikeHandler() {}
+
+      function favoriteHandler() {}
+    }
+
+
+    {{-- $('.smile').on('click', function(event) {
+      console.log(123123)
       event.preventDefault();
       var id = $(this).attr("data-id");
       var route = $(this).attr("action");
@@ -227,8 +270,9 @@
           }
         }
       });
-    });
+    }); --}}
   </script>
+
   <script>
     $('.smile__sad').on('click', function(event) {
       event.preventDefault();

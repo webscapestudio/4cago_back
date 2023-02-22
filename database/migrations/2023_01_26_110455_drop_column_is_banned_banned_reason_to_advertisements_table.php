@@ -16,7 +16,6 @@ class DropColumnIsBannedBannedReasonToAdvertisementsTable extends Migration
         Schema::table('advertisements', function (Blueprint $table) {
             $table->dropColumn('is_banned');
             $table->dropColumn('banned_reason');
-            $table->dropColumn('description');
         });
     }
 
