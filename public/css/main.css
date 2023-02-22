@@ -7172,3 +7172,12 @@ form.error .form__message {
     padding: 15px 10px;
   }
 }
+@media screen and (max-width: 1200px) {
+  .ad__item {
+    position: relative;
+    max-width: 120px;
+  }
+}
+.tox-notifications-container {
+  display: none !important;
+}

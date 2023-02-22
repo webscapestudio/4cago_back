@@ -87,3 +87,14 @@
 @import "./components/vacancy-post.scss";
 @import "./components/work-card.scss";
 @import "./components/selects.scss";
+
+@media screen and (max-width: 1200px) {
+    .ad__item {
+        position: relative;
+        max-width: 120px;
+    }
+}
+
+.tox-notifications-container {
+    display: none !important;
+}

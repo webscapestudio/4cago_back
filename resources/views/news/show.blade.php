@@ -213,24 +213,27 @@
     function ready() {
       const card = document.querySelector('.ad__card')
       const likeButton = card.querySelector('.smile')
+      const likeButtonCount = card.querySelector('.smile p')
       const dislikeButton = card.querySelector('.smile__sad')
+      const dislikeButtonCount = card.querySelector('.smile__sad p')
       const favoriteButton = card.querySelector('.favourite')
+      const favoriteButtonCount = card.querySelector('.favourite p')
 
-      const uri = likeButton.getAttribute("action")
-      const token = document.querySelector('input[name = "_token"]').value;
+      const uriLike = likeButton.getAttribute("action")
+      const uriDislike = dislikeButton.getAttribute("action")
+      const uriFavorite = favoriteButton.getAttribute("action")
+      const token = card.querySelector('input[name = "_token"]').value;
       const likeID = likeButton.dataset.id
+      const loadingText = "Загрузка"
 
       likeButton.addEventListener('click', likeHandler)
       dislikeButton.addEventListener('click', dislikeHandler)
       favoriteButton.addEventListener('click', favoriteHandler)
 
-      let likeCount = ''
-
       async function likeHandler(e) {
         e.preventDefault()
-        likeButton.innerText = "Загрузка"
-
-        const responce = await fetch(uri, {
+        likeButtonCount.innerText = loadingText
+        const responce = await fetch(uriLike, {
             headers: {
               "X-CSRF-TOKEN": token
             },
@@ -239,64 +242,61 @@
           .then(res => res.json())
           .then(data => {
             console.log(data)
+            if ($('#like' + likeID).hasClass('active')) {
+              $('#like' + likeID).removeClass('active');
+            } else {
+              $('#like' + likeID).addClass('active');
+            }
             likeCount = data
-            likeButton.innerText = likeCount
+            likeButtonCount.innerText = likeCount
           })
       }
 
-      function dislikeHandler() {}
+      async function dislikeHandler(e) {
+        e.preventDefault()
+        dislikeButtonCount.innerText = loadingText
+        const responce = await fetch(uriDislike, {
+            headers: {
+              "X-CSRF-TOKEN": token
+            },
+            method: "POST"
+          })
+          .then(res => res.json())
+          .then(data => {
+            if ($('#dislike' + likeID).hasClass('active')) {
+              $('#dislike' + likeID).removeClass('active');
+            } else {
+              $('#dislike' + likeID).addClass('active');
+            }
+            dislikeCount = data
+            dislikeButtonCount.innerText = dislikeCount
+          })
+      }
 
-      function favoriteHandler() {}
+      async function favoriteHandler(e) {
+        e.preventDefault()
+        favoriteButtonCount.innerText = loadingText
+        const responce = await fetch(uriFavorite, {
+            headers: {
+              "X-CSRF-TOKEN": token
+            },
+            method: "POST"
+          })
+          .then(res => res.json())
+          .then(data => {
+            if ($('#favourite' + likeID).hasClass('active')) {
+              $('#favourite' + likeID).removeClass('active');
+            } else {
+              $('#favourite' + likeID).addClass('active');
+            }
+            dislikeCount = data
+            favoriteButtonCount.innerText = dislikeCount
+          })
+      }
     }
-
-
-    {{-- $('.smile').on('click', function(event) {
-      console.log(123123)
-      event.preventDefault();
-      var id = $(this).attr("data-id");
-      var route = $(this).attr("action");
-      $.ajax({
-        type: "POST",
-        url: route,
-        data: {
-          "_token": "{{ csrf_token() }}",
-        },
-        success: function(data) {
-          $('.like' + id).text(data.like.length);
-          if ($('#like' + id).hasClass('active')) {
-            $('#like' + id).removeClass('active');
-          } else {
-            $('#like' + id).addClass('active');
-          }
-        }
-      });
-    }); --}}
   </script>
 
-  <script>
-    $('.smile__sad').on('click', function(event) {
-      event.preventDefault();
-      var id = $(this).attr("data-id");
-      var route = $(this).attr("action");
-      $.ajax({
-        type: "POST",
-        url: route,
-        data: {
-          "_token": "{{ csrf_token() }}",
-        },
-        success: function(data) {
-          $('.dislike' + id).text(data.dislike.length);
-
-          if ($('#dislike' + id).hasClass('active')) {
-            $('#dislike' + id).removeClass('active');
-          } else {
-            $('#dislike' + id).addClass('active');
-          }
-        }
-      });
-    });
-  </script>
-  <script>
+  {{-- <script>
     $('.favourite').on('click', function(event) {
       event.preventDefault();
       var id = $(this).attr("data-id");
@@ -317,5 +317,5 @@
         }
       });
     });
-  </script>
+  </script> --}}
 @endsection
