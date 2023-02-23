@@ -209,7 +209,7 @@
        const token = item.querySelector('input[name = "_token"]').value;
        const likeID = likeButton.dataset.id
        const loadingText = "Загрузка"
-
+       console.log(1);
        likeButton.addEventListener('click', likeHandler)
        dislikeButton.addEventListener('click', dislikeHandler)
        favoriteButton.addEventListener('click', favoriteHandler)

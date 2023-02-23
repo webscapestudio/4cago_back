@@ -1,9 +1,10 @@
 @extends('layouts.main')
 @section('content')
-  <form class="form__search" action="{{ route('advertisement.search', [$advertisement_cat]) }}" method="get">
+  <div class="form__search">
     <div class="form__top">
-      <input class="input input__search" type="text" id="search" name="s" placeholder="Поиск">
-      <button submit class="block svg">
+      <input class="input input__search" type="text" id="search" name="search" placeholder="Поиск">
+
+      <div submit class="block svg">
 
         <svg class="icon" viewBox="0 0 24 24" fill="none">
           <path
@@ -11,19 +12,19 @@
           </path>
         </svg>
 
-      </button>
+      </div>
     </div>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                                                          <option value="date">По
-                                                            дате</option>
-                                                          <option value="views">По
-                                                            количеству просмотров</option>
-                                                          <option value="like">По
-                                                            рейтингу</option>
-                                                        </select> -->
+                                                                                                                                                                                                                                    <option value="date">По
+                                                                                                                                                                                                                                      дате</option>
+                                                                                                                                                                                                                                    <option value="views">По
+                                                                                                                                                                                                                                      количеству просмотров</option>
+                                                                                                                                                                                                                                    <option value="like">По
+                                                                                                                                                                                                                                      рейтингу</option>
+                                                                                                                                                                                                                                  </select> -->
     </div>
-  </form>
+  </div>
 
   <div class="feed" id="data-wrapper">
     <!-- Results -->

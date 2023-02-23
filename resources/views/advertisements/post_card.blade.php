@@ -211,6 +211,7 @@
     document.addEventListener("DOMContentLoaded", ready);
 
     function ready() {
+      console.log(111)
       const card = document.querySelectorAll('.ad__card')
       card.forEach(item => {
         const likeButton = item.querySelector('.smile')

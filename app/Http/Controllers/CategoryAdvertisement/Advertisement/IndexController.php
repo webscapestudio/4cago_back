@@ -35,6 +35,9 @@ class IndexController extends Controller
                 'categories_advertisements' => $categories_advertisements->where('published', '1')
             ], compact('advertisements'));
         }
-        return view('advertisements.index',  compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'advertisement_cat', 'upper_banner'));
+        return view('advertisements.index', [
+            'advertisements' => $advertisements->where('published', '1')->paginate(6),
+            'categories_advertisements' => $categories_advertisements->where('published', '1')
+        ],  compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'advertisement_cat', 'upper_banner'));
     }
 }

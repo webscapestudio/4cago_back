@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-  <form class="form__search" action="" method="get">
+  <div class="form__search">
     <div class="form__top">
       <input class="input input__search" type="text" id="search" name="search" placeholder="Поиск">
 
@@ -16,15 +16,15 @@
     </div>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                                                                                                                                                                                                                              <option value="date">По
-                                                                                                                                                                                                                                дате</option>
-                                                                                                                                                                                                                              <option value="views">По
-                                                                                                                                                                                                                                количеству просмотров</option>
-                                                                                                                                                                                                                              <option value="like">По
-                                                                                                                                                                                                                                рейтингу</option>
-                                                                                                                                                                                                                            </select> -->
+                                                                                                                                                                                                                                                                                                <option value="date">По
+                                                                                                                                                                                                                                                                                                  дате</option>
+                                                                                                                                                                                                                                                                                                <option value="views">По
+                                                                                                                                                                                                                                                                                                  количеству просмотров</option>
+                                                                                                                                                                                                                                                                                                <option value="like">По
+                                                                                                                                                                                                                                                                                                  рейтингу</option>
+                                                                                                                                                                                                                                                                                              </select> -->
     </div>
-  </form>
+  </div>
 
   <div class="feed" id="data-wrapper">
     <!-- Results -->
@@ -45,13 +45,14 @@
 
   <script>
     var ENDPOINT = "{{ url('/') }}";
+    const pagedefault = 1;
     var page = 1;
     infinteLoadMore(page);
+
     $(document).on('click', '.read-more', function(e) {
       e.preventDefault();
       page++;
       infinteLoadMore(page);
-
     });
 
     function infinteLoadMore(page) {
@@ -75,46 +76,56 @@
           console.log('Server error occured');
         });
     }
-  </script>
-  <script>
     $(document).ready(function() {
       $('#search').on('keyup', function() {
         var value = $(this).val();
-        if (value != 0) {
-          $.ajax({
+        infinteSearch(value);
+      });
+    });
+
+    function infinteSearch(value) {
+      if (value != 0) {
+        $.ajax({
             type: "get",
             url: "/news/search",
             data: {
               'search': value
-            },
-            success: function(data) {
-              $('#read-more').hide();
-              $('#data-wrapper').html(data);
             }
+          })
+          .done(function(response) {
+            if (response.length == 0) {
+              $('.auto-load').html("We don't have more data to display :(");
+              return;
+            }
+            $('.auto-load').hide();
+            $('#read-more').hide();
+            $("#data-wrapper").html(response);
+          })
+          .fail(function(jqXHR, ajaxOptions, thrownError) {
+            console.log('Server error occured');
           });
-        } else {
-          $.ajax({
-              url: "/news?page=1",
-              datatype: "html",
-              type: "get",
-              beforeSend: function() {
-                $('.auto-load').show();
-              }
-            })
-            .done(function(response) {
-              if (response.length == 0) {
-                $('.auto-load').html("We don't have more data to display :(");
-                return;
-              }
-              $('.auto-load').hide();
-              $('#read-more').show();
-              $("#data-wrapper").html(response);
-            })
-            .fail(function(jqXHR, ajaxOptions, thrownError) {
-              console.log('Server error occured');
-            });
-        }
-      });
-    });
+      } else {
+        $.ajax({
+            url: ENDPOINT + "/news?page=" + pagedefault,
+            datatype: "html",
+            type: "get",
+            beforeSend: function() {
+              $('.auto-load').show();
+            }
+          })
+          .done(function(response) {
+            if (response.length == 0) {
+              $('.auto-load').html("We don't have more data to display :(");
+              return;
+            }
+            $('.auto-load').hide();
+            $('#read-more').show();
+            $("#data-wrapper").html(response);
+          })
+          .fail(function(jqXHR, ajaxOptions, thrownError) {
+            console.log('Server error occured');
+          });
+      }
+    }
   </script>
 @endsection

@@ -33,7 +33,7 @@ class SearchController extends Controller
                 ->orWhere('title', 'LIKE', "%{$search}%")
                 ->orWhere('content', 'LIKE', "%{$search}%")
                 ->get();
+            return view('advertisements.post_card', compact('advertisements'));
         endif;
-        return view('advertisements.post_card', compact('advertisements'));
     }
 }
