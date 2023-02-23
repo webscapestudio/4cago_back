@@ -2,7 +2,6 @@
 module.exports = {
     content: [
         "./resources/**/*.blade.php",
-        "./resources/**/*.scss",
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
