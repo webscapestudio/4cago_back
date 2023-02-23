@@ -16,13 +16,13 @@
     </form>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <option value="date">По
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        дате</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <option value="views">По
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        количеству просмотров</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      <option value="like">По
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        рейтингу</option>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </select> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option value="date">По
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              дате</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option value="views">По
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              количеству просмотров</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <option value="like">По
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              рейтингу</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </select> -->
     </div>
   </div>
 
@@ -64,10 +64,96 @@
 
       async function searchHandler() {
         const value = searchInput.value
+        preloaderEl.style.display = "flex"
         const response = await fetch(`${uri}/news/search?search=${value}`)
           .then(res => res.text())
           .then(data => {
-            dataWrapper.insertAdjacentHTML('beforebegin', data)
+            dataWrapper.innerHTML = ''
+            preloaderEl.style.display = "none"
+            dataWrapper.insertAdjacentHTML('afterbegin', data)
+            const card = document.querySelectorAll('.ad__card')
+
+            card.forEach(item => {
+              const likeButton = item.querySelector('.smile')
+              const likeButtonCount = item.querySelector('.smile p')
+              const dislikeButton = item.querySelector('.smile__sad')
+              const dislikeButtonCount = item.querySelector('.smile__sad p')
+              const favoriteButton = item.querySelector('.favourite')
+              const favoriteButtonCount = item.querySelector('.favourite p')
+
+              const uriLike = likeButton.getAttribute("action")
+              const uriDislike = dislikeButton.getAttribute("action")
+              const uriFavorite = favoriteButton.getAttribute("action")
+              const token = item.querySelector('input[name = "_token"]').value;
+              const likeID = likeButton.dataset.id
+              const loadingText = "Загрузка"
+              likeButton.addEventListener('click', likeHandler)
+              dislikeButton.addEventListener('click', dislikeHandler)
+              favoriteButton.addEventListener('click', favoriteHandler)
+
+              async function likeHandler(e) {
+                e.preventDefault()
+                likeButtonCount.innerText = loadingText
+                const responce = await fetch(uriLike, {
+                    headers: {
+                      "X-CSRF-TOKEN": token
+                    },
+                    method: "POST"
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                    if ($('#like' + likeID).hasClass('active')) {
+                      $('#like' + likeID).removeClass('active');
+                    } else {
+                      $('#like' + likeID).addClass('active');
+                    }
+                    likeCount = data
+                    likeButtonCount.innerText = likeCount
+                  })
+              }
+
+              async function dislikeHandler(e) {
+                e.preventDefault()
+                dislikeButtonCount.innerText = loadingText
+                const responce = await fetch(uriDislike, {
+                    headers: {
+                      "X-CSRF-TOKEN": token
+                    },
+                    method: "POST"
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                    if ($('#dislike' + likeID).hasClass('active')) {
+                      $('#dislike' + likeID).removeClass('active');
+                    } else {
+                      $('#dislike' + likeID).addClass('active');
+                    }
+                    dislikeCount = data
+                    dislikeButtonCount.innerText = dislikeCount
+                  })
+              }
+
+              async function favoriteHandler(e) {
+                e.preventDefault()
+                favoriteButtonCount.innerText = loadingText
+                const responce = await fetch(uriFavorite, {
+                    headers: {
+                      "X-CSRF-TOKEN": token
+                    },
+                    method: "POST"
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                    if ($('#favourite' + likeID).hasClass('active')) {
+                      $('#favourite' + likeID).removeClass('active');
+                    } else {
+                      $('#favourite' + likeID).addClass('active');
+                    }
+                    dislikeCount = data
+                    favoriteButtonCount.innerText = dislikeCount
+                  })
+              }
+            })
           })
       }
 
@@ -86,7 +172,7 @@
           .then(res => res.text())
           .then(data => {
             preloaderEl.style.display = "none"
-            dataWrapper.insertAdjacentHTML('beforebegin', data)
+            dataWrapper.insertAdjacentHTML('afterbegin', data)
             const card = document.querySelectorAll('.ad__card')
 
             card.forEach(item => {
