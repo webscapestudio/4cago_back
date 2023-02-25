@@ -42,46 +42,7 @@
           @enderror
         </div>
       </div>
-      <div class="categories">
-        <div class="post__category">
-          <p class="post__date">Вид объявления</p>
-          <div class="custom__select" action="">
-            <select name="type">
-              @if (@isset($advertisement->id))
-                <option value="0"@if ($advertisement->type == 0) selected = "" @endif>Куплю</option>
-                <option value="1"@if ($advertisement->type == 1) selected = "" @endif>Продам</option>
-                <option value="2"@if ($advertisement->type == 2) selected = "" @endif>Потеряшки</option>
-              @else
-                <option value="0">Куплю</option>
-                <option value="1">Продам</option>
-                <option value="2">Потеряшки</option>
-              @endif
-            </select>
-            @error('type')
-              <div class="text-danger">{{ $message }}</div>
-            @enderror
-          </div>
-        </div>
-        <div class="post__subcategory">
-          <p class="post__date">Срок объявления</p>
-          <div class="custom__select" action="">
-            <select name="term">
-              @if (@isset($advertisement->id))
-                <option value="0"@if ($advertisement->term == 0) selected = "" @endif>1 день</option>
-                <option value="1"@if ($advertisement->term == 1) selected = "" @endif>3 дня</option>
-                <option value="2"@if ($advertisement->term == 2) selected = "" @endif>7 дней</option>
-              @else
-                <option value="0">1 день</option>
-                <option value="1">3 дня</option>
-                <option value="2">7 дней</option>
-              @endif
-            </select>
-            @error('term')
-              <div class="text-danger">{{ $message }}</div>
-            @enderror
-          </div>
-        </div>
-      </div>
+
 
       <div class="create__title">
         <p class="post__date">Заголовок</p>
