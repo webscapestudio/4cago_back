@@ -19,7 +19,7 @@ class IndexController extends Controller
     {
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
-        $works = Work::latest()->where('published', '1')->paginate(2);
+        $works = Work::latest();
         $categories_works = CategoryWork::get();
         $work_cat = $request->route('categories_works');
         if ($category_workId) {
@@ -31,11 +31,11 @@ class IndexController extends Controller
         $left_banners = LeftBanner::all()->where('published', '1');
         if ($request->ajax()) {
             return view('works.post_card', [
-                'works' => $works,
+                'works' => $works->where('published', '1')->paginate(6),
                 'categories_works' => $categories_works->where('published', '1')
             ], compact('works'));
         }
-        $last_page = $works->lastPage();
+        $last_page = Work::latest()->where('published', '1')->paginate(6)->lastPage();
         return view('works.index', compact('last_page', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'work_cat', 'upper_banner'));
     }
 }
