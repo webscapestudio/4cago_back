@@ -48,7 +48,7 @@
         </div>
 
         <div class="create__text">
-          <p class="post__date">Текст</p>
+          <p class="post__date">Краткое описание</p>
           <div class="white__area">
 
             <textarea class="white__textarea" name="description" id="white-area">{{ old('description') }}</textarea>
