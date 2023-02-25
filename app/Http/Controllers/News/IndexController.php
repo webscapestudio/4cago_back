@@ -18,7 +18,7 @@ class IndexController extends Controller
     $upper_banner = UpperBanner::latest()->first();
     $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
     $user = Auth::user();
-    $news_all = News::where('published', '1')->paginate(6);
+    $news_all = News::latest()->where('published', '1')->paginate(6);
 
     if ($request->ajax()) {
       return view('news.post_card', compact('news_all'));
