@@ -67,7 +67,7 @@
         @endif
         @auth()
           <form class="comment"
-            action="{{ route('post.comment.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
+            action="{{ route('advertisement.comment.store', [$advertisement->category_advertisement_id, $advertisement->id]) }}"
             method="POST" enctype="multipart/form-data">
             @csrf
             <textarea id="summernote" class="white__textarea" name="content" id="area__comment"

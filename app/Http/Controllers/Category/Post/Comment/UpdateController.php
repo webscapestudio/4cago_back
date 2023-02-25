@@ -24,7 +24,7 @@ class UpdateController extends Controller
         endif;
         $post->comments()->update([
             'user_id' => Auth::user()->id,
-            'content' =>  $request->content,
+            'content' =>  $data['content'],
             'comment_image' => $data['comment_image'],
             'category_id' => $category_id
         ]);

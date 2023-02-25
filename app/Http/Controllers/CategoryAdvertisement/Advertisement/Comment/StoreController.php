@@ -28,7 +28,7 @@ class StoreController extends Controller
         endif;
         $advertisement->comments()->create([
             'user_id' => Auth::user()->id,
-            'content' =>  $request->content,
+            'content' =>  $data['content'],
             'comment_image' => $data['comment_image'],
             'category_advertisement_id' => $category_advertisement_id,
             'parent_id' => $data['parent_id']
