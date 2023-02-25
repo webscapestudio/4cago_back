@@ -20,7 +20,7 @@ class EditController extends Controller
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $user = Auth::user();
         $advertisements = Advertisement::all();
-        $categories_advertisements = CategoryAdvertisement::with('childrenCategories')->where('parent_id', '>', '0')->get();
+        $categories_advertisements = CategoryAdvertisement::with('childrenCategories')->get();
         $tags = Tag::all();
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
