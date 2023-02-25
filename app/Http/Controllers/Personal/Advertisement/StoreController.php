@@ -32,8 +32,6 @@ class StoreController extends Controller
             'advertisement_image' => $data['advertisement_image'],
             'user_id' => $author->id,
             'published' =>  $request->published,
-            'term' =>  $request->term,
-            'type' => $request->type,
             'description' =>  $request->description,
         ]);
         if (isset($tagIds)) :

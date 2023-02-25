@@ -28,8 +28,6 @@ class StoreRequest extends FormRequest
             'title' => 'required|string',
             'content' => 'required|string',
             'advertisement_image' => 'nullable|file',
-            'term' => 'required|string',
-            'type' => 'required|string',
             'category_advertisement_id' => 'required|exists:categories,id',
             'tags' => 'nullable|array',
             'tags.*' => 'nullable|integer|exists:tags,id',

@@ -39,39 +39,6 @@
           </div>
         </div>
 
-
-
-
-        <div class="categories">
-          <div class="post__category">
-            <p class="label__gray">Вид объявления</p>
-            <div class="custom__select" action="">
-              <select name="type">
-                <option value="0">Куплю</option>
-                <option value="1">Продам</option>
-                <option value="2">Потеряшки</option>
-              </select>
-              @error('type')
-                <div class="text-danger">{{ $message }}</div>
-              @enderror
-            </div>
-          </div>
-          <div class="post__subcategory">
-            <p class="label__gray">Срок объявления</p>
-            <div class="custom__select" action="">
-              <select name="term">
-                <option value="0">1 день</option>
-                <option value="1">3 дня</option>
-                <option value="2">7 дней</option>
-              </select>
-              @error('term')
-                <div class="text-danger">{{ $message }}</div>
-              @enderror
-            </div>
-          </div>
-        </div>
-
-
         <div class="create__title">
           <p class="post__date">Заголовок</p>
           <input class="input input__title" type="text" name="title" value="{{ old('title') }}">
