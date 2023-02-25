@@ -102,7 +102,7 @@
     document.addEventListener("DOMContentLoaded", ready);
 
     function ready() {
-      const card = document.querySelector('.ad__card')
+      const card = document.querySelector('.vacancy__card')
       const favoriteButton = card.querySelector('.favourite')
       const favoriteButtonCount = card.querySelector('.favourite p')
 

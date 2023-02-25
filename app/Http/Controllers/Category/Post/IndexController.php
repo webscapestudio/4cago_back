@@ -18,7 +18,7 @@ class IndexController extends Controller
     {
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
-        $posts = Post::latest();
+        $posts = Post::latest()->where('published', '1')->paginate(6);
         $categories = Category::get();
         if ($categoryId) {
             $posts->where('category_id', $categoryId);
@@ -30,11 +30,11 @@ class IndexController extends Controller
         $post_cat = $request->route('category');
         if ($request->ajax()) {
             return view('posts.post_card', [
-                'posts' => $posts->where('published', '1')->paginate(6),
+                'posts' => $posts,
                 'categories' => $categories->where('published', '1')
             ], compact('posts'));
         }
-
-        return view('posts.index', compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'post_cat', 'upper_banner'));
+        $last_page = $posts->lastPage();
+        return view('posts.index', compact('last_page', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'post_cat', 'upper_banner'));
     }
 }

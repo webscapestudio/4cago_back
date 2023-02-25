@@ -19,7 +19,7 @@ class IndexController extends Controller
     {
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
-        $advertisements = Advertisement::latest();
+        $advertisements = Advertisement::latest()->where('published', '1')->paginate(6);
         $categories_advertisements = CategoryAdvertisement::get();
         $advertisement_cat = $request->route('categories_advertisements');
         if ($category_advertisementId) {
@@ -31,13 +31,11 @@ class IndexController extends Controller
         $left_banners = LeftBanner::all()->where('published', '1');
         if ($request->ajax()) {
             return view('advertisements.post_card', [
-                'advertisements' => $advertisements->where('published', '1')->paginate(6),
+                'advertisements' => $advertisements,
                 'categories_advertisements' => $categories_advertisements->where('published', '1')
             ], compact('advertisements'));
         }
-        return view('advertisements.index', [
-            'advertisements' => $advertisements->where('published', '1')->paginate(6),
-            'categories_advertisements' => $categories_advertisements->where('published', '1')
-        ],  compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'advertisement_cat', 'upper_banner'));
+        $last_page = $advertisements->lastPage();
+        return view('advertisements.index',  compact('last_page', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'advertisement_cat', 'upper_banner'));
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
   <div class="form__search">
-    <div class="form__top">
+    <form class="form__top">
       <input class="input input__search" type="text" id="search" name="search" placeholder="Поиск">
 
       <div submit class="block svg">
@@ -13,16 +13,16 @@
         </svg>
 
       </div>
-    </div>
+    </form>
     <div class="dropdown__filter">
       <!-- <select class="dropdown__span" name="sort">
-                                                                                                                                                                                                                                    <option value="date">По
-                                                                                                                                                                                                                                      дате</option>
-                                                                                                                                                                                                                                    <option value="views">По
-                                                                                                                                                                                                                                      количеству просмотров</option>
-                                                                                                                                                                                                                                    <option value="like">По
-                                                                                                                                                                                                                                      рейтингу</option>
-                                                                                                                                                                                                                                  </select> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <option value="date">По
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            дате</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <option value="views">По
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            количеству просмотров</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          <option value="like">По
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            рейтингу</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </select> -->
     </div>
   </div>
 
@@ -30,7 +30,7 @@
     <!-- Results -->
   </div>
   <!-- Data Loader -->
-  <div class="auto-load text-center">
+  <div class="auto-load flex justify-center">
     <svg version="1.1" id="L9" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px" y="0px" height="60" viewBox="0 0 100 100" enable-background="new 0 0 0 0"
       xml:space="preserve">
@@ -41,84 +41,128 @@
       </path>
     </svg>
   </div>
-  <button type="button" id="read-more" class="btn btn__blue read-more" data-cat="{{ $work_cat }}">Показать
-    еще</button>
+  <button type="button" id="read-more" class="btn btn__blue read-more">Показать еще</button>
 
   <script>
-    var id_cat = $('#read-more').attr("data-cat");
-    var ENDPOINT = "{{ url('/categories_works') }}";
-    var page = 1;
-    infinteLoadMore(page);
-    $(document).on('click', '.read-more', function(e) {
-      e.preventDefault();
-      page++;
-      infinteLoadMore(page);
-    });
+    document.addEventListener("DOMContentLoaded", ready)
 
-    function infinteLoadMore(page) {
-      $.ajax({
-          url: ENDPOINT + "/" + id_cat + "/works?page=" + page,
-          datatype: "html",
-          type: "get",
-          beforeSend: function() {
-            $('.auto-load').show();
-          }
-        })
-        .done(function(response) {
+    function ready() {
+      const uri = "{{ url('/categories_works') }}"
+      let work_cat = "{{ $work_cat }}"
+      let page = 1
+      const errorMessage = "Ошибка"
 
-          if (response.length == 0) {
-            $('.auto-load').html("We don't have more data to display :(");
-            return;
-          }
-          $('.auto-load').hide();
-          $("#data-wrapper").append(response);
-        })
-        .fail(function(jqXHR, ajaxOptions, thrownError) {
-          console.log('Server error occured');
-        });
-    }
-  </script>
-  <script>
-    var id_cat = $('#read-more').attr("data-cat");
-    var ENDPOINT = "{{ url('/categories_works') }}";
-    $(document).ready(function() {
-      $('#search').on('keyup', function() {
-        var value = $(this).val();
-        if (value != 0) {
-          $.ajax({
-            type: "get",
-            url: ENDPOINT + "/" + id_cat + "/works/search",
-            data: {
-              'search': value
+      const searchForm = document.querySelector(".form__top")
+      const searchInput = document.querySelector("#search")
+      const loadMoreBtn = document.querySelector(".read-more")
+      const preloaderEl = document.querySelector(".auto-load")
+      const dataWrapper = document.querySelector("#data-wrapper")
+      let lastpage = {{ $last_page }}
+      searchInput.addEventListener("keyup", searchHandler)
+      loadMoreBtn.addEventListener("click", loadMoreHandler)
+
+      fetchPosts()
+
+      async function searchHandler() {
+        const value = searchInput.value
+        preloaderEl.style.display = "flex"
+        const response = await fetch(`${uri}/${work_cat}/works/search?search=${value}`)
+          .then(res => res.text())
+          .then(data => {
+            dataWrapper.innerHTML = ''
+            preloaderEl.style.display = "none"
+            loadMoreBtn.style.display = "none"
+            dataWrapper.insertAdjacentHTML('afterbegin', data)
+            const card = document.querySelectorAll('.work__card')
+
+            card.forEach(item => {
+              const favoriteButton = item.querySelector('.favourite')
+              const favoriteButtonCount = item.querySelector('.favourite p')
+
+              const uriFavorite = favoriteButton.getAttribute("action")
+              const token = item.querySelector('input[name = "_token"]').value;
+              const likeID = favoriteButton.dataset.id
+              const loadingText = "Загрузка"
+
+              favoriteButton.addEventListener('click', favoriteHandler)
+
+              async function favoriteHandler(e) {
+                e.preventDefault()
+                favoriteButtonCount.innerText = loadingText
+                const responce = await fetch(uriFavorite, {
+                    headers: {
+                      "X-CSRF-TOKEN": token
+                    },
+                    method: "POST"
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                    if ($('#favourite' + likeID).hasClass('active')) {
+                      $('#favourite' + likeID).removeClass('active');
+                    } else {
+                      $('#favourite' + likeID).addClass('active');
+                    }
+                    dislikeCount = data
+                    favoriteButtonCount.innerText = dislikeCount
+                  })
+              }
+            })
+          })
+      }
+
+      async function loadMoreHandler() {
+        page += 1
+        fetchPosts(page)
+      }
+
+      async function fetchPosts(page = 1) {
+        preloaderEl.style.display = "flex"
+        const response = await fetch(`${uri}/${work_cat}/works?page=${page}`, {
+            headers: {
+              'X-Requested-With': 'XMLHttpRequest'
             },
-            success: function(data) {
-              $('#read-more').hide();
-              $('#data-wrapper').html(data);
-            }
-          });
-        } else {
-          $.ajax({
-              url: ENDPOINT + "/" + id_cat + "/works?page=1",
-              datatype: "html",
-              type: "get",
-              beforeSend: function() {
-                $('.auto-load').show();
+          })
+
+          .then(res => res.text())
+          .then(data => {
+            preloaderEl.style.display = "none"
+            dataWrapper.insertAdjacentHTML('beforeend', data)
+            let card = document.querySelectorAll('.work__card')
+            card.forEach(item => {
+              if (lastpage == page) {
+                loadMoreBtn.style.display = "none"
+              }
+              const favoriteButton = item.querySelector('.favourite')
+              const favoriteButtonCount = item.querySelector('.favourite p')
+
+              const uriFavorite = favoriteButton.getAttribute("action")
+              const token = item.querySelector('input[name = "_token"]').value;
+              const likeID = favoriteButton.dataset.id
+              const loadingText = "Загрузка"
+              favoriteButton.addEventListener('click', favoriteHandler)
+              async function favoriteHandler(e) {
+                e.preventDefault()
+                favoriteButtonCount.innerText = loadingText
+                const responce = await fetch(uriFavorite, {
+                    headers: {
+                      "X-CSRF-TOKEN": token
+                    },
+                    method: "POST"
+                  })
+                  .then(res => res.json())
+                  .then(data => {
+                    if ($('#favourite' + likeID).hasClass('active')) {
+                      $('#favourite' + likeID).removeClass('active');
+                    } else {
+                      $('#favourite' + likeID).addClass('active');
+                    }
+                    dislikeCount = data
+                    favoriteButtonCount.innerText = dislikeCount
+                  })
               }
             })
-            .done(function(response) {
-              if (response.length == 0) {
-                $('.auto-load').html("We don't have more data to display :(");
-                return;
-              }
-              $('.auto-load').hide();
-              $('#read-more').show();
-              $("#data-wrapper").html(response);
-            })
-            .fail(function(jqXHR, ajaxOptions, thrownError) {
-              console.log('Server error occured');
-            });
-        }
-      });
-    });
+          })
+      }
+    }
   </script>
 @endsection

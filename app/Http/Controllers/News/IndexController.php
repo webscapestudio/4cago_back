@@ -26,6 +26,7 @@ class IndexController extends Controller
 
     $right_banners = RightBanner::all()->where('published', '1');
     $left_banners = LeftBanner::all()->where('published', '1');
-    return view('news.index', compact('user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner', 'news_all'));
+    $last_page = $news_all->lastPage();
+    return view('news.index', compact('last_page', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner', 'news_all'));
   }
 }

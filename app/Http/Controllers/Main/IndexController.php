@@ -29,6 +29,7 @@ class IndexController extends Controller
         if ($request->ajax()) {
             return view('main.post_card', compact('posts'));
         }
-        return view('main.index', compact('tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
+        $last_page = $posts->lastPage();
+        return view('main.index', compact('last_page', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
     }
 }
