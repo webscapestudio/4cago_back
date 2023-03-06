@@ -35,10 +35,10 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('admin.post.index') }}" class="nav-link">
-              <p>Основной раздел</p>
+              <p>Форум</p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('admin.advertisement.index') }}" class="nav-link">
               <p>Обьявления</p>
             </a>
@@ -47,7 +47,7 @@
             <a href="{{ route('admin.work.index') }}" class="nav-link">
               <p>Вакансии</p>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </li>
 
@@ -64,10 +64,10 @@
         <ul class="nav nav-treeview" style="display: none;">
           <li class="nav-item">
             <a href="{{ route('admin.category.index') }}" class="nav-link">
-              <p>Основной раздел</p>
+              <p>Форум</p>
             </a>
           </li>
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('admin.category_advertisement.index') }}" class="nav-link">
               <p>Обьявления</p>
             </a>
@@ -76,7 +76,7 @@
             <a href="{{ route('admin.category_work.index') }}" class="nav-link">
               <p>Вакансии</p>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </li>
 

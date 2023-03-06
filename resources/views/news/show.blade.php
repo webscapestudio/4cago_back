@@ -42,15 +42,6 @@
       <a class="post__title">{{ $news->title }}</a>
       <p class="post__text">{!! $news->content !!}</p>
 
-      @if ($news->news_image)
-        <div class="post__img">
-          <picture>
-            <source srcset="{{ asset('storage/' . $news->news_image) }}" type="image/webp"><img
-              src="{{ asset('storage/' . $news->news_image) }}" alt="">
-          </picture>
-        </div>
-      @else
-      @endif
 
     </div>
     <div class="post__bottom">

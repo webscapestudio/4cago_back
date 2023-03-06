@@ -50,46 +50,45 @@
                     <option value="1">Опубликовано</option>
                   @endif
                 </select>
-              </div>
-              <div class="form-group">
-                <label for="inputName">Название рекламы</label>
-                <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
-                  value="{{ $left_banner->title }}">
-                @error('title')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
-              </div>
-              <div class="form-group">
-                <label for="inputLink">Ссылка</label>
-                <input type="text" id="inputLink" class="form-control" name="link" placeholder="Ссылка..."
-                  value="{{ $left_banner->link }}">
-                @error('link')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
-              </div>
-              <label for="exampleInputFile">Загрузка файла</label>
-              @if ($left_banner->banner_image)
-                <div class="row mb-3">
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <img class="img-fluid pad" src="{{ asset('storage/' . $left_banner->banner_image) }}"
-                          alt="Photo">
+                <div class="form-group">
+                  <label for="inputName">Название рекламы</label>
+                  <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
+                    value="{{ $left_banner->title }}">
+                  @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="inputLink">Ссылка</label>
+                  <input type="text" id="inputLink" class="form-control" name="link" placeholder="Ссылка..."
+                    value="{{ $left_banner->link }}">
+                  @error('link')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <label for="exampleInputFile">Загрузка файла</label>
+                @if ($left_banner->banner_image)
+                  <div class="row mb-3">
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-fluid pad" src="{{ asset('storage/' . $left_banner->banner_image) }}"
+                            alt="Photo">
+                        </div>
                       </div>
                     </div>
                   </div>
+                @else
+                @endif
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="banner_image">
+                  </div>
                 </div>
-              @else
-              @endif
-              <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="exampleInputFile" name="banner_image">
-                  <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
-                </div>
+                @error('banner_image')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
               </div>
-              @error('banner_image')
-                <div class="text-danger">{{ $message }}</div>
-              @enderror
               <input type="submit" class="btn btn-primary" value="Сохранить">
             </form>
           </div>

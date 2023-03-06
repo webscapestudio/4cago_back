@@ -11,10 +11,10 @@ class DestroyController extends Controller
 {
     public function __invoke($category_id, $post_id, Comment $comment)
     {
+
         $comment->replies()->delete();
         $post = Post::find($post_id);
         $post->comments()->where('id', $comment->id)->delete();
-
         return redirect()->back();
     }
 }

@@ -88,15 +88,6 @@
       <a class="post__title">{{ $post->title }}</a>
       <p class="post__text">{!! $post->content !!}</p>
 
-      @if ($post->post_image)
-        <div class="post__img">
-          <picture>
-            <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp"><img
-              src="{{ asset('storage/' . $post->post_image) }}" alt="">
-          </picture>
-        </div>
-      @else
-      @endif
 
     </div>
     <div class="post__bottom">

@@ -4,13 +4,6 @@
       <a href="{{ route('personal.post.index') }}" class="profile__link tabs-btn">Форум</a>
     </li>
     <li class="theme__item">
-      <a href="{{ route('personal.advertisement.index') }}" class="profile__link tabs-btn">Обьявления</a>
-    </li>
-    <li class="theme__item">
-      <a href="{{ route('personal.work.index') }}" class="profile__link tabs-btn">Вакансии</a>
-    </li>
-
-    <li class="theme__item">
       <a href="{{ route('personal.published.index') }}" class="profile__link tabs-btn">Черновики</a>
     </li>
     <li class="theme__item">

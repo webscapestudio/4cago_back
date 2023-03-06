@@ -47,8 +47,7 @@
                     <option value="1">Опубликовано</option>
                   @endif
                 </select>
-              </div>
-              <div class="card-body" style="display: block;">
+
                 <div class="form-group">
                   <label for="inputName">Название рекламы</label>
                   <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
@@ -65,14 +64,32 @@
                     <div class="text-danger">{{ $message }}</div>
                   @enderror
                 </div>
-                <label for="exampleInputFile">Загрузка файла</label>
+                <label for="exampleInputFile">Загрузка файла(мобильные устройства):</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile" name="banner_image">
-                    <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                    <input type="file"name="banner_image_mob">
+
                   </div>
                 </div>
-                @error('banner_image')
+                @error('banner_image_mob')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
+                <label for="exampleInputFile">Загрузка файла(планшеты):</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="banner_image_tablet">
+                  </div>
+                </div>
+                @error('banner_image_tablet')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
+                <label for="exampleInputFile">Загрузка файла(десктопы):</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="banner_image_desktop">
+                  </div>
+                </div>
+                @error('banner_image_desktop')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
               </div>

@@ -90,8 +90,7 @@
                 @endif
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile" name="news_image">
-                    <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                    <input type="file" name="news_image">
                   </div>
                 </div>
                 @error('news_image')

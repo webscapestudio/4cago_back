@@ -47,8 +47,6 @@
                     <option value="1">Опубликовано</option>
                   @endif
                 </select>
-              </div>
-              <div class="card-body" style="display: block;">
                 <div class="form-group">
                   <label for="inputName">Название рекламы</label>
                   <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
@@ -65,17 +63,18 @@
                     <div class="text-danger">{{ $message }}</div>
                   @enderror
                 </div>
+
                 <label for="exampleInputFile">Загрузка файла</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile" name="banner_image">
-                    <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                    <input type="file" name="banner_image">
                   </div>
                 </div>
                 @error('banner_image')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
               </div>
+
               <input type="submit" class="btn btn-primary" value="Добавить">
             </form>
           </div>

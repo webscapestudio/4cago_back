@@ -3,14 +3,8 @@
 namespace App\Http\Controllers\CategoryWork\Work;
 
 use App\Http\Controllers\Controller;
-use App\Models\LeftBanner;
 use App\Models\Work;
-use App\Models\CategoryWork;
-use App\Models\RightBanner;
 use Illuminate\Http\Request;
-use App\Models\Post;
-use App\Models\UpperBanner;
-use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {

@@ -36,11 +36,23 @@
 
             <div class="card-body">
               <p>Ccылка: {{ $upper_banner->link }}</p>
-              @if (file_exists('storage/' . $upper_banner->banner_image))
-                <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image) }}" alt="Photo">
+              <p>Изображение(мобильные устройства):</p>
+              @if (file_exists('storage/' . $upper_banner->banner_image_mob))
+                <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image_mob) }}" alt="Photo">
               @else
               @endif
-
+              <p>Изображение(планшеты):</p>
+              @if (file_exists('storage/' . $upper_banner->banner_image_tablet))
+                <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image_tablet) }}"
+                  alt="Photo">
+              @else
+              @endif
+              <p>Изображение(десктопы):</p>
+              @if (file_exists('storage/' . $upper_banner->banner_image_desktop))
+                <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image_desktop) }}"
+                  alt="Photo">
+              @else
+              @endif
               <div class="card-footer">
                 <div class="float-right">
                   <a href="{{ route('admin.upper_banner.edit', $upper_banner->id) }}" type="button"

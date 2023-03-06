@@ -88,15 +88,6 @@
       <a class="post__title">{{ $advertisement->title }}</a>
       <p class="post__text">{!! $advertisement->content !!}</p>
 
-      @if ($advertisement->advertisement_image)
-        <div class="post__img">
-          <picture>
-            <source srcset="{{ asset('storage/' . $advertisement->advertisement_image) }}" type="image/webp">
-            <img src="{{ asset('storage/' . $advertisement->advertisement_image) }}" alt="">
-          </picture>
-        </div>
-      @endif
-
     </div>
     <div class="post__bottom">
       <div class="post__tags">

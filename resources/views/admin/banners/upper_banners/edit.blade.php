@@ -29,6 +29,7 @@
               method="POST" enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PATCH">
               @csrf
+
               <div class="card-header">
                 <h3 class="card-title">Главное</h3>
                 <div class="card-tools">
@@ -37,6 +38,7 @@
                   </button>
                 </div>
               </div>
+
               <div class="card-body">
                 <label>Статус</label>
                 <select class="form_control" name="published">
@@ -50,46 +52,94 @@
                     <option value="1">Опубликовано</option>
                   @endif
                 </select>
-              </div>
-              <div class="form-group">
-                <label for="inputName">Название рекламы</label>
-                <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
-                  value="{{ $upper_banner->title }}">
-                @error('title')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
-              </div>
-              <div class="form-group">
-                <label for="inputLink">Ссылка</label>
-                <input type="text" id="inputLink" class="form-control" name="link" placeholder="Ссылка..."
-                  value="{{ $upper_banner->link }}">
-                @error('link')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
-              </div>
-              <label for="exampleInputFile">Загрузка файла</label>
-              @if ($upper_banner->banner_image)
-                <div class="row mb-3">
-                  <div class="col-sm-6">
-                    <div class="row">
-                      <div class="col-sm-6">
-                        <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image) }}"
-                          alt="Photo">
+
+                <div class="form-group">
+                  <label for="inputName">Название рекламы</label>
+                  <input type="text" id="inputName" class="form-control" name="title" placeholder="Название новости"
+                    value="{{ $upper_banner->title }}">
+                  @error('title')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="inputLink">Ссылка</label>
+                  <input type="text" id="inputLink" class="form-control" name="link" placeholder="Ссылка..."
+                    value="{{ $upper_banner->link }}">
+                  @error('link')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+
+                <label for="exampleInputFile">Загрузка файла(мобильные устройства):</label>
+                @if ($upper_banner->banner_image_mob)
+                  <div class="row mb-3">
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image_mob) }}"
+                            alt="Photo">
+                        </div>
                       </div>
                     </div>
                   </div>
+                @else
+                @endif
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="banner_image_mob">
+
+                  </div>
                 </div>
-              @else
-              @endif
-              <div class="input-group">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="exampleInputFile" name="banner_image">
-                  <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                @error('banner_image_mob')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
+
+                <label for="exampleInputFile">Загрузка файла(планшеты):</label>
+                @if ($upper_banner->banner_image_tablet)
+                  <div class="row mb-3">
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image_tablet) }}"
+                            alt="Photo">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @else
+                @endif
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="banner_image_tablet">
+                  </div>
                 </div>
+                @error('banner_image_tablet')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
+
+                <label for="exampleInputFile">Загрузка файла(десктопы):</label>
+                @if ($upper_banner->banner_image_desktop)
+                  <div class="row mb-3">
+                    <div class="col-sm-6">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <img class="img-fluid pad" src="{{ asset('storage/' . $upper_banner->banner_image_desktop) }}"
+                            alt="Photo">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                @else
+                @endif
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="banner_image_desktop">
+                  </div>
+                </div>
+                @error('banner_image_desktop')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
               </div>
-              @error('banner_image')
-                <div class="text-danger">{{ $message }}</div>
-              @enderror
               <input type="submit" class="btn btn-primary" value="Сохранить">
             </form>
           </div>
