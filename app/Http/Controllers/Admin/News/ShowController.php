@@ -8,8 +8,9 @@ use App\Models\News;
 
 class ShowController extends Controller
 {
-    public function __invoke(News $news)
+    public function __invoke($slug)
     {
+        $news = News::whereSlug($slug)->firstOrFail();
         return view('admin.news.show', compact('news'));
     }
 }

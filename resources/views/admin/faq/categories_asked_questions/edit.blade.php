@@ -25,7 +25,7 @@
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <form action="{{ route('admin.category_question.update', $categories_asked_question) }}" method="POST"
+            <form action="{{ route('admin.category_question.update', $categories_asked_question->slug) }}" method="POST"
               class="w-25" enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PATCH">
               @csrf
@@ -48,16 +48,6 @@
               @error('title')
                 <div class="text-danger">{{ $message }}</div>
               @enderror
-
-              <div class="form-group">
-                <label>Slug</label>
-                <input type="text" class="form-control" name="slug" placeholder="Авто генерация" value=""
-                  readonly="">
-              </div>
-              @error('slug')
-                <div class="text-danger">{{ $message }}</div>
-              @enderror
-
               <input type="submit" class="btn btn-primary" value="Сохранить">
             </form>
           </div>

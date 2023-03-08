@@ -109,7 +109,6 @@
               </div>
             </div>
             <div class="post__actions">
-
               <div class="post__actions-left">
                 <a class="post__views post__actions-left-item" href="#">
                   <svg class="icon" viewBox="0 0 24 24" fill="none" fill="#000F13">

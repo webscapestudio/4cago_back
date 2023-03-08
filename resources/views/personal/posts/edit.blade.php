@@ -1,6 +1,7 @@
 @extends('personal.main.index')
 @section('content')
-  <form class="ad__post"action="{{ route('personal.post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
+  <form class="ad__post"action="{{ route('personal.post.update', $post->slug) }}" method="POST"
+    enctype="multipart/form-data">
     <input type="hidden" name="_method" value="PATCH">
     {{ csrf_field() }}
     <h2 class="delete__title">Редактировать пост</h2>

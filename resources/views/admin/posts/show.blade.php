@@ -120,7 +120,7 @@
             </div>
 
             <div class="card-footer">
-              <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
+              <form action="{{ route('admin.post.destroy', $post->slug) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-default"><i class="fas fa-times"></i> Удалить</button>

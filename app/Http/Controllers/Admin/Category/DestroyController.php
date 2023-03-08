@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class DestroyController extends Controller
 {
-    public function __invoke(Category $category)
+    public function __invoke($category_slug)
     {
+        $category = Category::whereSlug($category_slug)->firstOrFail();
         $category->delete();
         return redirect()->route('admin.category.index');
-
-}
+    }
 }

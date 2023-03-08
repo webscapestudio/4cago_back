@@ -23,7 +23,7 @@
       <section class="content">
         <div class="row">
           <div class="col-md-6">
-            < <form class="card card-primary" action="{{ route('admin.rule.update', $rules->id) }}" method="POST"
+            <form class="card card-primary" action="{{ route('admin.rule.update', $rules->id) }}" method="POST"
               enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PATCH">
               @csrf
@@ -39,13 +39,13 @@
                 <label>Статус</label>
                 <select class="form_control" name="published">
                   @if (@isset($rules->id))
-                    <option value="0" @if ($rules->published == 0) selected = "" @endif>Не
-                      опубликовано</option>
                     <option value="1" @if ($rules->published == 1) selected = "" @endif>
                       Опубликовано</option>
+                    <option value="0" @if ($rules->published == 0) selected = "" @endif>Не
+                      опубликовано</option>
                   @else
-                    <option value="0">Не опубликовано</option>
                     <option value="1">Опубликовано</option>
+                    <option value="0">Не опубликовано</option>
                   @endif
                 </select>
               </div>
@@ -71,7 +71,7 @@
 
               </div>
               <input type="submit" class="btn btn-primary" value="Сохранить">
-              </form>
+            </form>
           </div>
         </div>
       </section>

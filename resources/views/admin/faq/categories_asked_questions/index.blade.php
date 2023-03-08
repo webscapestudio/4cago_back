@@ -49,16 +49,16 @@
                           <td>{{ $category->questionsCount->count() }}</td>
                           <td>{{ $category->published == 1 ? 'Опубликовано' : 'Не опубликовано' }}
                           </td>
-                          <td><a href="{{ route('admin.category_question.show', $category->id) }}"><i
+                          <td><a href="{{ route('admin.category_question.show', $category->slug) }}"><i
                                 class="far fa-eye"></i></a>
                           </td>
                           <td>
 
                           </td>
-                          <td><a href="{{ route('admin.category_question.edit', $category->id) }}" class="text-success"><i
-                                class="fas fa-pencil-alt"></i></a></td>
+                          <td><a href="{{ route('admin.category_question.edit', $category->slug) }}"
+                              class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.category_question.destroy', $category->id) }}" method="POST">
+                            <form action="{{ route('admin.category_question.destroy', $category->slug) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-trash text-danger"

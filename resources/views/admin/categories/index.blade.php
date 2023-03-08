@@ -53,15 +53,15 @@
                           <td>{{ $category->comments->count() }}</td>
                           <td>{{ $category->published == 1 ? 'Опубликовано' : 'Не опубликовано' }}
                           </td>
-                          <td><a href="{{ route('admin.category.show', $category->id) }}"><i class="far fa-eye"></i></a>
+                          <td><a href="{{ route('admin.category.show', $category->slug) }}"><i class="far fa-eye"></i></a>
                           </td>
                           <td>
 
                           </td>
-                          <td><a href="{{ route('admin.category.edit', $category) }}" class="text-success"><i
+                          <td><a href="{{ route('admin.category.edit', $category->slug) }}" class="text-success"><i
                                 class="fas fa-pencil-alt"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.category.destroy', $category->id) }}" method="POST">
+                            <form action="{{ route('admin.category.destroy', $category->slug) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-trash text-danger"

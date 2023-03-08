@@ -47,16 +47,17 @@
                           <td>{{ $faq_marketing->title }} </td>
                           <td>{{ $faq_marketing->published == 1 ? 'Опубликовано' : 'Не опубликовано' }}
                           </td>
-                          <td><a href="{{ route('admin.faq_marketing.show', $faq_marketing->id) }}"><i
+                          <td><a href="{{ route('admin.faq_marketing.show', $faq_marketing->slug) }}"><i
                                 class="far fa-eye"></i></a>
                           </td>
                           <td>
 
                           </td>
-                          <td><a href="{{ route('admin.faq_marketing.edit', $faq_marketing->id) }}"
+                          <td><a href="{{ route('admin.faq_marketing.edit', $faq_marketing->slug) }}"
                               class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.faq_marketing.destroy', $faq_marketing->id) }}" method="POST">
+                            <form action="{{ route('admin.faq_marketing.destroy', $faq_marketing->slug) }}"
+                              method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-trash text-danger"

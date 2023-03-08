@@ -14,17 +14,16 @@ use App\Models\UpperBanner;
 
 class ShowController extends Controller
 {
-    public function __invoke($category_id, $post_id)
+    public function __invoke($category_id, $slug)
     {
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
-        $post = Post::find($post_id);
+        $post = Post::whereSlug($slug)->firstOrFail();
         $user = Auth::user();
-        $posts = Post::latest()->with('like')->where('published', '1')->paginate(6);
         $comments = Comment::all();
         $post->increment('views');
         $right_banners = RightBanner::all()->where('published', '1');
         $left_banners = LeftBanner::all()->where('published', '1');
-        return view('posts.show', compact('post', 'user', 'comments', 'posts', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
+        return view('posts.show', compact('post', 'user', 'comments', 'posts_read', 'right_banners', 'left_banners', 'upper_banner'));
     }
 }

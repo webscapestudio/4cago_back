@@ -46,12 +46,12 @@
                           <td>{{ $asked_questions->id }}</td>
                           <td>{{ $asked_questions->title }}</td>
                           <td>{{ $asked_questions->published == 1 ? 'Опубликовано' : 'Не опубликовано' }}</td>
-                          <td><a href="{{ route('admin.asked_question.show', $asked_questions->id) }}"><i
+                          <td><a href="{{ route('admin.asked_question.show', $asked_questions->slug) }}"><i
                                 class="far fa-eye"></i></a></td>
-                          <td><a href="{{ route('admin.asked_question.edit', $asked_questions->id) }}"
+                          <td><a href="{{ route('admin.asked_question.edit', $asked_questions->slug) }}"
                               class="text-success"><i class="fas fa-pencil-alt"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.asked_question.destroy', $asked_questions->id) }}"
+                            <form action="{{ route('admin.asked_question.destroy', $asked_questions->slug) }}"
                               method="POST">
                               @csrf
                               @method('DELETE')

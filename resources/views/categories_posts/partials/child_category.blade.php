@@ -1,5 +1,5 @@
 @foreach ($child_categories as $category_list)
-  <a class="forum__theme" href="{{ route('post.index', $category_list->id) }}">
+  <a class="forum__theme" href="{{ route('post.index', $category_list->slug) }}">
     <div class="forum__theme-left">
       <p class="title__comment"> {{ $category_list->title }}</p>
       <p class="feed__text"> {{ $category_list->description }}</p>

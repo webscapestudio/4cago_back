@@ -70,7 +70,7 @@
                     <span class="text-muted">{{ $comment->created_at->diffForHumans() }}</span>
 
 
-                    <form action="{{ route('news.comment.destroy', [$news->id, $comment->id]) }}" method="POST">
+                    <form action="{{ route('news.comment.destroy', [$news->slug, $comment->id]) }}" method="POST">
                       @csrf
                       @method('DELETE')
                       <button type="submit" class="btn bg-danger float-right" data-micromodal-trigger="report">
@@ -92,7 +92,7 @@
                       <span class="text-muted">
                         Ответ пользователю: {{ $comment1->parent->author->name ?? 'Пользователь не найден' }}</span>
                       <span class="text-muted">{{ $comment1->created_at->diffForHumans() }}</span>
-                      <form action="{{ route('news.comment.destroy', [$news->id, $comment1->id]) }}" method="POST">
+                      <form action="{{ route('news.comment.destroy', [$news->slug, $comment1->id]) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn bg-danger float-right" data-micromodal-trigger="report">
@@ -119,11 +119,11 @@
             </div>
             <div class="card-footer">
               <div class="float-right">
-                <a href="{{ route('admin.news.edit', $news->id) }}" type="button" class="btn btn-default"><i
+                <a href="{{ route('admin.news.edit', $news->slug) }}" type="button" class="btn btn-default"><i
                     class="fas fa-pencil-alt"></i>
                   Редактировать</a>
               </div>
-              <form action="{{ route('admin.news.destroy', $news->id) }}" method="POST">
+              <form action="{{ route('admin.news.destroy', $news->slug) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-default"><i class="fas fa-times"></i>Удалить</button>

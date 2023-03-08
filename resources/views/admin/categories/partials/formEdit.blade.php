@@ -2,11 +2,11 @@
   <label>Статус</label>
   <select class="form_control" name="published">
     @if (@isset($category->id))
-      <option value="0" @if ($category->published == 0) selected = "" @endif>Не опубликовано</option>
       <option value="1" @if ($category->published == 1) selected = "" @endif>Опубликовано</option>
+      <option value="0" @if ($category->published == 0) selected = "" @endif>Не опубликовано</option>
     @else
-      <option value="0">Не опубликовано</option>
       <option value="1">Опубликовано</option>
+      <option value="0">Не опубликовано</option>
     @endif
   </select>
 </div>
@@ -23,21 +23,13 @@
 @error('description')
   <div class="text-danger">{{ $message }}</div>
 @enderror
-
-<div class="form-group">
-  <label>Slug</label>
-  <input type="text" class="form-control" name="slug" placeholder="Авто генерация" value="" readonly="">
-</div>
-@error('slug')
-  <div class="text-danger">{{ $message }}</div>
-@enderror
 <div class="form-group">
   <label>Родительская категорию</label>
   <select class="form-control" name="parent_id">
     <option value="0">-- без родительской категории --</option>
     @include('admin.categories.partials.categoriesEdit', ['categories' => $categories])
   </select>
-  @error('category_id')
+  @error('parent_id')
     <div class="text-danger">{{ $message }}</div>
   @enderror
 </div>

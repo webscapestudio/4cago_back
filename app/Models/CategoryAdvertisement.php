@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class CategoryAdvertisement extends Model
 {
+  use Sluggable;
   use HasFactory;
   use SoftDeletes;
   protected $table = 'categories_advertisements';
@@ -23,10 +24,9 @@ class CategoryAdvertisement extends Model
     'modified_by',
     'description'
   ];
-  // Mutators
-  public function setSlugAttribute()
+  public function sluggable(): array
   {
-    $this->attributes['slug'] = Str::slug(mb_substr($this->title, 0, 40) . "-" . \Carbon\Carbon::now()->format('dmyHi'), '-');
+    return ['slug' => ['source' => 'title']];
   }
   public function childrenCategories()
   {

@@ -87,11 +87,12 @@
                               Заблокировано
                             @endif
                           </td>
-                          <td><a href="{{ route('admin.news.show', $news->id) }}"><i class="far fa-eye"></i></a></td>
-                          <td><a href="{{ route('admin.news.edit', $news->id) }}" class="text-success"><i
+                          <td><a href="{{ route('admin.news.show', $news->slug) }}"><i class="far fa-eye"></i></a>
+                          </td>
+                          <td><a href="{{ route('admin.news.edit', $news->slug) }}" class="text-success"><i
                                 class="fas fa-pencil-alt"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.news.destroy', $news->id) }}" method="POST">
+                            <form action="{{ route('admin.news.destroy', $news->slug) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-trash text-danger"

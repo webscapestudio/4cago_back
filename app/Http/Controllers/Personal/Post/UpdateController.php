@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, Post $post)
+    public function __invoke(UpdateRequest $request, $slug)
     {
+        $post = Post::whereSlug($slug)->firstOrFail();
         $author = Auth::user();
         $data = $request->validated();
 

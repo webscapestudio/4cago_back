@@ -16,7 +16,7 @@
 
     </div>
     <div class="post__main">
-      <a class="post__title" href="{{ route('news.show', $new->id) }}">{{ $new->title }}</a>
+      <a class="post__title" href="{{ route('news.show', $new->slug) }}">{{ $new->title }}</a>
       <div class="post__content js-read-smore" data-read-smore-words="40">
         {{ $new->description }}
       </div>
@@ -52,7 +52,7 @@
               </svg>
               <p class="post__views_num">{{ $new->views }}</p>
             </a>
-            <a class="post__comments post__actions-left-item" href="{{ route('news.show', $new->id) }}">
+            <a class="post__comments post__actions-left-item" href="{{ route('news.show', $new->slug) }}">
               <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                 <path
                   d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">

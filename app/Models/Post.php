@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use App\Filters\QueryFilter;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Post extends Model
 {
-
+    use Sluggable;
     use SoftDeletes;
     use HasFactory;
     protected $table = 'posts';
     protected $guarded = false;
-    protected $fillable = ['user_id', 'published', 'title', 'category_id', 'content', 'post_image', 'description'];
+    protected $fillable = ['user_id', 'published', 'title', 'category_id', 'content', 'post_image', 'description', 'slug'];
 
     protected $casts = [
         'created_at' => 'datetime:Y-m-d',
@@ -57,5 +56,9 @@ class Post extends Model
     public function banned_reason()
     {
         return $this->morphMany(BannedReason::class, 'banned_reasonable');
+    }
+    public function sluggable(): array
+    {
+        return ['slug' => ['source' => 'title']];
     }
 }

@@ -23,7 +23,7 @@
       <section class="content">
         <div class="row">
           <div class="col-md-6">
-            <form class="card card-primary" action="{{ route('admin.asked_question.update', $asked_question->id) }}"
+            <form class="card card-primary" action="{{ route('admin.asked_question.update', $asked_question->slug) }}"
               method="POST" enctype="multipart/form-data">
               <input type="hidden" name="_method" value="PATCH">
               @csrf

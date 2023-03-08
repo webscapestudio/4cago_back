@@ -53,11 +53,11 @@
 
               <div class="card-footer">
                 <div class="float-right">
-                  <a href="{{ route('admin.asked_question.edit', $asked_question->id) }}" type="button"
+                  <a href="{{ route('admin.asked_question.edit', $asked_question->slug) }}" type="button"
                     class="btn btn-default"><i class="fas fa-pencil-alt"></i>
                     Редактировать</a>
                 </div>
-                <form action="{{ route('admin.asked_question.destroy', $asked_question->id) }}" method="POST">
+                <form action="{{ route('admin.asked_question.destroy', $asked_question->slug) }}" method="POST">
                   @csrf
                   @method('DELETE')
                   <button type="submit" class="btn btn-default"><i class="fas fa-times"></i>Удалить</button>

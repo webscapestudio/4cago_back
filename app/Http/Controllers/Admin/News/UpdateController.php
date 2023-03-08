@@ -10,9 +10,10 @@ use Illuminate\Support\Facades\Storage;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, News $news)
+    public function __invoke(UpdateRequest $request, $slug)
     {
         $author = Auth::user();
+        $news = News::whereSlug($slug)->firstOrFail();
         $data = $request->validated();
         if (isset($data['tags'])) :
             $tagIds = $data['tags'];

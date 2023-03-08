@@ -9,8 +9,9 @@ use App\Models\Help;
 
 class EditController extends Controller
 {
-    public function __invoke(Help $asked_question)
+    public function __invoke($slug)
     {
+        $asked_question = Help::whereSlug($slug)->firstOrFail();
         $categories_help = CategoryHelp::all();
         return view('admin.faq.asked_questions.edit', [
             'asked_questions' => [],

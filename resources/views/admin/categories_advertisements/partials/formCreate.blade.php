@@ -24,14 +24,6 @@
 @error('description')
   <div class="text-danger">{{ $message }}</div>
 @enderror
-
-<div class="form-group">
-  <label for="">Slug</label>
-  <input type="text" class="form-control" name="slug" placeholder="Авто генерация" value="" readonly="">
-</div>
-@error('slug')
-  <div class="text-danger">{{ $message }}</div>
-@enderror
 <div class="form-group">
   <label>Родительская категорию</label>
   <select class="form-control" name="parent_id">
@@ -40,7 +32,7 @@
         'categories_advertisements' => $categories_advertisements,
     ])
   </select>
-  @error('category_advertisement_id')
+  @error('parent_id')
     <div class="text-danger">{{ $message }}</div>
   @enderror
 </div>

@@ -14,7 +14,7 @@ class News extends Model
     use HasFactory;
     protected $table = 'news';
     protected $guarded = false;
-    protected $fillable = ['user_id', 'published', 'title', 'description', 'content', 'news_image', 'description'];
+    protected $fillable = ['user_id', 'published', 'title', 'description', 'content', 'news_image', 'slug'];
 
     public function tags()
     {
@@ -48,5 +48,9 @@ class News extends Model
     public function banned_reason()
     {
         return $this->morphMany(BannedReason::class, 'banned_reasonable');
+    }
+    public function sluggable(): array
+    {
+        return ['slug' => ['source' => 'title']];
     }
 }

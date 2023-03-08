@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class EditController extends Controller
 {
-    public function __invoke(Post $post, Category $category)
+    public function __invoke($slug, Category $category)
     {
+        $post = Post::whereSlug($slug)->firstOrFail();
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $user = Auth::user();

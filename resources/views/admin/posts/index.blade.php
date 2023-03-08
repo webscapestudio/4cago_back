@@ -90,9 +90,9 @@
                             @else
                               Заблокировано
                             @endif
-                          <td><a href="{{ route('admin.post.show', $post->id) }}"><i class="far fa-eye"></i></a></td>
+                          <td><a href="{{ route('admin.post.show', $post->slug) }}"><i class="far fa-eye"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.post.destroy', $post->id) }}" method="POST">
+                            <form action="{{ route('admin.post.destroy', $post->slug) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-trash text-danger"

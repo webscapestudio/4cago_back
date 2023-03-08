@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ShowController extends Controller
 {
-    public function __invoke($post_id)
+    public function __invoke($slug)
     {
         $upper_banner = UpperBanner::latest()->first();
-        $post = Post::find($post_id);
+        $post = Post::whereSlug($slug)->firstOrFail();
         $user = Auth::user();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $comments = Comment::all();

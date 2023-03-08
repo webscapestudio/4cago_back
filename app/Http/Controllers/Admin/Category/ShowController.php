@@ -8,10 +8,9 @@ use Illuminate\Http\Request;
 
 class ShowController extends Controller
 {
-    public function __invoke(Category $category)
+    public function __invoke($category_slug)
     {
-        
+        $category = Category::whereSlug($category_slug)->firstOrFail();
         return view('admin.categories.show', compact('category'));
     }
-
 }

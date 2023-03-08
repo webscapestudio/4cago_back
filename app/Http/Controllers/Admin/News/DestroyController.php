@@ -8,8 +8,9 @@ use App\Models\News;
 
 class DestroyController extends Controller
 {
-    public function __invoke(News $news)
+    public function __invoke($slug)
     {
+        $news = News::whereSlug($slug)->firstOrFail();
         $news->delete();
         return redirect()->route('admin.news.index');
     }

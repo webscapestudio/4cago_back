@@ -8,8 +8,9 @@ use App\Models\Help;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, Help $asked_question)
+    public function __invoke(UpdateRequest $request, $slug)
     {
+        $asked_question = Help::whereSlug($slug)->firstOrFail();
         $data = $request->validated();
 
         $asked_question->update($data, ['category_help_id' =>  $request->category_help_id]);

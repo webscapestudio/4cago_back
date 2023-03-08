@@ -11,7 +11,7 @@
         @foreach ($faq_marketings as $faq_marketing)
           <li class="advertising__item">
             <a class="vacancy__link"
-              href="{{ route('faq.faq_marketing.show', $faq_marketing->id) }}">{{ $faq_marketing->title }}</a>
+              href="{{ route('faq.faq_marketing.show', $faq_marketing->slug) }}">{{ $faq_marketing->title }}</a>
           </li>
         @endforeach
       @else

@@ -14,14 +14,14 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function __invoke(Request $request, $categoryId = 0)
+    public function __invoke(Request $request, $category_slug)
     {
+        $category = Category::whereSlug($category_slug)->firstOrFail();
         $upper_banner = UpperBanner::latest()->first();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $posts = Post::latest();
-        $categories = Category::get();
-        if ($categoryId) {
-            $posts->where('category_id', $categoryId);
+        if ($category->id) {
+            $posts->where('category_id', $category->id);
         }
         $tags = Tag::all();
         $user = Auth::user();
@@ -31,7 +31,6 @@ class IndexController extends Controller
         if ($request->ajax()) {
             return view('posts.post_card', [
                 'posts' => $posts->where('published', '1')->paginate(6),
-                'categories' => $categories->where('published', '1')
             ], compact('posts'));
         }
         $last_page = Post::latest()->where('published', '1')->paginate(6)->lastPage();

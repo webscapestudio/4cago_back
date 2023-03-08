@@ -17,7 +17,7 @@
                   <!-- item -->
                   <li class="help__item">
                     <a class="vacancy__link"
-                      href="{{ route('faq.asked_question.show', [$category_asked_question->id, $asked_question->id]) }}">{{ $asked_question->title }}</a>
+                      href="{{ route('faq.asked_question.show', [$category_asked_question->slug, $asked_question->slug]) }}">{{ $asked_question->title }}</a>
                   </li>
                 @endforeach
               @else

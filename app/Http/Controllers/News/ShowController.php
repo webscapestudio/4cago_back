@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ShowController extends Controller
 {
-    public function __invoke(News $news)
+    public function __invoke($slug)
     {
+        $news = News::whereSlug($slug)->firstOrFail();
         $upper_banner = UpperBanner::latest()->first();
         $right_banners = RightBanner::all()->where('published', '1');
         $posts_read = Post::latest()->with('like')->where('published', '1')->paginate(6);

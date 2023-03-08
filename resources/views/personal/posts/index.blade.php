@@ -68,9 +68,9 @@
                 </div>
 
                 <div class="dropdown">
-                  <a href="{{ route('personal.post.edit', $post->id) }}" class="text-success">Изменить</a>
+                  <a href="{{ route('personal.post.edit', $post->slug) }}" class="text-success">Изменить</a>
 
-                  <form action="{{ route('personal.post.destroy', $post->id) }}" method="POST">
+                  <form action="{{ route('personal.post.destroy', $post->slug) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit">Удалить</button>
@@ -82,7 +82,7 @@
             </div>
           </div>
           <div class="post__main">
-            <a class="post__title" href="{{ route('personal.post.show', $post->id) }}">{{ $post->title }}</a>
+            <a class="post__title" href="{{ route('personal.post.show', $post->slug) }}">{{ $post->title }}</a>
             <div class="post__content js-read-smore" data-read-smore-words="40">
               {{ $post->description }}
             </div>
@@ -117,7 +117,7 @@
                   </svg>
                   <p class="post__views_num">{{ $post->views }}</p>
                 </a>
-                <a class="post__comments post__actions-left-item" href="{{ route('personal.post.show', $post->id) }}">
+                <a class="post__comments post__actions-left-item" href="{{ route('personal.post.show', $post->slug) }}">
                   <svg class="icon" viewBox="0 0 20 20" fill="none" fill="#000F13">
                     <path
                       d="M18 0.227539H2C0.9 0.227539 0 1.10708 0 2.18208V19.773L4 15.8639H18C19.1 15.8639 20 14.9844 20 13.9094V2.18208C20 1.10708 19.1 0.227539 18 0.227539ZM18 13.9094H4L2 15.8639V2.18208H18V13.9094Z">

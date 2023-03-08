@@ -8,9 +8,10 @@ use App\Models\CategoryHelp;
 
 class UpdateController extends Controller
 {
-    public function __invoke(UpdateRequest $request, CategoryHelp $categories_asked_question)
+    public function __invoke(UpdateRequest $request, $slug)
     {
-        $data = $request->except('slug');
+        $categories_asked_question = CategoryHelp::whereSlug($slug)->firstOrFail();
+        $data = $request->validated();
         $categories_asked_question->update($data);
         return redirect()->route('admin.category_question.index');
     }

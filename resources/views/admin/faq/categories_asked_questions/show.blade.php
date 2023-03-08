@@ -58,12 +58,12 @@
           <div class="row no-print">
             <div class="col-12">
 
-              <a href="{{ route('admin.category_question.edit', $categories_asked_question) }}"
+              <a href="{{ route('admin.category_question.edit', $categories_asked_question->slug) }}"
                 class="text-success"><button type="button" class="btn btn-success float-right"><i
                     class="fas fa-pencil-alt"></i>
                   Изменить
                 </button></a>
-              <form action="{{ route('admin.category_question.destroy', $categories_asked_question->id) }}"
+              <form action="{{ route('admin.category_question.destroy', $categories_asked_question->slug) }}"
                 method="POST">
                 @csrf
                 @method('DELETE')
