@@ -68,9 +68,9 @@ Route::group(['namespace' => 'CategoryAdvertisement', 'prefix' => 'categories_ad
     });
 });
 //Post
-Route::group(['namespace' => 'Category', 'prefix' => 'categories'], function () {
+Route::group(['namespace' => 'Category', 'prefix' => 'forum'], function () {
     Route::get('/', 'IndexController')->name('categories_posts.index');
-    Route::group(['namespace' => 'Post', 'prefix' => '/{category}/posts'], function () {
+    Route::group(['namespace' => 'Post', 'prefix' => '/{category}'], function () {
         Route::get('/', 'IndexController')->name('post.index');
         Route::get('/search', 'SearchController')->name('post.search');
         Route::get('/{post}', 'ShowController')->name('post.show');
@@ -337,7 +337,7 @@ Route::group(['namespace' => 'Personal', 'prefix' => 'personal', 'middleware' =>
     });
 
     // Post personal CRUD
-    Route::group(['namespace' => 'Post', 'prefix' => 'posts'], function () {
+    Route::group(['namespace' => 'Post', 'prefix' => 'forum'], function () {
         Route::get('/all', 'IndexController')->name('personal.post.index');
         Route::get('/create', 'CreateController')->name('personal.post.create');
         Route::post('/', 'StoreController')->name('personal.post.store');
