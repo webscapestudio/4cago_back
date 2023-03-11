@@ -5220,6 +5220,9 @@ form.error .form__message {
   gap: 15px;
   margin-bottom: 15px;
 }
+.post__main p {
+  line-height: 150%;
+}
 
 .post__content {
   color: #000f13;
@@ -5563,6 +5566,12 @@ form.error .form__message {
   align-items: center;
   padding-bottom: 15px;
   border-bottom: 1px solid #d9d9d9;
+}
+.profile__menu .profile__data img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
 }
 .profile__menu .comment__link {
   cursor: pointer;

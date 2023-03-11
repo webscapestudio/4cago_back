@@ -23,6 +23,12 @@
         align-items: center;
         padding-bottom: 15px;
         border-bottom: 1px solid $border;
+        img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
     }
     .comment__link {
         cursor: pointer;
@@ -150,8 +156,8 @@
         }
     }
 }
-.login__active{
-    picture{
+.login__active {
+    picture {
         border-radius: 50%;
         overflow: hidden;
     }
