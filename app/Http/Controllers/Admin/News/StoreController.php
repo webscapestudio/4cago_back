@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\News;
 use App\Http\Requests\Admin\News\StoreRequest;
 use App\Http\Controllers\Controller;
 use App\Models\News;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -21,6 +20,7 @@ class StoreController extends Controller
             unset($data['tags']);
         endif;
         if (isset($data['news_image'])) :
+
             $data['news_image'] = Storage::disk('public')->put('/images',  $data['news_image']);
         else :
             $data['news_image'] = null;
