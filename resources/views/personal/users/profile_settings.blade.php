@@ -29,7 +29,8 @@
           </div>
         @else
         @endif
-        <input class="input input__mail" type="file" name="user_avatar">
+        <input class="input input__mail" type="file" accept="image/*" onchange="loadFile(event)" name="user_avatar">
+<img id="output"/>
       </div>
       @error('user_avatar')
         <div class="text-danger">{{ $message }}</div>
@@ -53,4 +54,13 @@
       </div>
     </form>
   </div>
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) // free memory
+    }
+  };
+</script>
 @endsection
