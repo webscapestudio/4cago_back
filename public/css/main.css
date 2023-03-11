@@ -5494,6 +5494,7 @@ form.error .form__message {
   gap: 15px;
 }
 .profile__card .profile__card-top .profile__card-left .user__img {
+  overflow: hidden;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -5505,7 +5506,7 @@ form.error .form__message {
 .profile__card .profile__card-top .profile__card-left .user__info {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 .profile__card .profile__card-top .profile__card-right {
   width: 24px;
@@ -6348,7 +6349,7 @@ form.error .form__message {
   .sidebar.active {
     position: absolute;
     max-width: 472px;
-    padding: 10px 32px 40px 170px;
+    padding: 10px 12px 40px 170px;
     transform: translateX(0);
     top: 0;
     height: 100vh;
@@ -6371,6 +6372,9 @@ form.error .form__message {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.6);
+  }
+  .sidebar.active {
+    height: calc(100vh - 64px);
   }
 }
 .ad-text {
@@ -7136,4 +7140,82 @@ form.error .form__message {
 }
 .tox-notifications-container {
   display: none !important;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+/* Apply a default padding if legacy cellpadding attribute is missing */
+table:not([cellpadding]) th,
+table:not([cellpadding]) td {
+  padding: 0.4rem;
+}
+
+/* Set default table styles if a table has a positive border attribute
+   and no inline css */
+table[border]:not([border="0"]):not([style*=border-width]) th,
+table[border]:not([border="0"]):not([style*=border-width]) td {
+  border-width: 1px;
+}
+
+/* Set default table styles if a table has a positive border attribute
+   and no inline css */
+table[border]:not([border="0"]):not([style*=border-style]) th,
+table[border]:not([border="0"]):not([style*=border-style]) td {
+  border-style: solid;
+}
+
+/* Set default table styles if a table has a positive border attribute
+   and no inline css */
+table[border]:not([border="0"]):not([style*=border-color]) th,
+table[border]:not([border="0"]):not([style*=border-color]) td {
+  border-color: #ccc;
+}
+
+figure {
+  display: table;
+  margin: 1rem auto;
+}
+
+figure figcaption {
+  color: #999;
+  display: block;
+  margin-top: 0.25rem;
+  text-align: center;
+}
+
+hr {
+  border-color: #ccc;
+  border-style: solid;
+  border-width: 1px 0 0 0;
+}
+
+code {
+  background-color: #e8e8e8;
+  border-radius: 3px;
+  padding: 0.1rem 0.2rem;
+}
+
+.mce-content-body:not([dir=rtl]) blockquote {
+  border-left: 2px solid #ccc;
+  margin-left: 1.5rem;
+  padding-left: 1rem;
+}
+
+.mce-content-body[dir=rtl] blockquote {
+  border-right: 2px solid #ccc;
+  margin-right: 1.5rem;
+  padding-right: 1rem;
+}
+
+@media screen and (max-width: 960px) {
+  .mobileasidewrap {
+    overflow-y: scroll;
+    height: calc(100vh - 64px);
+    padding-bottom: 15px;
+    position: relative;
+    bottom: 0;
+    padding-right: 20px;
+  }
 }
