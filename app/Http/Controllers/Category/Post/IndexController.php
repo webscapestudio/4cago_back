@@ -18,7 +18,7 @@ class IndexController extends Controller
     {
         $category = Category::whereSlug($category_slug)->firstOrFail();
         $upper_banner = UpperBanner::latest()->first();
-        $posts_read = Post::latest();
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $posts = Post::latest();
         if ($category->id) {
             $posts->where('category_id', $category->id);
