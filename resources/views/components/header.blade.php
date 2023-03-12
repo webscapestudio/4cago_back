@@ -32,12 +32,12 @@
               </svg>
               <div class="login__active">
                 @if ($user->user_avatar)
-                  <picture>
+                  <picture class="shrink-0">
                     <source srcset="{{ asset('storage/' . Auth::user()->user_avatar) }}" type="image/webp" />
                     <img src=" {{ asset('storage/' . Auth::user()->user_avatar) }}" alt="" />
                   </picture>
                 @else
-                  <picture>
+                  <picture class="shrink-0">
                     <source srcset="{{ asset('/images/svg/humster.webp') }}" type="image/webp" />
                     <img src="{{ asset('/images/svg/humster.png') }}" alt="" />
                   </picture>
