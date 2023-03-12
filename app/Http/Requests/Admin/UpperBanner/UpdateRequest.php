@@ -27,9 +27,9 @@ class UpdateRequest extends FormRequest
             'published' => 'required|string',
             'title' => 'required|string',
             'link' => 'required|string',
-            'banner_image_mob' => 'required|file',
-            'banner_image_tablet' => 'required|file',
-            'banner_image_desktop' => 'required|file',
+            'banner_image_mob' => 'nullable|file',
+            'banner_image_tablet' => 'nullable|file',
+            'banner_image_desktop' => 'nullable|file',
         ];
     }
 }

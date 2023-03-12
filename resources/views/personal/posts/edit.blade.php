@@ -85,12 +85,14 @@
             @enderror
           </div>
         </div>
+        {{-- <div class="rounded-lg w-[64px] h-[64px] shrink-0 mt-2 overflow-hidden border border-gray-300 loadedimwrap"
+          style="display: none;">
+          <img id="output" class=" object-cover block h-full w-full" />
+        </div> --}}
         @if ($post->post_image)
-          <div class="post__img">
-            <picture>
-              <source srcset="{{ asset('storage/' . $post->post_image) }}" type="image/webp">
-              <img src="{{ asset('storage/' . $post->post_image) }}" alt="">
-            </picture>
+          <div class="rounded-lg w-[64px] h-[64px] shrink-0 my-4 overflow-hidden border border-gray-300 loadedimwrap">
+            <img id="output" class=" object-cover block h-full w-full"
+              src="{{ asset('storage/' . $post->post_image) }}" />
           </div>
         @else
         @endif
@@ -125,4 +127,14 @@
       <p class="post__date">Стоимость размещения - 1$ за 24 часа</p>
     </div>
   </form>
+  <script>
+    var loadFile = function(event) {
+      var output = document.getElementById('output');
+      const outputWrap = document.querySelector('.loadedimwrap')
+      output.src = URL.createObjectURL(event.target.files[0]);
+      output.onload = function() {
+        URL.revokeObjectURL(output.src)
+      }
+    };
+  </script>
 @endsection

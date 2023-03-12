@@ -3,25 +3,28 @@
     <ul class="sidebar__menu-items">
       <!-- item -->
       <li class="sidebar__menu-item">
-        <a class="menu__link active" href="{{ route('faq.rule.index') }}">
+        <a class="menu__link {{ Request::is('faq/rules*') ? 'active' : '' }}" href="{{ route('faq.rule.index') }}">
           <div class="sidebar__menu-text">Правила</div>
         </a>
       </li>
       <!-- item -->
       <li class="sidebar__menu-item">
-        <a class="menu__link" href="{{ route('faq.category_asked_question.index') }}">
+        <a class="menu__link {{ Request::is('faq/categories_asked_questions*') ? 'active' : '' }}"
+          href="{{ route('faq.category_asked_question.index') }}">
           <div class="sidebar__menu-text">Помощь</div>
         </a>
       </li>
       <!-- item -->
       <li class="sidebar__menu-item">
-        <a class="menu__link" href="{{ route('faq.faq_marketing.index') }}">
+        <a class="menu__link {{ Request::is('faq/faq_marketings*') ? 'active' : '' }}"
+          href="{{ route('faq.faq_marketing.index') }}">
           <div class="sidebar__menu-text">Реклама</div>
         </a>
       </li>
       <!-- item -->
       <li class="sidebar__menu-item">
-        <a class="menu__link" href="{{ route('faq.contact.index') }}">
+        <a class="menu__link {{ Request::is('faq/contacts*') ? 'active' : '' }}"
+          href="{{ route('faq.contact.index') }}">
           <div class="sidebar__menu-text">Контакты</div>
         </a>
       </li>

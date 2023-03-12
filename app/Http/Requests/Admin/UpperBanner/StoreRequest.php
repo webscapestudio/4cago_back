@@ -27,9 +27,9 @@ class StoreRequest extends FormRequest
             'published' => 'required|string',
             'title' => 'required|string',
             'link' => 'required|string',
-            'banner_image_mob' => 'nullable|file',
-            'banner_image_tablet' => 'nullable|file',
-            'banner_image_desktop' => 'nullable|file',
+            'banner_image_mob' => 'required|file',
+            'banner_image_tablet' => 'required|file',
+            'banner_image_desktop' => 'required|file',
         ];
     }
     public function messages()
@@ -40,6 +40,9 @@ class StoreRequest extends FormRequest
             'link.string' => 'Данные должны соответствовать строчному типу',
             'title.string' => 'Данные должны соответствовать строчному типу',
             'content.required' => 'Это поле обязательно для заполнения',
+            'banner_image_mob.required' => 'Это поле обязательно для заполнения',
+            'banner_image_tablet.required' => 'Это поле обязательно для заполнения',
+            'banner_image_desktop.required' => 'Это поле обязательно для заполнения',
             'banner_image_mob.file' => 'Необходимо выбрать файл',
             'banner_image_tablet.file' => 'Необходимо выбрать файл',
             'banner_image_desktop.file' => 'Необходимо выбрать файл',

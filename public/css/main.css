@@ -514,6 +514,10 @@ video {
   margin-left: auto;
   margin-right: auto;
 }
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 .mb-0 {
   margin-bottom: 0px;
 }
@@ -528,6 +532,9 @@ video {
 }
 .ml-auto {
   margin-left: auto;
+}
+.mt-2 {
+  margin-top: 0.5rem;
 }
 .mt-4 {
   margin-top: 1rem;
@@ -544,6 +551,21 @@ video {
 .hidden {
   display: none;
 }
+.h-\[64px\] {
+  height: 64px;
+}
+.h-full {
+  height: 100%;
+}
+.w-\[64px\] {
+  width: 64px;
+}
+.w-full {
+  width: 100%;
+}
+.shrink-0 {
+  flex-shrink: 0;
+}
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -553,8 +575,33 @@ video {
 .justify-center {
   justify-content: center;
 }
+.overflow-hidden {
+  overflow: hidden;
+}
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+.border {
+  border-width: 1px;
+}
 .border-0 {
   border-width: 0px;
+}
+.border-\[\#7d8688\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(125 134 136 / var(--tw-border-opacity));
+}
+.border-gray-300 {
+  --tw-border-opacity: 1;
+  border-color: rgb(209 213 219 / var(--tw-border-opacity));
+}
+.bg-white {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .p-0 {
   padding: 0px;
@@ -4291,7 +4338,6 @@ form.error .form__message {
 }
 
 .main-ad {
-  display: flex !important;
   width: 100%;
   height: 140px;
   position: relative;
@@ -4312,7 +4358,37 @@ form.error .form__message {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.main-ad picture {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
 
+.main-ad-mob {
+  display: none;
+}
+
+.main-ad-tablet {
+  display: none;
+}
+
+@media screen and (max-width: 1440px) {
+  .main-ad-tablet {
+    display: block;
+  }
+  .main-ad-desktop {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .main-ad-tablet {
+    display: none;
+  }
+  .main-ad-mob {
+    display: block;
+  }
+}
 .main__settings {
   padding: 19px;
   background: #fafeff;
