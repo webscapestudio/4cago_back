@@ -34,8 +34,7 @@
           @php
             var_dump($post->category->slug, $post->slug);
           @endphp
-          <a class="title__link"
-            href="{{ route('post.show', [$post->category->slug, $post->slug]) }}">{{ $post->title }}</a>
+          <a class="title__link" href="">{{ $post->title }}</a>
           <div class="read__now-bottom">
             <div class="read__now-left">
               <div class="rn__left-item">
