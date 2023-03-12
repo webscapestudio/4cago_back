@@ -31,9 +31,7 @@
       @foreach ($posts_read as $post)
         <!-- item -->
         <div class="read__now-item">
-          @php
-            var_dump($post->category->slug, $post->slug);
-          @endphp
+
           <a class="title__link" href="">{{ $post->title }}</a>
           <div class="read__now-bottom">
             <div class="read__now-left">
