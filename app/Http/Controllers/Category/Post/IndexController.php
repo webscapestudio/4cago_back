@@ -18,7 +18,6 @@ class IndexController extends Controller
     {
         $category = Category::whereSlug($category_slug)->firstOrFail();
         $upper_banner = UpperBanner::latest()->first();
-        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $posts = Post::latest();
         if ($category->id) {
             $posts->where('category_id', $category->id);
@@ -33,6 +32,7 @@ class IndexController extends Controller
                 'posts' => $posts->where('published', '1')->paginate(6),
             ], compact('posts'));
         }
+        $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $last_page = Post::latest()->where('published', '1')->paginate(6)->lastPage();
         return view('posts.index', compact('last_page', 'tags', 'user', 'posts_read', 'right_banners', 'left_banners', 'post_cat', 'upper_banner'));
     }
