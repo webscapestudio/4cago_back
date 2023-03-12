@@ -31,7 +31,9 @@
       @foreach ($posts_read as $post)
         <!-- item -->
         <div class="read__now-item">
-
+          @php
+            var_dump($post->category->slug, $post->slug);
+          @endphp
           <a class="title__link"
             href="{{ route('post.show', [$post->category->slug, $post->slug]) }}">{{ $post->title }}</a>
           <div class="read__now-bottom">
