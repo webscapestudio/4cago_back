@@ -55,14 +55,6 @@
                       stroke-width="1.5" />
                   </svg>
                 </div>
-
-                <div class="dropdown">
-                  <form action="{{ route('news.favourite.store', $news->id) }}" method="POST">
-                    @csrf
-                    <button type="submit">Удалить</button>
-                  </form>
-                </div>
-
               </div>
 
             </div>
@@ -198,14 +190,6 @@
                       stroke-width="1.5" />
                   </svg>
                 </div>
-
-                <div class="dropdown">
-                  <form action="{{ route('post.favourite.store', [$post->category_id, $post->id]) }}" method="POST">
-                    @csrf
-                    <button type="submit">Удалить</button>
-                  </form>
-                </div>
-
               </div>
 
             </div>
@@ -307,8 +291,6 @@
               </div>
             </div>
           </div>
-
-
         </div>
       @endforeach
     @endif

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
+
 class StoreController extends Controller
 {
 
