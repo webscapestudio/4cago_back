@@ -17,7 +17,7 @@ class IndexController extends Controller
     {
         $upper_banner = UpperBanner::latest()->first();
         $user = Auth::user();
-        $posts = Post::where('published', '0')->get();
+        $posts = Post::where('published', '0')->where('user_id', '$user->id')->get();
         $posts_read = Post::query()->orderBy('views', 'desc')->where('published', '1')->paginate(6);
         $advertisements = Advertisement::where('published', '0')->get();
         $right_banners = RightBanner::all()->where('published', '1');
