@@ -32,7 +32,7 @@
         <!-- item -->
         <div class="read__now-item">
           @php
-            var_dump($post->category->slug);
+            var_dump($post->slug);
           @endphp
           <a class="title__link" href="">{{ $post->title }}</a>
           <div class="read__now-bottom">
