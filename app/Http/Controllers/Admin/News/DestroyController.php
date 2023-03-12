@@ -11,6 +11,7 @@ class DestroyController extends Controller
     public function __invoke($slug)
     {
         $news = News::whereSlug($slug)->firstOrFail();
+        $news->comments()->where('commentable_id', $news->id)->delete();
         $news->delete();
         return redirect()->route('admin.news.index');
     }

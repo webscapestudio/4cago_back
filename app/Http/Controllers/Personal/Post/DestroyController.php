@@ -10,7 +10,9 @@ class DestroyController extends Controller
 {
     public function __invoke($slug)
     {
+
         $post = Post::whereSlug($slug)->firstOrFail();
+        $post->comments()->where('commentable_id', $post->id)->delete();
         $post->delete();
         return redirect()->route('personal.post.index');
     }
