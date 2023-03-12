@@ -6459,7 +6459,7 @@ form.error .form__message {
     background: rgba(0, 0, 0, 0.6);
   }
   .sidebar.active {
-    height: calc(100vh - 64px);
+    height: calc(100vh - 204px);
   }
 }
 .ad-text {
