@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Tag extends Model
 {
+    use Sluggable;
     use HasFactory;
     use SoftDeletes;
     protected $table = 'tags';
@@ -24,5 +26,9 @@ class Tag extends Model
     public function news()
     {
         return $this->morphedByMany(News::class, 'taggable');
+    }
+    public function sluggable(): array
+    {
+        return ['slug' => ['source' => 'title']];
     }
 }

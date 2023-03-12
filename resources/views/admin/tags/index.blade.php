@@ -75,11 +75,11 @@
                           <td>{{ $tag->posts->count() }}</td>
                           <td>{{ $tag->advertisements->count() }}</td>
                           <td>{{ $tag->news->count() }}</td>
-                          <td><a href="{{ route('admin.tag.show', $tag->id) }}"><i class="far fa-eye"></i></a></td>
-                          <td><a href="{{ route('admin.tag.edit', $tag->id) }}" class="text-success"><i
+                          <td><a href="{{ route('admin.tag.show', $tag->slug) }}"><i class="far fa-eye"></i></a></td>
+                          <td><a href="{{ route('admin.tag.edit', $tag->slug) }}" class="text-success"><i
                                 class="fas fa-pencil-alt"></i></a></td>
                           <td>
-                            <form action="{{ route('admin.tag.destroy', $tag->id) }}" method="POST">
+                            <form action="{{ route('admin.tag.destroy', $tag->slug) }}" method="POST">
                               @csrf
                               @method('DELETE')
                               <button type="submit" class="border-0 bg-trnsparent"><i class="fas fa-trash text-danger"

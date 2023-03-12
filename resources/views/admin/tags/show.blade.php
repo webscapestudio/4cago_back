@@ -40,11 +40,11 @@
 
           <div class="row no-print">
             <div class="col-12">
-              <a href="{{ route('admin.tag.edit', $tag) }}" class="text-success"><button type="button"
+              <a href="{{ route('admin.tag.edit', $tag->slug) }}" class="text-success"><button type="button"
                   class="btn btn-success float-right"><i class="fas fa-pencil-alt"></i>
                   Изменить
                 </button></a>
-              <form action="{{ route('admin.tag.destroy', $tag->id) }}" method="POST">
+              <form action="{{ route('admin.tag.destroy', $tag->slug) }}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="btn btn-danger float-right" style="margin-right: 5px;">

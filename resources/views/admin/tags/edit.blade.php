@@ -25,7 +25,7 @@
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
           <div class="row">
-            <form action="{{ route('admin.tag.update', $tag->id) }}" method="POST" class="w-25">
+            <form action="{{ route('admin.tag.update', $tag->slug) }}" method="POST" class="w-25">
               @csrf
               @method('PATCH')
               <div class="form-group">

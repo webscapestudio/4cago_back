@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class ShowController extends Controller
 {
-    public function __invoke(Tag $tag)
+    public function __invoke($slug)
     {
+        $tag = Tag::whereSlug($slug)->firstOrFail();
         return view('admin.tags.show', compact('tag'));
     }
-
 }
